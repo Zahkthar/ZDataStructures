@@ -1,10 +1,12 @@
 #ifndef Z_DATA_STRUCTURES_H_INCLUDED
 #define Z_DATA_STRUCTURES_H_INCLUDED
 
-#include <stdlib.h> // malloc, free
+#include <stdlib.h> // malloc, calloc, free
 #include <stddef.h> // size_t
 
-// Stack
+/*
+ * STACK
+*/
 typedef struct ZStack {
     int *items; // the actual stack implemented as an array
     size_t topPosition; // the current of the position in the stack
@@ -14,7 +16,7 @@ typedef struct ZStack {
 // Allocation and free functions
 ZStack* ZStack_createEmptyStack(int stackSize);
 ZStack* ZStack_createStackFilledWithZero(int stackSize);
-void ZStack_freeStack(ZStack *stack);
+void ZStack_freeStack(ZStack **stack);
 
 // Generic stack functions
 int ZStack_push(ZStack *stack, int newValue);

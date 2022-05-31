@@ -21,11 +21,11 @@ ZStack* ZStack_createStackFilledWithZero(int stackSize) {
     return stack;
 }
 
-void ZStack_freeStack(ZStack *stack) {
-    free(stack->items);
-    stack->items = NULL;
-    free(stack);
-    stack = NULL;
+void ZStack_freeStack(ZStack **stack) {
+    free((*stack)->items);
+    (*stack)->items = NULL;
+    free(*stack);
+    *stack = NULL;
 }
 
 int ZStack_push(ZStack *stack, int newValue) {
@@ -50,26 +50,18 @@ int ZStack_pop(ZStack *stack, int *buffer) {
 
 int ZStack_peek(ZStack *stack) {
     if(ZStack_isEmpty(stack)) {
-        return 0;
+        return -1;
     } else {
         return stack->items[stack->topPosition];
     }
 }
 
 int ZStack_isEmpty(ZStack *stack) {
-    if(stack->topPosition == (size_t)-1) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return (stack->topPosition == (size_t)-1);
 }
 
 int ZStack_isFull(ZStack *stack) {
-    if(stack->topPosition == stack->size - 1) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return (stack->topPosition == stack->size - 1);
 }
 
 // Queue

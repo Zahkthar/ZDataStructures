@@ -1,5 +1,5 @@
 CXX = gcc
-CXXFLAGS += -W -Wall
+CXXFLAGS += -Wall -g
 
 LINKER_FLAGS = 
 
