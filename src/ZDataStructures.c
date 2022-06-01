@@ -1,67 +1,68 @@
 #include "ZDataStructures.h"
 
-// Stack
-ZStack* ZStack_createEmptyStack(int stackSize) {
-    ZStack* stack = malloc(sizeof(ZStack));
-    stack->size = stackSize;
-    stack->items = malloc(stack->size);
-
-    stack->topPosition = -1;
-
-    return stack;
+/*
+ * STACK
+ */
+ZStack* ZStack_createEmptyStack() {
+    return NULL;
 }
 
-ZStack* ZStack_createStackFilledWithZero(int stackSize) {
-    ZStack* stack = malloc(sizeof(ZStack));
-    stack->size = stackSize;
-    stack->items = calloc(stack->size, sizeof(int));
-
-    stack->topPosition = -1;
-
-    return stack;
-}
-
-void ZStack_freeStack(ZStack **stack) {
-    free((*stack)->items);
-    (*stack)->items = NULL;
-    free(*stack);
-    *stack = NULL;
-}
-
-int ZStack_push(ZStack *stack, int newValue) {
-    if(ZStack_isFull(stack)) {
-        return -1;
-    } else {
-        ++stack->topPosition;
-        stack->items[stack->topPosition] = newValue;
-        return 0;
+void ZStack_freeStack(ZStack **pp_stack) {
+    if(pp_stack != NULL &&  *pp_stack != NULL) {
+        while (*pp_stack != NULL) {
+            ZStack_pop(pp_stack);
+        }
     }
 }
 
-int ZStack_pop(ZStack *stack, int *buffer) {
-    if(ZStack_isEmpty(stack)) {
-        return -1;
-    } else {
-        if(buffer != NULL) { *buffer = stack->items[stack->topPosition]; }
-        --stack->topPosition;
-        return 0;
+void ZStack_push(ZStack **pp_stack, int32_t data) {
+    if(pp_stack != NULL) {
+        ZStack *p_currentElement = *pp_stack;
+        ZStack *p_nextElement = NULL;
+
+        p_nextElement = malloc(sizeof(*p_nextElement));
+        if(p_nextElement != NULL) {
+            p_nextElement->data = data;
+            p_nextElement->next = NULL;
+            p_nextElement->prev = p_currentElement;
+            
+            if(p_currentElement != NULL) {
+                p_currentElement->next = p_nextElement;
+            }
+
+            *pp_stack = p_nextElement;
+        } else {
+            fprintf(stderr, "Insufficient memory");
+            exit(EXIT_FAILURE);
+        }
     }
 }
 
-int ZStack_peek(ZStack *stack) {
-    if(ZStack_isEmpty(stack)) {
-        return -1;
-    } else {
-        return stack->items[stack->topPosition];
+int32_t ZStack_pop(ZStack **pp_stack) {
+    int32_t ret = INT32_MAX;
+
+    if(pp_stack != NULL && *pp_stack != NULL) {
+        ZStack *p_currentElement = *pp_stack;
+        ZStack *p_previousElement = p_currentElement->prev;
+
+        if(p_previousElement != NULL) { p_previousElement->next = NULL; }
+        ret = p_currentElement->data;
+
+        free(p_currentElement);
+        p_currentElement = NULL;
+
+        *pp_stack = p_previousElement;
     }
+
+    return ret;
 }
 
-int ZStack_isEmpty(ZStack *stack) {
-    return (stack->topPosition == (size_t)-1);
+int32_t ZStack_peek(ZStack **pp_stack) {
+    if(pp_stack != NULL && *pp_stack != NULL) { return (*pp_stack)->data; } else { return INT32_MAX; }
 }
 
-int ZStack_isFull(ZStack *stack) {
-    return (stack->topPosition == stack->size - 1);
+int ZStack_isEmpty(ZStack **pp_stack) {
+    return (pp_stack != NULL && *pp_stack == NULL);
 }
 
 // Queue
