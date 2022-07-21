@@ -4,7 +4,7 @@
 #include <stdio.h> // printf
 #include <stdlib.h> // calloc
 #include <stdint.h> // int32_t, INT32_MAX
-#include <stdbool.h> // bool
+#include <stdbool.h> // bool, true, false
 
 /*
  * STACK
