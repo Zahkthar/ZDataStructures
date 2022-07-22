@@ -8,10 +8,7 @@ void ZSinglyLinkedList_init(ZSinglyLinkedList **head) {
 }
 
 void ZSinglyLinkedList_free(ZSinglyLinkedList **head) {
-    ZSinglyLinkedList *del = NULL;
-
     while (*head != NULL) {
-        del = *head;
         ZSinglyLinkedList_delete(head, 0);
     }
 }
@@ -39,6 +36,14 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList **head, int32_t position) {
         free(del->data);
         free(del);
     }
+}
+
+void *ZSinglyLinkedList_peek(ZSinglyLinkedList *head, int32_t position) {
+    ZSinglyLinkedList *tmpHead = head;
+    for(int32_t i = 0; i < position; ++i) {
+        tmpHead = tmpHead->next;
+    }
+    return tmpHead->data;
 }
 
 void ZSinglyLinkedList_dumpMemory(ZSinglyLinkedList *node, int32_t dataPerLine) {

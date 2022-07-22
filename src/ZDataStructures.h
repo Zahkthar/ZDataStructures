@@ -21,6 +21,7 @@ void ZSinglyLinkedList_free(ZSinglyLinkedList **head);
 // Generic singly linked list functions
 void ZSinglyLinkedList_insert(ZSinglyLinkedList **head, void* data);
 void ZSinglyLinkedList_delete(ZSinglyLinkedList **head, int32_t position);
+void *ZSinglyLinkedList_peek(ZSinglyLinkedList *head, int32_t position);
 
 // Debug singly linked list functions
 void ZSinglyLinkedList_dumpMemory(ZSinglyLinkedList *head, int32_t dataPerLine);
