@@ -7,9 +7,25 @@
 #include <stdbool.h> // bool, true, false
 
 /*
- * STACK
+ * Singly Linked List
  */
-static const int32_t ZSTACK_MAX_SIZE = 100;
+
+/*
+ * Circular Linked List
+ */
+
+/*
+ * Doubly Linked List
+ */
+
+/*
+ * Circular Doubly Linked List
+ */
+
+/*
+ * Stack
+ */
+static const int32_t ZSTACK_MAX_SIZE = (1024 * 1024);
 
 typedef enum ZStackStatus {
     NO_ERROR,
@@ -41,7 +57,8 @@ bool ZStack_isFull(ZStack *p_stack);
 // Debug stack functions
 void ZStack_dumpMemory(ZStack *p_stack, int32_t dataPerLine);
 
-// Queue
-// Linked List
+/*
+ * Queue
+ */
 
 #endif // Z_DATA_STRUCTURES_H_INCLUDED

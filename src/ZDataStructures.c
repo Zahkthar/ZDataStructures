@@ -1,7 +1,23 @@
 #include "ZDataStructures.h"
 
 /*
- * STACK
+ * Singly Linked List
+ */
+
+/*
+ * Circular Linked List
+ */
+
+/*
+ * Doubly Linked List
+ */
+
+/*
+ * Circular Doubly Linked List
+ */
+
+/*
+ * Stack
  */
 void ZStack_initEmptyStack(ZStack *p_stack, size_t stackSize) {
     if(stackSize >= ZSTACK_MAX_SIZE) {
@@ -69,5 +85,6 @@ void ZStack_dumpMemory(ZStack *p_stack, int32_t dataPerLine) {
     }
 }
 
-// Queue
-// Linked List
+/*
+ * Queue
+ */
