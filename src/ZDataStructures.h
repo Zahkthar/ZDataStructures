@@ -35,9 +35,9 @@ typedef enum ZStackStatus {
 } ZStackStatus;
 
 typedef struct ZStack {
-    int32_t stackSize;
-    int32_t currentPosition;
-    int32_t *data;
+    size_t stackSize;
+    size_t currentPosition;
+    void **data;
     ZStackStatus stackStatus;
 } ZStack;
 
@@ -46,9 +46,9 @@ void ZStack_initEmptyStack(ZStack *p_stack, size_t stackSize);
 void ZStack_freeStack(ZStack *p_stack);
 
 // Generic stack functions
-void ZStack_push(ZStack *p_stack, int32_t data);
-void ZStack_pop(ZStack *p_stack, int32_t *buffer);
-int32_t ZStack_peek(ZStack *p_stack);
+void ZStack_push(ZStack *p_stack, void *data);
+void ZStack_pop(ZStack *p_stack, void **buffer);
+void *ZStack_peek(ZStack *p_stack);
 
 // Checking functions
 bool ZStack_isEmpty(ZStack *p_stack);

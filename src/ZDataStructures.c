@@ -33,11 +33,14 @@ void ZStack_initEmptyStack(ZStack *p_stack, size_t stackSize) {
 }
 
 void ZStack_freeStack(ZStack *p_stack) {
+    for(size_t i = 0; i < p_stack->stackSize; ++i) {
+        free(p_stack->data[i]);
+    }
     free(p_stack->data);
     p_stack->stackStatus = (ZStackStatus) NO_ERROR;
 }
 
-void ZStack_push(ZStack *p_stack, int32_t data) {
+void ZStack_push(ZStack *p_stack, void *data) {
     if(ZStack_isFull(p_stack) == false) {
         p_stack->currentPosition++;
         p_stack->data[p_stack->currentPosition] = data;
@@ -47,24 +50,24 @@ void ZStack_push(ZStack *p_stack, int32_t data) {
     }
 }
 
-void ZStack_pop(ZStack *p_stack, int32_t *buffer) {
+void ZStack_pop(ZStack *p_stack, void **buffer) {
     if(ZStack_isEmpty(p_stack) == false) {
         if(buffer != NULL) { *buffer = p_stack->data[p_stack->currentPosition]; }
         p_stack->currentPosition--;
         p_stack->stackStatus = (ZStackStatus) NO_ERROR;
     } else {
-        *buffer = INT32_MAX;
+        *buffer = NULL;
         p_stack->stackStatus = (ZStackStatus) EMPTY_ERROR;
     }
 }
 
-int32_t ZStack_peek(ZStack *p_stack) {
+void *ZStack_peek(ZStack *p_stack) {
     if(ZStack_isEmpty(p_stack) == false) {
         p_stack->stackStatus = (ZStackStatus) NO_ERROR;
         return p_stack->data[p_stack->currentPosition];
     } else {
         p_stack->stackStatus = (ZStackStatus) EMPTY_ERROR;
-        return INT32_MAX;
+        return NULL;
     }
 }
 
@@ -79,9 +82,10 @@ bool ZStack_isFull(ZStack *p_stack) {
 void ZStack_dumpMemory(ZStack *p_stack, int32_t dataPerLine) {
     if(p_stack->stackStatus != (ZStackStatus) STACK_SIZE_TOO_HIGH_ERROR) {
         for(int i = 0; i < p_stack->stackSize; ++i) {
-            printf("%d ", p_stack->data[i]);
-            if((i + 1) % dataPerLine == 0 && i != 0) { printf("\n"); }
+            printf("%p ", p_stack->data[i]);
+            if(((i + 1) % dataPerLine == 0 && i != 0) || (i == p_stack->stackSize - 1)) { printf("\n"); }
         }
+        
     }
 }
 

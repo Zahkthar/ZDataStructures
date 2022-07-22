@@ -1,7 +1,7 @@
 CXX = gcc
-CXXFLAGS += -Wall -g
+CXXFLAGS = -Wall -g
 
-LINKER_FLAGS = 
+LINKER_FLAGS =
 
 EXEC = ZDataStructures
 
