@@ -3,6 +3,53 @@
 /*
  * Singly Linked List
  */
+void ZSinglyLinkedList_init(ZSinglyLinkedList **head) {
+    *head = NULL;
+}
+
+void ZSinglyLinkedList_free(ZSinglyLinkedList **head) {
+    ZSinglyLinkedList *del = NULL;
+
+    while (*head != NULL) {
+        del = *head;
+        ZSinglyLinkedList_delete(head, 0);
+    }
+}
+
+void ZSinglyLinkedList_insert(ZSinglyLinkedList **head, void* data) {
+    ZSinglyLinkedList *newNode = malloc(sizeof(ZSinglyLinkedList));
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void ZSinglyLinkedList_delete(ZSinglyLinkedList **head, int32_t position) {
+    ZSinglyLinkedList *tmpHead = *head;
+
+    if(position == 0) {
+        free((*head)->data);
+        *head = (*head)->next;
+        free(tmpHead);
+    } else {
+        for(int32_t i = 0; i < position - 1; ++i) {
+            tmpHead = tmpHead->next;
+        }
+        ZSinglyLinkedList *del = tmpHead->next;
+        tmpHead->next = tmpHead->next->next;
+        free(del->data);
+        free(del);
+    }
+}
+
+void ZSinglyLinkedList_dumpMemory(ZSinglyLinkedList *node, int32_t dataPerLine) {
+    int position = 0;
+    while (node != NULL) {
+        printf("%p ", node->data);
+        node = node->next;
+        ++position;
+        if(((position + 1) % dataPerLine == 0) || (node == NULL)) { printf("\n"); } 
+    }
+}
 
 /*
  * Circular Linked List
@@ -85,7 +132,6 @@ void ZStack_dumpMemory(ZStack *p_stack, int32_t dataPerLine) {
             printf("%p ", p_stack->data[i]);
             if(((i + 1) % dataPerLine == 0 && i != 0) || (i == p_stack->stackSize - 1)) { printf("\n"); }
         }
-        
     }
 }
 
