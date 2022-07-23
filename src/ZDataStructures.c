@@ -38,12 +38,20 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList **head, int32_t position) {
     }
 }
 
-void *ZSinglyLinkedList_peek(ZSinglyLinkedList *head, int32_t position) {
+void ZSinglyLinkedList_pop(ZSinglyLinkedList **head) {
+    ZSinglyLinkedList_delete(head, 0);
+}
+
+void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *head, int32_t position) {
     ZSinglyLinkedList *tmpHead = head;
     for(int32_t i = 0; i < position; ++i) {
         tmpHead = tmpHead->next;
     }
     return tmpHead->data;
+}
+
+void *ZSinglyLinkedList_peek(ZSinglyLinkedList *head) {
+    return ZSinglyLinkedList_showValue(head, 0);
 }
 
 void ZSinglyLinkedList_dumpMemory(ZSinglyLinkedList *node, int32_t dataPerLine) {

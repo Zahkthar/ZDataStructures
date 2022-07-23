@@ -19,13 +19,15 @@ int main(void) {
     
     //================================================
 
-    int *b = ZSinglyLinkedList_peek(linkedList, 0);
-    printf("%d\n", *(int32_t*)b);
+    int *b = ZSinglyLinkedList_peek(linkedList);
+    int realValue = *(int32_t*)b;
+    printf("%d\n", realValue);
 
-    ZSinglyLinkedList_delete(&linkedList, 0);
+    ZSinglyLinkedList_pop(&linkedList);
 
-    b = ZSinglyLinkedList_peek(linkedList, 0);
-    printf("%d\n", *(int32_t*)b);
+    b = ZSinglyLinkedList_peek(linkedList);
+    realValue = *(int32_t*)b;
+    printf("%d\n", realValue);
 
     ZSinglyLinkedList_free(&linkedList);
     return 0;
