@@ -116,7 +116,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data) {
+void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format) {
     // Not implemented yet
 }
 
