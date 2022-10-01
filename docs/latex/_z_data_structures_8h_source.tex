@@ -1,0 +1,73 @@
+\hypertarget{_z_data_structures_8h_source}{}\doxysection{ZData\+Structures.\+h}
+\label{_z_data_structures_8h_source}\index{src/ZDataStructures.h@{src/ZDataStructures.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef Z\_DATA\_STRUCTURES\_H\_INCLUDED}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define Z\_DATA\_STRUCTURES\_H\_INCLUDED}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <stdio.h>} \textcolor{comment}{// printf}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <stdlib.h>} \textcolor{comment}{// malloc, free}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <stdint.h>} \textcolor{comment}{// int32\_t}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <string.h>} \textcolor{comment}{// strnlen}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{comment}{/*}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Singly Linked List}}
+\DoxyCodeLine{11 \textcolor{comment}{ */}}
+\DoxyCodeLine{12 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} \{}
+\DoxyCodeLine{13     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSinglyLinkedListNode}} *head;}
+\DoxyCodeLine{14 \} \mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSinglyLinkedListNode}} \{}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} *data;}
+\DoxyCodeLine{18     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSinglyLinkedListNode}} *next;}
+\DoxyCodeLine{19 \} \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSinglyLinkedListNode}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{// Allocation and free}}
+\DoxyCodeLine{22 \mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *ZSinglyLinkedList\_create();}
+\DoxyCodeLine{23 \textcolor{keywordtype}{void} ZSinglyLinkedList\_free(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{comment}{// Generic ZSinglyLinkedList functions}}
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} ZSinglyLinkedList\_pushFront(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{27 \textcolor{keywordtype}{void} ZSinglyLinkedList\_pushBack(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keywordtype}{void} ZSinglyLinkedList\_delete(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{size\_t} position);}
+\DoxyCodeLine{30 \textcolor{keywordtype}{void} ZSinglyLinkedList\_deleteFront(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list);}
+\DoxyCodeLine{31 \textcolor{keywordtype}{void} ZSinglyLinkedList\_deleteBack(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keywordtype}{void} *ZSinglyLinkedList\_showValue(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{size\_t} position);}
+\DoxyCodeLine{34 \textcolor{keywordtype}{void} *ZSinglyLinkedList\_showValueFront(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list);}
+\DoxyCodeLine{35 \textcolor{keywordtype}{void} *ZSinglyLinkedList\_showValueBack(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// Search functions}}
+\DoxyCodeLine{38 \textcolor{comment}{//void ZSinglyLinkedList\_linearSearch(ZSinglyLinkedList *list, void* data);}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{// Sort functions}}
+\DoxyCodeLine{41 \textcolor{comment}{//void ZSinglyLinkedList\_BubbleSort(ZSinglyLinkedList *list);}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{comment}{// Debug singly linked list functions}}
+\DoxyCodeLine{44 \textcolor{keywordtype}{void} ZSinglyLinkedList\_dumpMemoryPtr(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, int32\_t dataPerLine);}
+\DoxyCodeLine{45 \textcolor{keywordtype}{void} ZSinglyLinkedList\_dumpMemoryFormat(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, int32\_t dataPerLine, \textcolor{keywordtype}{char} *format);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{/*}}
+\DoxyCodeLine{48 \textcolor{comment}{ * Circular Linked List}}
+\DoxyCodeLine{49 \textcolor{comment}{ */}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{comment}{/*}}
+\DoxyCodeLine{52 \textcolor{comment}{ * Doubly Linked List}}
+\DoxyCodeLine{53 \textcolor{comment}{ */}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{comment}{/*}}
+\DoxyCodeLine{56 \textcolor{comment}{ * Circular Doubly Linked List}}
+\DoxyCodeLine{57 \textcolor{comment}{ */}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{comment}{/*}}
+\DoxyCodeLine{60 \textcolor{comment}{ * Stack}}
+\DoxyCodeLine{61 \textcolor{comment}{ */}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{/*}}
+\DoxyCodeLine{64 \textcolor{comment}{ * Queue}}
+\DoxyCodeLine{65 \textcolor{comment}{ */}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// Z\_DATA\_STRUCTURES\_H\_INCLUDED}}
+
+\end{DoxyCode}
