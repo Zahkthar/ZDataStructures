@@ -42,7 +42,6 @@ void ZSinglyLinkedList_pushBack(ZSinglyLinkedList *list, void* data) {
     }
 }
 
-
 void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position) {
     ZSinglyLinkedListNode *tmpHead = list->head;
 
@@ -80,7 +79,6 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list) {
         }
     }
 }
-
 
 void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
     if(position < 0) { return NULL; }
@@ -153,7 +151,6 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
         if(position + 1 % dataPerLine == 0 || tmpNode == NULL) { printf("\n"); } 
     }
 }
-
 
 /*
  * Circular Linked List
