@@ -153,23 +153,3 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
         if(position + 1 % dataPerLine == 0 || tmpNode == NULL) { printf("\n"); } 
     }
 }
-
-/*
- * Circular Linked List
- */
-
-/*
- * Doubly Linked List
- */
-
-/*
- * Circular Doubly Linked List
- */
-
-/*
- * Stack
- */
-
-/*
- * Queue
- */
