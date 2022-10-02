@@ -1,4 +1,4 @@
-#include "ZDataStructures.h"
+#include "ZSinglyLinkedList.h"
 
 /*
  * Singly Linked List
@@ -81,8 +81,6 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list) {
 }
 
 void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
-    if(position < 0) { return NULL; }
-
     ZSinglyLinkedListNode *tmpHead = list->head;
     for(size_t i = 0; i < position; ++i) {
         if(tmpHead->next != NULL) {
@@ -115,11 +113,15 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 
 // Search functions
 void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format) {
+    (void)list;
+    (void)data;
+    (void)format;
     // Not implemented yet
 }
 
 // Sort functions
 void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list) {
+    (void)list;
     // Not implemented yet
 }
 

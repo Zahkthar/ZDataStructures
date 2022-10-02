@@ -1,17 +1,25 @@
 CXX = gcc
-CXXFLAGS = -Wall -g
+CXXFLAGS = -Wall -Wextra -g# Mettre -O1 ou -O2 à la place de -g pour la version prod
 
 LINKER_FLAGS =
 
 EXEC = ZDataStructures
 
+SRC = main.c ZSinglyLinkedList.c
+OBJ = $(SRC:.c=.o)
+
 all : program
 
-program : main.o ZDataStructures.o
-	$(CXX) $(LINKER_FLAGS) obj\main.o obj\ZDataStructures.o -o bin\$(EXEC)
+program : $(OBJ)
+	$(CXX) $(LINKER_FLAGS) $(addprefix obj\, $(OBJ)) -o bin\$(EXEC)
 
-main.o : src\main.c
-	$(CXX) $(CXXFLAGS) -c src\main.c -o obj\main.o
+%.o: src\%.c
+	$(CXX) $(CXXFLAGS) -c $< -o obj\$@
 
-ZDataStructures.o : src\ZDataStructures.c
-	$(CXX) $(CXXFLAGS) -c src\ZDataStructures.c -o obj\ZDataStructures.o
+clean:
+	del /f /q obj\*.o
+
+mrproper: clean
+	del /f /q bin\$(EXEC).exe
+	
+.PHONY: all program clean mrproper
