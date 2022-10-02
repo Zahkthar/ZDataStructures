@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zdatastructures_2eh_0',['ZDataStructures.h',['../_z_data_structures_8h.html',1,'']]]
+  ['zsinglylinkedlist_2eh_0',['ZSinglyLinkedList.h',['../_z_singly_linked_list_8h.html',1,'']]]
 ];

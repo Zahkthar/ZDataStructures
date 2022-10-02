@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include "ZDataStructures.h"
+#include "ZSinglyLinkedList.h"
 
 int main(void) {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create();

@@ -2,9 +2,9 @@
 #define Z_DATA_STRUCTURES_H_INCLUDED
 
 /**
- * \file      ZDataStructures.h
+ * \file      ZSinglyLinkedList.h
  * \author    Zahkthar
- * \brief     Déclare les structures et les fonctions de la lib.
+ * \brief     Déclare les structures et les fonctions du module ZSinglyLinkedList.
  */
 
 #include <stdio.h> // printf
@@ -59,7 +59,7 @@ void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
  *            Remplace l'ancienne tête par le nouvel élement
  * 
  * \param     list   Un pointeur vers la liste
- * \param     data   Un pointeur vers la donnée à ajouter
+ * \param     data   Le pointeur à ajouter à la liste
  */
 void ZSinglyLinkedList_pushFront(ZSinglyLinkedList *list, void* data);
 
@@ -69,7 +69,7 @@ void ZSinglyLinkedList_pushFront(ZSinglyLinkedList *list, void* data);
  *            Le dernier élement de la liste pointera vers le nouvel élement.
  * 
  * \param     list   Un pointeur vers la liste
- * \param     data   Un pointeur vers la donnée à ajouter
+ * \param     data   Le pointeur à ajouter à la liste
  */
 void ZSinglyLinkedList_pushBack(ZSinglyLinkedList *list, void* data);
 
@@ -182,25 +182,5 @@ void ZSinglyLinkedList_dumpMemoryPtr(ZSinglyLinkedList *list, int32_t dataPerLin
  *                          - "lf" -> double \n
  */
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format);
-
-/*
- * Circular Linked List
- */
-
-/*
- * Doubly Linked List
- */
-
-/*
- * Circular Doubly Linked List
- */
-
-/*
- * Stack
- */
-
-/*
- * Queue
- */
 
 #endif // Z_DATA_STRUCTURES_H_INCLUDED
