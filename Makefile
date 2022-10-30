@@ -8,7 +8,7 @@ EXEC = ZDataStructures
 SRC = main.c ZSinglyLinkedList.c
 OBJ = $(SRC:.c=.o)
 
-all : program docs
+all : docs program
 
 docs:
 	doxygen

@@ -22,6 +22,7 @@
  */
 typedef struct ZSinglyLinkedList {
     struct ZSinglyLinkedListNode *head;
+    size_t length;
 } ZSinglyLinkedList;
 
 /**

@@ -12,7 +12,7 @@ int main(void) {
     a = malloc(sizeof(int32_t)); *a = 14;
     ZSinglyLinkedList_pushBack(list, a);
 
-    printf("%d\n", *(int32_t*)ZSinglyLinkedList_showValue(list, 0));
+    ZSinglyLinkedList_dumpMemoryFormat(list, 10, "d");
 
     ZSinglyLinkedList_free(list);
     return 0;
