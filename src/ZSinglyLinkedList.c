@@ -13,38 +13,59 @@ ZSinglyLinkedList *ZSinglyLinkedList_create() {
 }
 
 void ZSinglyLinkedList_free(ZSinglyLinkedList *list) {
-    while (list->head != NULL) {
-        ZSinglyLinkedList_delete(list, 0);
+    for (size_t i = 0; i < list->length; ++i) {
+        ZSinglyLinkedList_deleteFront(list);
     }
     free(list);
 }
 
 // Generic ZSinglyLinkedList functions
-void ZSinglyLinkedList_pushFront(ZSinglyLinkedList *list, void* data) {
-    ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
-    newNode->next = list->head;
-    newNode->data = data;
-    list->head = newNode;
+void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *data) {
+    // Gestion des cas spéciaux
+    if(position > list->length) { return; }
 
-    list->length += 1;
-}
+    // Insertion en début de liste
+    if(position == 0) {
+        ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
+        newNode->next = list->head;
+        newNode->data = data;
+        list->head = newNode;
 
-void ZSinglyLinkedList_pushBack(ZSinglyLinkedList *list, void* data) {
-    ZSinglyLinkedListNode *tmpHead = list->head;
+    // Insertion en fin de liste
+    } else if(position == list->length) {
+        ZSinglyLinkedListNode *tmpHead = list->head;
 
-    if(tmpHead == NULL) {
-        ZSinglyLinkedList_pushFront(list, data);
-    } else {
         while (tmpHead->next != NULL) {
             tmpHead = tmpHead->next;
         }
+
         ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
         tmpHead->next = newNode;
         newNode->data = data;
         newNode->next = NULL;
+
+    // Insertion dans la liste
+    } else {
+        ZSinglyLinkedListNode *tmpHead = list->head;
+        for(size_t i = 0; i < position - 1; ++i) {
+            tmpHead = tmpHead->next;
+        }
+
+        ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
+        newNode->data = data;
+        newNode->next = tmpHead->next;
+        tmpHead->next = newNode;
     }
 
     list->length += 1;
+}
+
+void ZSinglyLinkedList_insertFront(ZSinglyLinkedList *list, void *data) {
+    ZSinglyLinkedList_insert(list, 0, data);
+}
+
+void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data) {
+    ZSinglyLinkedList_insert(list, list->length, data);
 }
 
 void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position) {
@@ -119,7 +140,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format) {
+void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, char *format) {
     (void)list;
     (void)data;
     (void)format;
@@ -133,6 +154,14 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list) {
 }
 
 // Debug singly linked list functions
+bool ZSinglyLinkedList_isEmpty(ZSinglyLinkedList *list) {
+    return (list->length == 0);
+}
+
+size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list) {
+    return list->length;
+}
+
 void ZSinglyLinkedList_dumpMemoryPtr(ZSinglyLinkedList *list, int32_t dataPerLine) {
     ZSinglyLinkedList_dumpMemoryFormat(list, dataPerLine, "p");
 }

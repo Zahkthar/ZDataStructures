@@ -8,10 +8,13 @@ var searchData=
   ['zsinglylinkedlist_5fdumpmemoryformat_5',['ZSinglyLinkedList_dumpMemoryFormat',['../_z_singly_linked_list_8h.html#a125bc8c896d438c1330a5e453d8fded2',1,'ZSinglyLinkedList.c']]],
   ['zsinglylinkedlist_5fdumpmemoryptr_6',['ZSinglyLinkedList_dumpMemoryPtr',['../_z_singly_linked_list_8h.html#a2396aff60360deeb3faa202402e5243e',1,'ZSinglyLinkedList.c']]],
   ['zsinglylinkedlist_5ffree_7',['ZSinglyLinkedList_free',['../_z_singly_linked_list_8h.html#a2e0a03f462076b77a2fc0704a3a2906d',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5flinearsearch_8',['ZSinglyLinkedList_linearSearch',['../_z_singly_linked_list_8h.html#addb9ad75d4b486d138e2cb7d5bb47732',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fpushback_9',['ZSinglyLinkedList_pushBack',['../_z_singly_linked_list_8h.html#a70f2ee98083437814c026bc9ca03db52',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fpushfront_10',['ZSinglyLinkedList_pushFront',['../_z_singly_linked_list_8h.html#afc9f5914cd27bef4b508e84d5e32cf1c',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fshowvalue_11',['ZSinglyLinkedList_showValue',['../_z_singly_linked_list_8h.html#afcd6d21ac45536f162f464fd224b002b',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fshowvalueback_12',['ZSinglyLinkedList_showValueBack',['../_z_singly_linked_list_8h.html#ad9a7b25cb3116f88ebb213db8f2c1fee',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fshowvaluefront_13',['ZSinglyLinkedList_showValueFront',['../_z_singly_linked_list_8h.html#ab2f2be64354663cea7ae05bdebe4d0a7',1,'ZSinglyLinkedList.c']]]
+  ['zsinglylinkedlist_5fgetlength_8',['ZSinglyLinkedList_getLength',['../_z_singly_linked_list_8h.html#ac588981129ad556bd50d75104161721e',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5finsert_9',['ZSinglyLinkedList_insert',['../_z_singly_linked_list_8h.html#a4b7466ed183d6082a785b89493ddc8f1',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5finsertback_10',['ZSinglyLinkedList_insertBack',['../_z_singly_linked_list_8h.html#af3fcffa03c91f7b25697535ff1803c58',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5finsertfront_11',['ZSinglyLinkedList_insertFront',['../_z_singly_linked_list_8h.html#a4dcbe7fe592a9d8821861eb0586886af',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fisempty_12',['ZSinglyLinkedList_isEmpty',['../_z_singly_linked_list_8h.html#a44526678dd4c53438f911ce4bfe40a8a',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5flinearsearch_13',['ZSinglyLinkedList_linearSearch',['../_z_singly_linked_list_8h.html#addb9ad75d4b486d138e2cb7d5bb47732',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fshowvalue_14',['ZSinglyLinkedList_showValue',['../_z_singly_linked_list_8h.html#afcd6d21ac45536f162f464fd224b002b',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fshowvalueback_15',['ZSinglyLinkedList_showValueBack',['../_z_singly_linked_list_8h.html#ad9a7b25cb3116f88ebb213db8f2c1fee',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fshowvaluefront_16',['ZSinglyLinkedList_showValueFront',['../_z_singly_linked_list_8h.html#ab2f2be64354663cea7ae05bdebe4d0a7',1,'ZSinglyLinkedList.c']]]
 ];

@@ -1,18 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
+
 #include "ZSinglyLinkedList.h"
 
 int main(void) {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create();
 
-    int32_t *a = malloc(sizeof(int32_t)); *a = 12;
-    ZSinglyLinkedList_pushFront(list, a);
+    for(int i = 0; i < 10; ++i) {
+        int32_t *a = malloc(sizeof(int32_t));
+        *a = i; ZSinglyLinkedList_insertBack(list, a);
+    } 
     
-    a = malloc(sizeof(int32_t)); *a = 14;
-    ZSinglyLinkedList_pushBack(list, a);
+    int32_t *b = malloc(sizeof(int32_t)); *b = 14;
+    ZSinglyLinkedList_insert(list, 2, b);
 
-    ZSinglyLinkedList_dumpMemoryFormat(list, 10, "d");
+    printf("Is list empty -> %I64d", ZSinglyLinkedList_getLength(list));
 
     ZSinglyLinkedList_free(list);
     return 0;

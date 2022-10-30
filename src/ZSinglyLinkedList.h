@@ -11,6 +11,7 @@
 #include <stdlib.h> // malloc, free
 #include <stdint.h> // int32_t
 #include <string.h> // strnlen
+#include <stdbool.h> // bool
 
 /*
  * Singly Linked List
@@ -34,7 +35,9 @@ typedef struct ZSinglyLinkedListNode {
     struct ZSinglyLinkedListNode *next;
 } ZSinglyLinkedListNode;
 
-// Allocation and free
+/*
+ * Allocation and free
+ */
 
 /**
  * \brief     Initialise la liste
@@ -52,7 +55,19 @@ ZSinglyLinkedList *ZSinglyLinkedList_create();
  */
 void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
 
-// Generic ZSinglyLinkedList functions
+/*
+ * Generic ZSinglyLinkedList functions
+ */
+
+/**
+ * \brief     Ajoute un élement dans la liste
+ * \details   Crée un nouvel élement de type \e ZSinglyLinkedListNode et l'insère à la position \e position dans la liste
+ * 
+ * \param     list       Un pointeur vers la liste
+ * \param     position   La position à laquelle insérer l'élement
+ * \param     data       Le pointeur à ajouter à la liste
+ */
+void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void* data);
 
 /**
  * \brief     Ajoute un élement au début de la liste
@@ -62,7 +77,7 @@ void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
  * \param     list   Un pointeur vers la liste
  * \param     data   Le pointeur à ajouter à la liste
  */
-void ZSinglyLinkedList_pushFront(ZSinglyLinkedList *list, void* data);
+void ZSinglyLinkedList_insertFront(ZSinglyLinkedList *list, void* data);
 
 /**
  * \brief     Ajoute un élement à la fin de la liste
@@ -72,7 +87,7 @@ void ZSinglyLinkedList_pushFront(ZSinglyLinkedList *list, void* data);
  * \param     list   Un pointeur vers la liste
  * \param     data   Le pointeur à ajouter à la liste
  */
-void ZSinglyLinkedList_pushBack(ZSinglyLinkedList *list, void* data);
+void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void* data);
 
 /**
  * \brief     Supprime un élement de la liste à une position passée en paramètre
@@ -124,7 +139,11 @@ void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list);
  */
 void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
 
-// Search functions
+
+
+/*
+ * Search functions
+ */
 
 /**
  * \brief     Recherche une donnée dans la liste selon un type spécifié par le format
@@ -144,7 +163,9 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
  */
 void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format);
 
-// Sort functions
+/*
+ * Sort functions
+ */
 
 /**
  * \brief     Trie la liste à l'aide d'un tri à bulle 
@@ -153,7 +174,27 @@ void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *f
  */
 void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list);
 
-// Debug singly linked list functions
+/*
+ * Debug singly linked list functions
+ */
+
+/**
+ * \brief     Renvoie true si la liste est vide, false sinon
+ * 
+ * \param     list   Un pointeur vers la liste
+ * 
+ * \return    Un \e bool valant true si la liste est vide.
+ */
+bool ZSinglyLinkedList_isEmpty(ZSinglyLinkedList *list);
+
+/**
+ * \brief     Renvoie le nombre d'éléments de la liste
+ * 
+ * \param     list   Un pointeur vers la liste
+ * 
+ * \return    Un \e size_t étant le nombre d'éléments de la liste. 
+ */
+size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list);
 
 /**
  * \brief     Affiche les données de la liste sous formes de pointeur

@@ -9,6 +9,7 @@ Déclare les structures et les fonctions du module \mbox{\hyperlink{struct_z_sin
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,9 +31,11 @@ typedef struct \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linke
 \begin{DoxyCompactList}\small\item\em Initialise la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a2e0a03f462076b77a2fc0704a3a2906d}{ZSingly\+Linked\+List\+\_\+free}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Libère la mémoire allouée par la liste. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_z_singly_linked_list_8h_afc9f5914cd27bef4b508e84d5e32cf1c}{ZSingly\+Linked\+List\+\_\+push\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data)
+void \mbox{\hyperlink{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}{ZSingly\+Linked\+List\+\_\+insert}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Ajoute un élement dans la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_a4dcbe7fe592a9d8821861eb0586886af}{ZSingly\+Linked\+List\+\_\+insert\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data)
 \begin{DoxyCompactList}\small\item\em Ajoute un élement au début de la liste. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_z_singly_linked_list_8h_a70f2ee98083437814c026bc9ca03db52}{ZSingly\+Linked\+List\+\_\+push\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data)
+void \mbox{\hyperlink{_z_singly_linked_list_8h_af3fcffa03c91f7b25697535ff1803c58}{ZSingly\+Linked\+List\+\_\+insert\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data)
 \begin{DoxyCompactList}\small\item\em Ajoute un élement à la fin de la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a88f0d74165818574b4830ad724b4a644}{ZSingly\+Linked\+List\+\_\+delete}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
 \begin{DoxyCompactList}\small\item\em Supprime un élement de la liste à une position passée en paramètre. \end{DoxyCompactList}\item 
@@ -50,6 +53,10 @@ void \mbox{\hyperlink{_z_singly_linked_list_8h_addb9ad75d4b486d138e2cb7d5bb47732
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon un type spécifié par le format. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_aa636cb9f22a9298795a18803a855991c}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_z_singly_linked_list_8h_a44526678dd4c53438f911ce4bfe40a8a}{ZSingly\+Linked\+List\+\_\+is\+Empty}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Renvoie true si la liste est vide, false sinon. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_ac588981129ad556bd50d75104161721e}{ZSingly\+Linked\+List\+\_\+get\+Length}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Renvoie le nombre d\textquotesingle{}éléments de la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a2396aff60360deeb3faa202402e5243e}{ZSingly\+Linked\+List\+\_\+dump\+Memory\+Ptr}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, int32\+\_\+t data\+Per\+Line)
 \begin{DoxyCompactList}\small\item\em Affiche les données de la liste sous formes de pointeur. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}{ZSingly\+Linked\+List\+\_\+dump\+Memory\+Format}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, int32\+\_\+t data\+Per\+Line, char $\ast$format)
@@ -243,6 +250,101 @@ Libère tous les pointeurs de donnée et les élements de type {\itshape \mbox{\
 {\em list} & Un pointeur vers la liste \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_ac588981129ad556bd50d75104161721e}\label{_z_singly_linked_list_8h_ac588981129ad556bd50d75104161721e}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getLength@{ZSinglyLinkedList\_getLength}}
+\index{ZSinglyLinkedList\_getLength@{ZSinglyLinkedList\_getLength}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getLength()}{ZSinglyLinkedList\_getLength()}}
+{\footnotesize\ttfamily size\+\_\+t ZSingly\+Linked\+List\+\_\+get\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Renvoie le nombre d\textquotesingle{}éléments de la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape size\+\_\+t} étant le nombre d\textquotesingle{}éléments de la liste. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}\label{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_insert@{ZSinglyLinkedList\_insert}}
+\index{ZSinglyLinkedList\_insert@{ZSinglyLinkedList\_insert}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_insert()}{ZSinglyLinkedList\_insert()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{size\+\_\+t}]{position,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Ajoute un élement dans la liste. 
+
+Crée un nouvel élement de type {\itshape \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}}} et l\textquotesingle{}insère à la position {\itshape position} dans la liste
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em position} & La position à laquelle insérer l\textquotesingle{}élement \\
+\hline
+{\em data} & Le pointeur à ajouter à la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_af3fcffa03c91f7b25697535ff1803c58}\label{_z_singly_linked_list_8h_af3fcffa03c91f7b25697535ff1803c58}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_insertBack@{ZSinglyLinkedList\_insertBack}}
+\index{ZSinglyLinkedList\_insertBack@{ZSinglyLinkedList\_insertBack}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_insertBack()}{ZSinglyLinkedList\_insertBack()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+insert\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Ajoute un élement à la fin de la liste. 
+
+Crée un nouvel élement de type {\itshape \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}}} dont le pointeur next pointe vers NULL. Le dernier élement de la liste pointera vers le nouvel élement.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em data} & Le pointeur à ajouter à la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a4dcbe7fe592a9d8821861eb0586886af}\label{_z_singly_linked_list_8h_a4dcbe7fe592a9d8821861eb0586886af}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_insertFront@{ZSinglyLinkedList\_insertFront}}
+\index{ZSinglyLinkedList\_insertFront@{ZSinglyLinkedList\_insertFront}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_insertFront()}{ZSinglyLinkedList\_insertFront()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+insert\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Ajoute un élement au début de la liste. 
+
+Crée un nouvel élement de type {\itshape \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}}} dont le pointeur next pointera vers l\textquotesingle{}ancienne tête. Remplace l\textquotesingle{}ancienne tête par le nouvel élement
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em data} & Le pointeur à ajouter à la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a44526678dd4c53438f911ce4bfe40a8a}\label{_z_singly_linked_list_8h_a44526678dd4c53438f911ce4bfe40a8a}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_isEmpty@{ZSinglyLinkedList\_isEmpty}}
+\index{ZSinglyLinkedList\_isEmpty@{ZSinglyLinkedList\_isEmpty}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_isEmpty()}{ZSinglyLinkedList\_isEmpty()}}
+{\footnotesize\ttfamily bool ZSingly\+Linked\+List\+\_\+is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Renvoie true si la liste est vide, false sinon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape bool} valant true si la liste est vide. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_addb9ad75d4b486d138e2cb7d5bb47732}\label{_z_singly_linked_list_8h_addb9ad75d4b486d138e2cb7d5bb47732}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_linearSearch@{ZSinglyLinkedList\_linearSearch}}
 \index{ZSinglyLinkedList\_linearSearch@{ZSinglyLinkedList\_linearSearch}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
@@ -281,44 +383,6 @@ Recherche une donnée dans la liste selon un type spécifié par le format.
 \item \char`\"{}lf\char`\"{} -\/\texorpdfstring{$>$}{>} double ~\newline
 
 \end{DoxyItemize}\\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_a70f2ee98083437814c026bc9ca03db52}\label{_z_singly_linked_list_8h_a70f2ee98083437814c026bc9ca03db52}} 
-\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_pushBack@{ZSinglyLinkedList\_pushBack}}
-\index{ZSinglyLinkedList\_pushBack@{ZSinglyLinkedList\_pushBack}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
-\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_pushBack()}{ZSinglyLinkedList\_pushBack()}}
-{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+push\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
-
-
-
-Ajoute un élement à la fin de la liste. 
-
-Crée un nouvel élement de type {\itshape \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}}} dont le pointeur next pointe vers NULL. Le dernier élement de la liste pointera vers le nouvel élement.
-
-
-\begin{DoxyParams}{Parameters}
-{\em list} & Un pointeur vers la liste \\
-\hline
-{\em data} & Le pointeur à ajouter à la liste \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_afc9f5914cd27bef4b508e84d5e32cf1c}\label{_z_singly_linked_list_8h_afc9f5914cd27bef4b508e84d5e32cf1c}} 
-\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_pushFront@{ZSinglyLinkedList\_pushFront}}
-\index{ZSinglyLinkedList\_pushFront@{ZSinglyLinkedList\_pushFront}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
-\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_pushFront()}{ZSinglyLinkedList\_pushFront()}}
-{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+push\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
-
-
-
-Ajoute un élement au début de la liste. 
-
-Crée un nouvel élement de type {\itshape \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}}} dont le pointeur next pointera vers l\textquotesingle{}ancienne tête. Remplace l\textquotesingle{}ancienne tête par le nouvel élement
-
-
-\begin{DoxyParams}{Parameters}
-{\em list} & Un pointeur vers la liste \\
-\hline
-{\em data} & Le pointeur à ajouter à la liste \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}\label{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}} 
