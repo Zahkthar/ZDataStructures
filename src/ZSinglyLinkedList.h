@@ -151,17 +151,16 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
  * \param     list          Un pointeur vers la liste
  * \param     data          Un pointeur contenant la donnée à chercher
  * \param     format        Le format pour comparer correctement les données : \n
- *                          - "p" -> pointeur (utiliser ZSinglyLinkedList_dumpMemoryPtr) \n
+ *                          - "p" -> pointeur \n
  *                          - "d" -> int32_t \n
  *                          - "u" -> uint32_t \n
- *                          - "o" -> octal \n
- *                          - "x" -> hexadécimal \n
  *                          - "c" -> char \n
- *                          - "s" -> char* \n
  *                          - "f" -> float \n
  *                          - "lf" -> double \n
+ * 
+ * \return    La position de la première occurence de la data \e data dans la liste ou -1 si la data n'est pas dans la liste
  */
-void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format);
+int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format);
 
 /*
  * Sort functions

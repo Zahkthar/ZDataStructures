@@ -33,28 +33,29 @@ void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *da
 
     // Insertion en fin de liste
     } else if(position == list->length) {
-        ZSinglyLinkedListNode *tmpHead = list->head;
+        ZSinglyLinkedListNode *currentNode = list->head;
 
-        while (tmpHead->next != NULL) {
-            tmpHead = tmpHead->next;
+        while (currentNode->next != NULL) {
+            currentNode = currentNode->next;
         }
 
         ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
-        tmpHead->next = newNode;
+        currentNode->next = newNode;
         newNode->data = data;
         newNode->next = NULL;
 
     // Insertion dans la liste
     } else {
-        ZSinglyLinkedListNode *tmpHead = list->head;
+        ZSinglyLinkedListNode *currentNode = list->head;
+
         for(size_t i = 0; i < position - 1; ++i) {
-            tmpHead = tmpHead->next;
+            currentNode = currentNode->next;
         }
 
         ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
         newNode->data = data;
-        newNode->next = tmpHead->next;
-        tmpHead->next = newNode;
+        newNode->next = currentNode->next;
+        currentNode->next = newNode;
     }
 
     list->length += 1;
@@ -69,7 +70,7 @@ void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data) {
 }
 
 void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position) {
-    ZSinglyLinkedListNode *tmpHead = list->head;
+    ZSinglyLinkedListNode *currentNode = list->head;
 
     // Gestion des cas spéciaux
     if(position >= list->length) { return; }
@@ -78,30 +79,28 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position) {
     if(position == 0) {
         if(list->head != NULL) {
             list->head = list->head->next;
-            free(tmpHead->data);
-            free(tmpHead);
+            free(currentNode->data);
+            free(currentNode);
         }
 
     // Le dernier élément de la liste
     } else if(position == list->length - 1) {
-        ZSinglyLinkedListNode *tmpHead = list->head;
-
-        while(tmpHead->next->next != NULL) {
-            tmpHead = tmpHead->next;
+        while(currentNode->next->next != NULL) {
+            currentNode = currentNode->next;
         }
 
-        free(tmpHead->next->data);
-        free(tmpHead->next);
-        tmpHead->next = NULL;
+        free(currentNode->next->data);
+        free(currentNode->next);
+        currentNode->next = NULL;
 
     // Dans la liste
     } else {
         for(size_t i = 0; i < position - 1; ++i) {
-            tmpHead = tmpHead->next;
+            currentNode = currentNode->next;
         }
 
-        ZSinglyLinkedListNode *del = tmpHead->next;
-        tmpHead->next = tmpHead->next->next;
+        ZSinglyLinkedListNode *del = currentNode->next;
+        currentNode->next = currentNode->next->next;
         free(del->data);
         free(del);
     }
@@ -118,17 +117,17 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list) {
 }
 
 void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
-    ZSinglyLinkedListNode *tmpHead = list->head;
+    ZSinglyLinkedListNode *currentNode = list->head;
 
     // Gestion des cas spéciaux
-    if(position == 0 && tmpHead != NULL) { return tmpHead->data; }
+    if(position == 0 && currentNode != NULL) { return currentNode->data; }
     if(position >= list->length) { return NULL; }
 
     for(size_t i = 0; i < position; ++i) {
-        tmpHead = tmpHead->next;
+        currentNode = currentNode->next;
     }
 
-    return tmpHead->data;
+    return currentNode->data;
 }
 
 void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list) {
@@ -140,11 +139,25 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-void ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, char *format) {
-    (void)list;
-    (void)data;
-    (void)format;
-    // Not implemented yet
+int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, char *format) {
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    for(size_t i = 0; i < list->length; ++i) {
+        switch (format[0]) {
+            case 'p': if(currentNode->data == data) { return i; } break;
+            case 'd': if(*(int32_t*)currentNode->data == *(int32_t*)data) { return i; } break;
+            case 'u': if(*(uint32_t*)currentNode->data == *(uint32_t*)data) { return i; } break;
+            case 'c': if(*(char*)currentNode->data == *(char*)data) { return i; } break;
+            case 'f': if(*(float*)currentNode->data == *(float*)data) { return i; } break;
+            case 'l': if(format[1] == 'f' && strnlen(format, 3) == 2) { if(*(double*)currentNode->data == *(double*)data) { return i; } } break;
+
+            default: break;
+        }
+
+        currentNode = currentNode->next;
+    }
+
+    return -1;
 }
 
 // Sort functions
@@ -167,24 +180,24 @@ void ZSinglyLinkedList_dumpMemoryPtr(ZSinglyLinkedList *list, int32_t dataPerLin
 }
 
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format) {
-    ZSinglyLinkedListNode *tmpNode = list->head;
+    ZSinglyLinkedListNode *currentNode = list->head;
     
     for(size_t i = 0; i < list->length; ++i) {
         switch (format[0]) {
-            case 'p': printf("%p ", tmpNode->data); break;
-            case 'd': printf("%d ", *(int32_t*)tmpNode->data); break;
-            case 'u': printf("%u ", *(uint32_t*)tmpNode->data); break;
-            case 'o': printf("%o ", *(int32_t*)tmpNode->data); break;
-            case 'x': printf("%x ", *(int32_t*)tmpNode->data); break;
-            case 'c': printf("%c ", *(char*)tmpNode->data); break;
-            case 's': printf("%s ", *(char**)tmpNode->data); break;
-            case 'f': printf("%f ", *(float*)tmpNode->data); break;
-            case 'l': if(format[1] == 'f' && strnlen(format, 2) == 2) { printf("%lf ", *(double*)tmpNode->data); } break;
+            case 'p': printf("%p ", currentNode->data); break;
+            case 'd': printf("%d ", *(int32_t*)currentNode->data); break;
+            case 'u': printf("%u ", *(uint32_t*)currentNode->data); break;
+            case 'o': printf("%o ", *(int32_t*)currentNode->data); break;
+            case 'x': printf("%x ", *(int32_t*)currentNode->data); break;
+            case 'c': printf("%c ", *(char*)currentNode->data); break;
+            case 's': printf("%s ", *(char**)currentNode->data); break;
+            case 'f': printf("%f ", *(float*)currentNode->data); break;
+            case 'l': if(format[1] == 'f' && strnlen(format, 3) == 2) { printf("%lf ", *(double*)currentNode->data); } break;
 
             default: break;
         }
 
-        if((i + 1) % dataPerLine == 0 || tmpNode == NULL) { printf("\n"); }
-        tmpNode = tmpNode->next;
+        if((i + 1) % dataPerLine == 0 || currentNode == NULL) { printf("\n"); }
+        currentNode = currentNode->next;
     }
 }

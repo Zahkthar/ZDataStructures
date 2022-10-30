@@ -49,7 +49,7 @@ void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ab2f2be64354663cea7ae05bde
 \begin{DoxyCompactList}\small\item\em Renvoie le premier élement de la liste. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8f2c1fee}{ZSingly\+Linked\+List\+\_\+show\+Value\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_z_singly_linked_list_8h_addb9ad75d4b486d138e2cb7d5bb47732}{ZSingly\+Linked\+List\+\_\+linear\+Search}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, char $\ast$format)
+int \mbox{\hyperlink{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}{ZSingly\+Linked\+List\+\_\+linear\+Search}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, char $\ast$format)
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon un type spécifié par le format. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_aa636cb9f22a9298795a18803a855991c}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle. \end{DoxyCompactList}\item 
@@ -345,11 +345,11 @@ Renvoie true si la liste est vide, false sinon.
 \begin{DoxyReturn}{Returns}
 Un {\itshape bool} valant true si la liste est vide. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_addb9ad75d4b486d138e2cb7d5bb47732}\label{_z_singly_linked_list_8h_addb9ad75d4b486d138e2cb7d5bb47732}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}\label{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_linearSearch@{ZSinglyLinkedList\_linearSearch}}
 \index{ZSinglyLinkedList\_linearSearch@{ZSinglyLinkedList\_linearSearch}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_linearSearch()}{ZSinglyLinkedList\_linearSearch()}}
-{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+linear\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{char $\ast$}]{format }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ZSingly\+Linked\+List\+\_\+linear\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{char $\ast$}]{format }\end{DoxyParamCaption})}
 
 
 
@@ -364,27 +364,24 @@ Recherche une donnée dans la liste selon un type spécifié par le format.
 {\em format} & Le format pour comparer correctement les données \+: ~\newline
 
 \begin{DoxyItemize}
-\item \char`\"{}p\char`\"{} -\/\texorpdfstring{$>$}{>} pointeur (utiliser ZSingly\+Linked\+List\+\_\+dump\+Memory\+Ptr) ~\newline
+\item \char`\"{}p\char`\"{} -\/\texorpdfstring{$>$}{>} pointeur ~\newline
 
 \item \char`\"{}d\char`\"{} -\/\texorpdfstring{$>$}{>} int32\+\_\+t ~\newline
 
 \item \char`\"{}u\char`\"{} -\/\texorpdfstring{$>$}{>} uint32\+\_\+t ~\newline
 
-\item \char`\"{}o\char`\"{} -\/\texorpdfstring{$>$}{>} octal ~\newline
-
-\item \char`\"{}x\char`\"{} -\/\texorpdfstring{$>$}{>} hexadécimal ~\newline
-
 \item \char`\"{}c\char`\"{} -\/\texorpdfstring{$>$}{>} char ~\newline
-
-\item \char`\"{}s\char`\"{} -\/\texorpdfstring{$>$}{>} char$\ast$ ~\newline
 
 \item \char`\"{}f\char`\"{} -\/\texorpdfstring{$>$}{>} float ~\newline
 
 \item \char`\"{}lf\char`\"{} -\/\texorpdfstring{$>$}{>} double ~\newline
-
+ 
 \end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La position de la première occurence de la data {\itshape data} dans la liste ou -\/1 si la data n\textquotesingle{}est pas dans la liste 
+\end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}\label{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_showValue@{ZSinglyLinkedList\_showValue}}
 \index{ZSinglyLinkedList\_showValue@{ZSinglyLinkedList\_showValue}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
