@@ -13,8 +13,12 @@ int main(void) {
         *a = i; ZSinglyLinkedList_insertBack(list, a);
     }
 
-    ZSinglyLinkedList_BubbleSort(list, "d");
+    printf("Before :\n");
+    ZSinglyLinkedList_dumpMemoryFormat(list, 20, "d");
 
+    ZSinglyLinkedList_BubbleSort(list, "d");
+    
+    printf("After :\n");
     ZSinglyLinkedList_dumpMemoryFormat(list, 20, "d");
 
     ZSinglyLinkedList_free(list);
