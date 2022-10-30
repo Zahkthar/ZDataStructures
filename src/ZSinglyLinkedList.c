@@ -161,9 +161,53 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, char *fo
 }
 
 // Sort functions
-void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list) {
-    (void)list;
-    // Not implemented yet
+static bool compareValues(void *valueA, void *valueB, char *format) {
+    switch (format[0]) {
+        case 'd': return (*(int32_t*)valueA > *(int32_t*)valueB);
+        case 'u': return (*(uint32_t*)valueA > *(uint32_t*)valueB);
+        case 'c': return (*(char*)valueA > *(char*)valueB);
+        case 'f': return (*(float*)valueA > *(float*)valueB);
+        case 'l': if(format[1] == 'f' && strnlen(format, 3) == 2) { return (*(double*)valueA > *(double*)valueB); } break;
+
+        default: break;
+    }
+
+    return false;
+}
+
+void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format) {
+    bool isSorted = true;
+    ZSinglyLinkedListNode *lastCellToCheck = NULL;
+
+    // Si la liste est vide, on s'arrête
+    if(list->length == 0) { return; }
+    
+    // Commencement du tri
+    while(true) {
+        isSorted = true;
+        ZSinglyLinkedListNode *currentCell = list->head;
+        
+        // On parcours la liste du début à la fin
+        while(currentCell->next != lastCellToCheck) {
+            // Si currentData > nextData
+            if(compareValues(currentCell->data, currentCell->next->data, format)) {
+                // On swap les data
+                void *tmpData = currentCell->data;
+                currentCell->data = currentCell->next->data;
+                currentCell->next->data = tmpData;
+                
+                isSorted = false; // La liste n'est pas trié
+            }
+            currentCell = currentCell->next;
+        }
+
+        // La valeur la plus grande a forcément été poussée tout à la fin de la liste, ce qui réduit la liste à parcourir
+        lastCellToCheck = currentCell;
+        // Si la liste est déjà triée, ne pas faire toutes les passes restantes
+        if(isSorted == true) {
+            break;
+        }
+    }
 }
 
 // Debug singly linked list functions

@@ -51,7 +51,7 @@ void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8
 \begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}{ZSingly\+Linked\+List\+\_\+linear\+Search}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, char $\ast$format)
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon un type spécifié par le format. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_z_singly_linked_list_8h_aa636cb9f22a9298795a18803a855991c}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+void \mbox{\hyperlink{_z_singly_linked_list_8h_aa773903d2c20498444b898fe33fa020a}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, char $\ast$format)
 \begin{DoxyCompactList}\small\item\em Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{_z_singly_linked_list_8h_a44526678dd4c53438f911ce4bfe40a8a}{ZSingly\+Linked\+List\+\_\+is\+Empty}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie true si la liste est vide, false sinon. \end{DoxyCompactList}\item 
@@ -95,11 +95,11 @@ La structure qui contient un élement de la liste.
 Contient un pointeur générique vers la donnée, et un pointeur vers l\textquotesingle{}élement suivant de la liste 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_aa636cb9f22a9298795a18803a855991c}\label{_z_singly_linked_list_8h_aa636cb9f22a9298795a18803a855991c}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_aa773903d2c20498444b898fe33fa020a}\label{_z_singly_linked_list_8h_aa773903d2c20498444b898fe33fa020a}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_BubbleSort@{ZSinglyLinkedList\_BubbleSort}}
 \index{ZSinglyLinkedList\_BubbleSort@{ZSinglyLinkedList\_BubbleSort}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_BubbleSort()}{ZSinglyLinkedList\_BubbleSort()}}
-{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{char $\ast$}]{format }\end{DoxyParamCaption})}
 
 
 
@@ -108,6 +108,21 @@ Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle.
 
 \begin{DoxyParams}{Parameters}
 {\em list} & Un pointeur vers la liste \\
+\hline
+{\em format} & Le format pour comparer correctement les données \+: ~\newline
+
+\begin{DoxyItemize}
+\item \char`\"{}d\char`\"{} -\/\texorpdfstring{$>$}{>} int32\+\_\+t ~\newline
+
+\item \char`\"{}u\char`\"{} -\/\texorpdfstring{$>$}{>} uint32\+\_\+t ~\newline
+
+\item \char`\"{}c\char`\"{} -\/\texorpdfstring{$>$}{>} char ~\newline
+
+\item \char`\"{}f\char`\"{} -\/\texorpdfstring{$>$}{>} float ~\newline
+
+\item \char`\"{}lf\char`\"{} -\/\texorpdfstring{$>$}{>} double ~\newline
+
+\end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}\label{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}} 

@@ -141,9 +141,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa5e5dc15f4a781a0c275c1e1d6c581ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#aa5e5dc15f4a781a0c275c1e1d6c581ce">ZSinglyLinkedList_linearSearch</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, char *format)</td></tr>
 <tr class="memdesc:aa5e5dc15f4a781a0c275c1e1d6c581ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche une donnée dans la liste selon un type spécifié par le format.  <a href="_z_singly_linked_list_8h.html#aa5e5dc15f4a781a0c275c1e1d6c581ce">More...</a><br /></td></tr>
 <tr class="separator:aa5e5dc15f4a781a0c275c1e1d6c581ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa636cb9f22a9298795a18803a855991c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#aa636cb9f22a9298795a18803a855991c">ZSinglyLinkedList_BubbleSort</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list)</td></tr>
-<tr class="memdesc:aa636cb9f22a9298795a18803a855991c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trie la liste à l'aide d'un tri à bulle.  <a href="_z_singly_linked_list_8h.html#aa636cb9f22a9298795a18803a855991c">More...</a><br /></td></tr>
-<tr class="separator:aa636cb9f22a9298795a18803a855991c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa773903d2c20498444b898fe33fa020a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#aa773903d2c20498444b898fe33fa020a">ZSinglyLinkedList_BubbleSort</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, char *format)</td></tr>
+<tr class="memdesc:aa773903d2c20498444b898fe33fa020a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trie la liste à l'aide d'un tri à bulle.  <a href="_z_singly_linked_list_8h.html#aa773903d2c20498444b898fe33fa020a">More...</a><br /></td></tr>
+<tr class="separator:aa773903d2c20498444b898fe33fa020a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44526678dd4c53438f911ce4bfe40a8a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a44526678dd4c53438f911ce4bfe40a8a">ZSinglyLinkedList_isEmpty</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list)</td></tr>
 <tr class="memdesc:a44526678dd4c53438f911ce4bfe40a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie true si la liste est vide, false sinon.  <a href="_z_singly_linked_list_8h.html#a44526678dd4c53438f911ce4bfe40a8a">More...</a><br /></td></tr>
 <tr class="separator:a44526678dd4c53438f911ce4bfe40a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,8 +196,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa636cb9f22a9298795a18803a855991c" name="aa636cb9f22a9298795a18803a855991c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa636cb9f22a9298795a18803a855991c">&#9670;&nbsp;</a></span>ZSinglyLinkedList_BubbleSort()</h2>
+<a id="aa773903d2c20498444b898fe33fa020a" name="aa773903d2c20498444b898fe33fa020a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa773903d2c20498444b898fe33fa020a">&#9670;&nbsp;</a></span>ZSinglyLinkedList_BubbleSort()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,8 +206,18 @@ Functions</h2></td></tr>
           <td class="memname">void ZSinglyLinkedList_BubbleSort </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
-          <td class="paramname"><em>list</em></td><td>)</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -216,6 +226,20 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
+    <tr><td class="paramname">format</td><td>Le format pour comparer correctement les données : <br  />
+<ul>
+<li>"d" -&gt; int32_t <br  />
+</li>
+<li>"u" -&gt; uint32_t <br  />
+</li>
+<li>"c" -&gt; char <br  />
+</li>
+<li>"f" -&gt; float <br  />
+</li>
+<li>"lf" -&gt; double <br  />
+</li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>

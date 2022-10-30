@@ -11,7 +11,7 @@
 #include <stdlib.h> // malloc, free
 #include <stdint.h> // int32_t
 #include <string.h> // strnlen
-#include <stdbool.h> // bool
+#include <stdbool.h> // bool, true, false
 
 /*
  * Singly Linked List
@@ -170,8 +170,14 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *fo
  * \brief     Trie la liste à l'aide d'un tri à bulle 
  * 
  * \param     list          Un pointeur vers la liste
+ * \param     format        Le format pour comparer correctement les données : \n
+ *                          - "d" -> int32_t \n
+ *                          - "u" -> uint32_t \n
+ *                          - "c" -> char \n
+ *                          - "f" -> float \n
+ *                          - "lf" -> double \n
  */
-void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format);
 
 /*
  * Debug singly linked list functions
