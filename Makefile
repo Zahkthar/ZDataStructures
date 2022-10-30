@@ -8,7 +8,10 @@ EXEC = ZDataStructures
 SRC = main.c ZSinglyLinkedList.c
 OBJ = $(SRC:.c=.o)
 
-all : program
+all : program docs
+
+docs:
+	doxygen
 
 program : $(OBJ)
 	$(CXX) $(LINKER_FLAGS) $(addprefix obj\, $(OBJ)) -o bin\$(EXEC)
@@ -22,4 +25,4 @@ clean:
 mrproper: clean
 	del /f /q bin\$(EXEC).exe
 	
-.PHONY: all program clean mrproper
+.PHONY: all docs program clean mrproper

@@ -8,7 +8,7 @@
 ZSinglyLinkedList *ZSinglyLinkedList_create() {
     ZSinglyLinkedList *newList = malloc(sizeof(ZSinglyLinkedList));
     newList->head = NULL;
-    return newList; 
+    return newList;
 }
 
 void ZSinglyLinkedList_free(ZSinglyLinkedList *list) {
