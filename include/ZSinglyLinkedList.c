@@ -176,7 +176,6 @@ static bool compareValues(void *valueA, void *valueB, char *format) {
 }
 
 void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format) {
-    bool isSorted = true;
     ZSinglyLinkedListNode *lastCellToCheck = NULL;
 
     // Si la liste est vide, on s'arrête
@@ -184,7 +183,7 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format) {
     
     // Commencement du tri
     while(true) {
-        isSorted = true;
+        bool isSorted = true;
         ZSinglyLinkedListNode *currentCell = list->head;
         
         // On parcours la liste du début à la fin
