@@ -67,7 +67,7 @@ void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
  * \param     position   La position à laquelle insérer l'élement
  * \param     data       Le pointeur à ajouter à la liste
  */
-void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void* data);
+void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *data);
 
 /**
  * \brief     Ajoute un élement au début de la liste
@@ -77,7 +77,7 @@ void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void* da
  * \param     list   Un pointeur vers la liste
  * \param     data   Le pointeur à ajouter à la liste
  */
-void ZSinglyLinkedList_insertFront(ZSinglyLinkedList *list, void* data);
+void ZSinglyLinkedList_insertFront(ZSinglyLinkedList *list, void *data);
 
 /**
  * \brief     Ajoute un élement à la fin de la liste
@@ -87,7 +87,7 @@ void ZSinglyLinkedList_insertFront(ZSinglyLinkedList *list, void* data);
  * \param     list   Un pointeur vers la liste
  * \param     data   Le pointeur à ajouter à la liste
  */
-void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void* data);
+void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data);
 
 /**
  * \brief     Supprime un élement de la liste à une position passée en paramètre
@@ -152,7 +152,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
  * 
  * \return    La position de la première occurence de la data \e data dans la liste ou -1 si la data n'est pas dans la liste
  */
-int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, bool (*compareFunction)(void* valueA, void* valueB));
+int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
 /*
  * Sort functions
@@ -165,7 +165,7 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, bool (*c
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
  */
-void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void* valueA, void* valueB));
+void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void *valueA, void *valueB));
 
 /*
  * Debug singly linked list functions
@@ -215,6 +215,6 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
  * \param     dataPerLine     Le nombre de données à afficher par ligne
  * \param     printFunction   Un pointeur vers la fonction permettant de print un élément de la liste
  */
-void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void* value));
+void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value));
 
 #endif // Z_DATA_STRUCTURES_H_INCLUDED

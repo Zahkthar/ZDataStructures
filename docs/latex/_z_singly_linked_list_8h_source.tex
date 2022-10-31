@@ -37,11 +37,11 @@
 \DoxyCodeLine{59 \textcolor{comment}{ * Generic ZSinglyLinkedList functions}}
 \DoxyCodeLine{60 \textcolor{comment}{ */}}
 \DoxyCodeLine{61 }
-\DoxyCodeLine{70 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}{ZSinglyLinkedList\_insert}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{size\_t} position, \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{70 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}{ZSinglyLinkedList\_insert}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{size\_t} position, \textcolor{keywordtype}{void} *data);}
 \DoxyCodeLine{71 }
-\DoxyCodeLine{80 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a4dcbe7fe592a9d8821861eb0586886af}{ZSinglyLinkedList\_insertFront}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{80 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a4dcbe7fe592a9d8821861eb0586886af}{ZSinglyLinkedList\_insertFront}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void} *data);}
 \DoxyCodeLine{81 }
-\DoxyCodeLine{90 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_af3fcffa03c91f7b25697535ff1803c58}{ZSinglyLinkedList\_insertBack}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{90 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_af3fcffa03c91f7b25697535ff1803c58}{ZSinglyLinkedList\_insertBack}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void} *data);}
 \DoxyCodeLine{91 }
 \DoxyCodeLine{98 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a88f0d74165818574b4830ad724b4a644}{ZSinglyLinkedList\_delete}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{size\_t} position);}
 \DoxyCodeLine{99 }
@@ -59,13 +59,13 @@
 \DoxyCodeLine{143 \textcolor{comment}{ * Search functions}}
 \DoxyCodeLine{144 \textcolor{comment}{ */}}
 \DoxyCodeLine{145 }
-\DoxyCodeLine{155 \textcolor{keywordtype}{int} \mbox{\hyperlink{_z_singly_linked_list_8h_a980e6b94d93202ea5f7bf29208b6bf6e}{ZSinglyLinkedList\_linearSearch}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{bool} (*compareFunction)(\textcolor{keywordtype}{void}* valueA, \textcolor{keywordtype}{void}* valueB));}
+\DoxyCodeLine{155 \textcolor{keywordtype}{int} \mbox{\hyperlink{_z_singly_linked_list_8h_a980e6b94d93202ea5f7bf29208b6bf6e}{ZSinglyLinkedList\_linearSearch}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{void} *data, \textcolor{keywordtype}{bool} (*compareFunction)(\textcolor{keywordtype}{void} *valueA, \textcolor{keywordtype}{void} *valueB));}
 \DoxyCodeLine{156 }
 \DoxyCodeLine{157 \textcolor{comment}{/*}}
 \DoxyCodeLine{158 \textcolor{comment}{ * Sort functions}}
 \DoxyCodeLine{159 \textcolor{comment}{ */}}
 \DoxyCodeLine{160 }
-\DoxyCodeLine{168 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}{ZSinglyLinkedList\_BubbleSort}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{bool} (*compareFunction)(\textcolor{keywordtype}{void}* valueA, \textcolor{keywordtype}{void}* valueB));}
+\DoxyCodeLine{168 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}{ZSinglyLinkedList\_BubbleSort}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, \textcolor{keywordtype}{bool} (*compareFunction)(\textcolor{keywordtype}{void} *valueA, \textcolor{keywordtype}{void} *valueB));}
 \DoxyCodeLine{169 }
 \DoxyCodeLine{170 \textcolor{comment}{/*}}
 \DoxyCodeLine{171 \textcolor{comment}{ * Debug singly linked list functions}}
@@ -77,7 +77,7 @@
 \DoxyCodeLine{191 }
 \DoxyCodeLine{209 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}{ZSinglyLinkedList\_dumpMemoryFormat}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, int32\_t dataPerLine, \textcolor{keywordtype}{char} *format);}
 \DoxyCodeLine{210 }
-\DoxyCodeLine{218 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a69ee1143094093966912ddd958d51b86}{ZSinglyLinkedList\_dumpMemoryCallback}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, int32\_t dataPerLine, \textcolor{keywordtype}{void} (*printFunction)(\textcolor{keywordtype}{void}* value));}
+\DoxyCodeLine{218 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_singly_linked_list_8h_a69ee1143094093966912ddd958d51b86}{ZSinglyLinkedList\_dumpMemoryCallback}}(\mbox{\hyperlink{struct_z_singly_linked_list}{ZSinglyLinkedList}} *list, int32\_t dataPerLine, \textcolor{keywordtype}{void} (*printFunction)(\textcolor{keywordtype}{void} *value));}
 \DoxyCodeLine{219 }
 \DoxyCodeLine{220 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// Z\_DATA\_STRUCTURES\_H\_INCLUDED}}
 

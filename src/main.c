@@ -15,6 +15,10 @@ bool compareIntegersSearch(void *valueA, void *valueB) {
     return *(int32_t*)valueA == *(int32_t*)valueB;
 }
 
+void printInteger(void *value) {
+    printf("%d ", *(int32_t*)value);
+}
+
 int main(void) {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create();
 
@@ -28,12 +32,12 @@ int main(void) {
     printf("Is value b in list ? %d\n", ZSinglyLinkedList_linearSearch(list, &b, &compareIntegersSearch));
 
     printf("Before :\n");
-    ZSinglyLinkedList_dumpMemoryFormat(list, 20, "d");
+    ZSinglyLinkedList_dumpMemoryCallback(list, 20, &printInteger);
 
     ZSinglyLinkedList_BubbleSort(list, &compareIntegersSort);
     
     printf("After :\n");
-    ZSinglyLinkedList_dumpMemoryFormat(list, 20, "d");
+    ZSinglyLinkedList_dumpMemoryCallback(list, 20, &printInteger);
 
     ZSinglyLinkedList_free(list);
     return 0;

@@ -139,7 +139,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void* valueA, void* valueB)) {
+int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     for(size_t i = 0; i < list->length; ++i) {
@@ -151,7 +151,7 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*c
 }
 
 // Sort functions
-void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void* valueA, void* valueB)) {
+void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *lastCellToCheck = NULL;
 
     // Si la liste est vide, on s'arrête
@@ -217,7 +217,7 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
     }
 }
 
-void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void* value)) {
+void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value)) {
     ZSinglyLinkedListNode *currentNode = list->head;
     
     for(size_t i = 0; i < list->length; ++i) {
