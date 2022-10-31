@@ -139,21 +139,11 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, char *format) {
+int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void* valueA, void* valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     for(size_t i = 0; i < list->length; ++i) {
-        switch (format[0]) {
-            case 'p': if(currentNode->data == data) { return i; } break;
-            case 'd': if(*(int32_t*)currentNode->data == *(int32_t*)data) { return i; } break;
-            case 'u': if(*(uint32_t*)currentNode->data == *(uint32_t*)data) { return i; } break;
-            case 'c': if(*(char*)currentNode->data == *(char*)data) { return i; } break;
-            case 'f': if(*(float*)currentNode->data == *(float*)data) { return i; } break;
-            case 'l': if(format[1] == 'f' && strnlen(format, 3) == 2) { if(*(double*)currentNode->data == *(double*)data) { return i; } } break;
-
-            default: break;
-        }
-
+        if(compareFunction(data, currentNode->data)) { return i; }
         currentNode = currentNode->next;
     }
 
@@ -161,21 +151,7 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, char *fo
 }
 
 // Sort functions
-static bool compareValues(void *valueA, void *valueB, char *format) {
-    switch (format[0]) {
-        case 'd': return (*(int32_t*)valueA > *(int32_t*)valueB);
-        case 'u': return (*(uint32_t*)valueA > *(uint32_t*)valueB);
-        case 'c': return (*(char*)valueA > *(char*)valueB);
-        case 'f': return (*(float*)valueA > *(float*)valueB);
-        case 'l': if(format[1] == 'f' && strnlen(format, 3) == 2) { return (*(double*)valueA > *(double*)valueB); } break;
-
-        default: break;
-    }
-
-    return false;
-}
-
-void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format) {
+void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void* valueA, void* valueB)) {
     ZSinglyLinkedListNode *lastCellToCheck = NULL;
 
     // Si la liste est vide, on s'arrête
@@ -189,7 +165,7 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format) {
         // On parcours la liste du début à la fin
         while(currentCell->next != lastCellToCheck) {
             // Si currentData > nextData
-            if(compareValues(currentCell->data, currentCell->next->data, format)) {
+            if(compareFunction(currentCell->data, currentCell->next->data)) {
                 // On swap les data
                 void *tmpData = currentCell->data;
                 currentCell->data = currentCell->next->data;
@@ -218,10 +194,6 @@ size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list) {
     return list->length;
 }
 
-void ZSinglyLinkedList_dumpMemoryPtr(ZSinglyLinkedList *list, int32_t dataPerLine) {
-    ZSinglyLinkedList_dumpMemoryFormat(list, dataPerLine, "p");
-}
-
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format) {
     ZSinglyLinkedListNode *currentNode = list->head;
     
@@ -239,6 +211,17 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
 
             default: break;
         }
+
+        if((i + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
+        currentNode = currentNode->next;
+    }
+}
+
+void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void* value)) {
+    ZSinglyLinkedListNode *currentNode = list->head;
+    
+    for(size_t i = 0; i < list->length; ++i) {
+        printFunction(currentNode->data);
 
         if((i + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
         currentNode = currentNode->next;

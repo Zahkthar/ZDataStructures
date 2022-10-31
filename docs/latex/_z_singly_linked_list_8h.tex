@@ -1,5 +1,5 @@
-\hypertarget{_z_singly_linked_list_8h}{}\doxysection{src/\+ZSingly\+Linked\+List.h File Reference}
-\label{_z_singly_linked_list_8h}\index{src/ZSinglyLinkedList.h@{src/ZSinglyLinkedList.h}}
+\hypertarget{_z_singly_linked_list_8h}{}\doxysection{include/\+ZSingly\+Linked\+List.h File Reference}
+\label{_z_singly_linked_list_8h}\index{include/ZSinglyLinkedList.h@{include/ZSinglyLinkedList.h}}
 
 
 Déclare les structures et les fonctions du module \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}}.  
@@ -49,18 +49,18 @@ void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ab2f2be64354663cea7ae05bde
 \begin{DoxyCompactList}\small\item\em Renvoie le premier élement de la liste. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8f2c1fee}{ZSingly\+Linked\+List\+\_\+show\+Value\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}{ZSingly\+Linked\+List\+\_\+linear\+Search}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, char $\ast$format)
+int \mbox{\hyperlink{_z_singly_linked_list_8h_a980e6b94d93202ea5f7bf29208b6bf6e}{ZSingly\+Linked\+List\+\_\+linear\+Search}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon un type spécifié par le format. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_z_singly_linked_list_8h_aa773903d2c20498444b898fe33fa020a}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, char $\ast$format)
+void \mbox{\hyperlink{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{_z_singly_linked_list_8h_a44526678dd4c53438f911ce4bfe40a8a}{ZSingly\+Linked\+List\+\_\+is\+Empty}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie true si la liste est vide, false sinon. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_ac588981129ad556bd50d75104161721e}{ZSingly\+Linked\+List\+\_\+get\+Length}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie le nombre d\textquotesingle{}éléments de la liste. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_z_singly_linked_list_8h_a2396aff60360deeb3faa202402e5243e}{ZSingly\+Linked\+List\+\_\+dump\+Memory\+Ptr}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, int32\+\_\+t data\+Per\+Line)
-\begin{DoxyCompactList}\small\item\em Affiche les données de la liste sous formes de pointeur. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}{ZSingly\+Linked\+List\+\_\+dump\+Memory\+Format}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, int32\+\_\+t data\+Per\+Line, char $\ast$format)
-\begin{DoxyCompactList}\small\item\em Affiche les données de la liste selon une forme définie par un format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Affiche les données de la liste selon une forme définie par un format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_a69ee1143094093966912ddd958d51b86}{ZSingly\+Linked\+List\+\_\+dump\+Memory\+Callback}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, int32\+\_\+t data\+Per\+Line, void($\ast$print\+Function)(void $\ast$value))
+\begin{DoxyCompactList}\small\item\em Affiche les données de la liste selon une forme définie par une fonction passée en paramètre. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -95,11 +95,11 @@ La structure qui contient un élement de la liste.
 Contient un pointeur générique vers la donnée, et un pointeur vers l\textquotesingle{}élement suivant de la liste 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_aa773903d2c20498444b898fe33fa020a}\label{_z_singly_linked_list_8h_aa773903d2c20498444b898fe33fa020a}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}\label{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_BubbleSort@{ZSinglyLinkedList\_BubbleSort}}
 \index{ZSinglyLinkedList\_BubbleSort@{ZSinglyLinkedList\_BubbleSort}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_BubbleSort()}{ZSinglyLinkedList\_BubbleSort()}}
-{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{char $\ast$}]{format }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{compare\+Function }\end{DoxyParamCaption})}
 
 
 
@@ -109,20 +109,7 @@ Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle.
 \begin{DoxyParams}{Parameters}
 {\em list} & Un pointeur vers la liste \\
 \hline
-{\em format} & Le format pour comparer correctement les données \+: ~\newline
-
-\begin{DoxyItemize}
-\item \char`\"{}d\char`\"{} -\/\texorpdfstring{$>$}{>} int32\+\_\+t ~\newline
-
-\item \char`\"{}u\char`\"{} -\/\texorpdfstring{$>$}{>} uint32\+\_\+t ~\newline
-
-\item \char`\"{}c\char`\"{} -\/\texorpdfstring{$>$}{>} char ~\newline
-
-\item \char`\"{}f\char`\"{} -\/\texorpdfstring{$>$}{>} float ~\newline
-
-\item \char`\"{}lf\char`\"{} -\/\texorpdfstring{$>$}{>} double ~\newline
-
-\end{DoxyItemize}\\
+{\em compare\+Function} & Un pointeur vers la fonction de comparaison \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}\label{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}} 
@@ -187,6 +174,25 @@ Supprime le premier élement de la liste.
 {\em list} & Un pointeur vers la liste \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a69ee1143094093966912ddd958d51b86}\label{_z_singly_linked_list_8h_a69ee1143094093966912ddd958d51b86}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_dumpMemoryCallback@{ZSinglyLinkedList\_dumpMemoryCallback}}
+\index{ZSinglyLinkedList\_dumpMemoryCallback@{ZSinglyLinkedList\_dumpMemoryCallback}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_dumpMemoryCallback()}{ZSinglyLinkedList\_dumpMemoryCallback()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+dump\+Memory\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{int32\+\_\+t}]{data\+Per\+Line,  }\item[{void($\ast$)(void $\ast$value)}]{print\+Function }\end{DoxyParamCaption})}
+
+
+
+Affiche les données de la liste selon une forme définie par une fonction passée en paramètre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em data\+Per\+Line} & Le nombre de données à afficher par ligne \\
+\hline
+{\em print\+Function} & Un pointeur vers la fonction permettant de print un élément de la liste \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}\label{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_dumpMemoryFormat@{ZSinglyLinkedList\_dumpMemoryFormat}}
 \index{ZSinglyLinkedList\_dumpMemoryFormat@{ZSinglyLinkedList\_dumpMemoryFormat}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
@@ -208,7 +214,7 @@ Permet d\textquotesingle{}afficher un nombre de données par ligne de la liste d
 {\em format} & Le format pour afficher correctement les données \+: ~\newline
 
 \begin{DoxyItemize}
-\item \char`\"{}p\char`\"{} -\/\texorpdfstring{$>$}{>} pointeur (utiliser ZSingly\+Linked\+List\+\_\+dump\+Memory\+Ptr) ~\newline
+\item \char`\"{}p\char`\"{} -\/\texorpdfstring{$>$}{>} pointeur ~\newline
 
 \item \char`\"{}d\char`\"{} -\/\texorpdfstring{$>$}{>} int32\+\_\+t ~\newline
 
@@ -227,25 +233,6 @@ Permet d\textquotesingle{}afficher un nombre de données par ligne de la liste d
 \item \char`\"{}lf\char`\"{} -\/\texorpdfstring{$>$}{>} double ~\newline
 
 \end{DoxyItemize}\\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_a2396aff60360deeb3faa202402e5243e}\label{_z_singly_linked_list_8h_a2396aff60360deeb3faa202402e5243e}} 
-\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_dumpMemoryPtr@{ZSinglyLinkedList\_dumpMemoryPtr}}
-\index{ZSinglyLinkedList\_dumpMemoryPtr@{ZSinglyLinkedList\_dumpMemoryPtr}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
-\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_dumpMemoryPtr()}{ZSinglyLinkedList\_dumpMemoryPtr()}}
-{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+dump\+Memory\+Ptr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{int32\+\_\+t}]{data\+Per\+Line }\end{DoxyParamCaption})}
-
-
-
-Affiche les données de la liste sous formes de pointeur. 
-
-A la même fonction que ZSingly\+Linked\+List\+\_\+dump\+Memory\+Format mais avec un format par défaut qui est \char`\"{}p\char`\"{} pour afficher les données sous formes de pointeurs.
-
-
-\begin{DoxyParams}{Parameters}
-{\em list} & Un pointeur vers la liste \\
-\hline
-{\em data\+Per\+Line} & Le nombre de données à afficher par ligne \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a2e0a03f462076b77a2fc0704a3a2906d}\label{_z_singly_linked_list_8h_a2e0a03f462076b77a2fc0704a3a2906d}} 
@@ -360,11 +347,11 @@ Renvoie true si la liste est vide, false sinon.
 \begin{DoxyReturn}{Returns}
 Un {\itshape bool} valant true si la liste est vide. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}\label{_z_singly_linked_list_8h_aa5e5dc15f4a781a0c275c1e1d6c581ce}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a980e6b94d93202ea5f7bf29208b6bf6e}\label{_z_singly_linked_list_8h_a980e6b94d93202ea5f7bf29208b6bf6e}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_linearSearch@{ZSinglyLinkedList\_linearSearch}}
 \index{ZSinglyLinkedList\_linearSearch@{ZSinglyLinkedList\_linearSearch}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_linearSearch()}{ZSinglyLinkedList\_linearSearch()}}
-{\footnotesize\ttfamily int ZSingly\+Linked\+List\+\_\+linear\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{char $\ast$}]{format }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ZSingly\+Linked\+List\+\_\+linear\+Search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{compare\+Function }\end{DoxyParamCaption})}
 
 
 
@@ -376,22 +363,7 @@ Recherche une donnée dans la liste selon un type spécifié par le format.
 \hline
 {\em data} & Un pointeur contenant la donnée à chercher \\
 \hline
-{\em format} & Le format pour comparer correctement les données \+: ~\newline
-
-\begin{DoxyItemize}
-\item \char`\"{}p\char`\"{} -\/\texorpdfstring{$>$}{>} pointeur ~\newline
-
-\item \char`\"{}d\char`\"{} -\/\texorpdfstring{$>$}{>} int32\+\_\+t ~\newline
-
-\item \char`\"{}u\char`\"{} -\/\texorpdfstring{$>$}{>} uint32\+\_\+t ~\newline
-
-\item \char`\"{}c\char`\"{} -\/\texorpdfstring{$>$}{>} char ~\newline
-
-\item \char`\"{}f\char`\"{} -\/\texorpdfstring{$>$}{>} float ~\newline
-
-\item \char`\"{}lf\char`\"{} -\/\texorpdfstring{$>$}{>} double ~\newline
- 
-\end{DoxyItemize}\\
+{\em compare\+Function} & Un pointeur vers la fonction de comparaison\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

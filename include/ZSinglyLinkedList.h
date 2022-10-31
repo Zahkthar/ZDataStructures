@@ -139,8 +139,6 @@ void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list);
  */
 void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
 
-
-
 /*
  * Search functions
  */
@@ -148,19 +146,13 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
 /**
  * \brief     Recherche une donnée dans la liste selon un type spécifié par le format
  * 
- * \param     list          Un pointeur vers la liste
- * \param     data          Un pointeur contenant la donnée à chercher
- * \param     format        Le format pour comparer correctement les données : \n
- *                          - "p" -> pointeur \n
- *                          - "d" -> int32_t \n
- *                          - "u" -> uint32_t \n
- *                          - "c" -> char \n
- *                          - "f" -> float \n
- *                          - "lf" -> double \n
+ * \param     list              Un pointeur vers la liste
+ * \param     data              Un pointeur contenant la donnée à chercher
+ * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
  * \return    La position de la première occurence de la data \e data dans la liste ou -1 si la data n'est pas dans la liste
  */
-int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *format);
+int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, bool (*compareFunction)(void* valueA, void* valueB));
 
 /*
  * Sort functions
@@ -169,15 +161,11 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void* data, char *fo
 /**
  * \brief     Trie la liste à l'aide d'un tri à bulle 
  * 
- * \param     list          Un pointeur vers la liste
- * \param     format        Le format pour comparer correctement les données : \n
- *                          - "d" -> int32_t \n
- *                          - "u" -> uint32_t \n
- *                          - "c" -> char \n
- *                          - "f" -> float \n
- *                          - "lf" -> double \n
+ * \param     list              Un pointeur vers la liste
+ * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * 
  */
-void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, char *format);
+void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void* valueA, void* valueB));
 
 /*
  * Debug singly linked list functions
@@ -202,23 +190,13 @@ bool ZSinglyLinkedList_isEmpty(ZSinglyLinkedList *list);
 size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list);
 
 /**
- * \brief     Affiche les données de la liste sous formes de pointeur
- * \details   A la même fonction que ZSinglyLinkedList_dumpMemoryFormat 
- *            mais avec un format par défaut qui est "p" pour afficher les données sous formes de pointeurs.
- * 
- * \param     list          Un pointeur vers la liste
- * \param     dataPerLine   Le nombre de données à afficher par ligne
- */
-void ZSinglyLinkedList_dumpMemoryPtr(ZSinglyLinkedList *list, int32_t dataPerLine);
-
-/**
  * \brief     Affiche les données de la liste selon une forme définie par un format
- * \details   Permet d'afficher un nombre de données par ligne de la liste dans un certain format 
+ * \details   Permet d'afficher un nombre de données par ligne de la liste dans un certain format
  * 
  * \param     list          Un pointeur vers la liste
  * \param     dataPerLine   Le nombre de données à afficher par ligne
  * \param     format        Le format pour afficher correctement les données : \n
- *                          - "p" -> pointeur (utiliser ZSinglyLinkedList_dumpMemoryPtr) \n
+ *                          - "p" -> pointeur \n
  *                          - "d" -> int32_t \n
  *                          - "u" -> uint32_t \n
  *                          - "o" -> octal \n
@@ -229,5 +207,14 @@ void ZSinglyLinkedList_dumpMemoryPtr(ZSinglyLinkedList *list, int32_t dataPerLin
  *                          - "lf" -> double \n
  */
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format);
+
+/**
+ * \brief     Affiche les données de la liste selon une forme définie par une fonction passée en paramètre
+ * 
+ * \param     list            Un pointeur vers la liste
+ * \param     dataPerLine     Le nombre de données à afficher par ligne
+ * \param     printFunction   Un pointeur vers la fonction permettant de print un élément de la liste
+ */
+void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void* value));
 
 #endif // Z_DATA_STRUCTURES_H_INCLUDED
