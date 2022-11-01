@@ -150,7 +150,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
 void ZSinglyLinkedList_appendTwoLists(ZSinglyLinkedList *listA, ZSinglyLinkedList *listB);
 
 /**
- * \brief     Retourne la liste passée en paramètre
+ * \brief     Renverse la liste passée en paramètre
  * 
  * \param     list         Un pointeur vers la liste
  */
