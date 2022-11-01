@@ -138,6 +138,20 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
     return ZSinglyLinkedList_showValue(list, list->length - 1);
 }
 
+void ZSinglyLinkedList_appendTwoLists(ZSinglyLinkedList *listA, ZSinglyLinkedList *listB) {
+    ZSinglyLinkedListNode *currentNode = listA->head;
+
+    while (currentNode->next != NULL) {
+        currentNode = currentNode->next;
+    }
+
+    currentNode->next = listB->head;
+    listA->length += listB->length;
+
+    listB->head = NULL;
+    listB->length = 0;
+}
+
 // Search functions
 size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;

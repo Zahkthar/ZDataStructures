@@ -138,6 +138,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad9a7b25cb3116f88ebb213db8f2c1fee"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#ad9a7b25cb3116f88ebb213db8f2c1fee">ZSinglyLinkedList_showValueBack</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list)</td></tr>
 <tr class="memdesc:ad9a7b25cb3116f88ebb213db8f2c1fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie le dernier élement de la liste.  <a href="_z_singly_linked_list_8h.html#ad9a7b25cb3116f88ebb213db8f2c1fee">More...</a><br /></td></tr>
 <tr class="separator:ad9a7b25cb3116f88ebb213db8f2c1fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90dd490769b6796cd2a783404846fa02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a90dd490769b6796cd2a783404846fa02">ZSinglyLinkedList_appendTwoLists</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *listA, <a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *listB)</td></tr>
+<tr class="memdesc:a90dd490769b6796cd2a783404846fa02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute la liste B à la fin de la liste A.  <a href="_z_singly_linked_list_8h.html#a90dd490769b6796cd2a783404846fa02">More...</a><br /></td></tr>
+<tr class="separator:a90dd490769b6796cd2a783404846fa02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f61bf84fc340e587bb9cffc48c36334"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a3f61bf84fc340e587bb9cffc48c36334">ZSinglyLinkedList_linearSearchFirstOccurence</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
 <tr class="memdesc:a3f61bf84fc340e587bb9cffc48c36334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre.  <a href="_z_singly_linked_list_8h.html#a3f61bf84fc340e587bb9cffc48c36334">More...</a><br /></td></tr>
 <tr class="separator:a3f61bf84fc340e587bb9cffc48c36334"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,6 +205,44 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a90dd490769b6796cd2a783404846fa02" name="a90dd490769b6796cd2a783404846fa02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90dd490769b6796cd2a783404846fa02">&#9670;&nbsp;</a></span>ZSinglyLinkedList_appendTwoLists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZSinglyLinkedList_appendTwoLists </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
+          <td class="paramname"><em>listA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
+          <td class="paramname"><em>listB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute la liste B à la fin de la liste A. </p>
+<p >Rend la liste B invalide. Il n'y aura plus besoin de libérer la liste B mais seulement la liste A.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Un pointeur vers la liste</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Un <em>void*</em> étant la donnée à la fin de la liste. </dd></dl>
+
+</div>
+</div>
 <a id="af382607e4141a3f70cadc7f09d6e60bb" name="af382607e4141a3f70cadc7f09d6e60bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af382607e4141a3f70cadc7f09d6e60bb">&#9670;&nbsp;</a></span>ZSinglyLinkedList_BubbleSort()</h2>
 

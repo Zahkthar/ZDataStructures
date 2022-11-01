@@ -139,6 +139,16 @@ void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list);
  */
 void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
 
+/**
+ * \brief     Ajoute la liste B à la fin de la liste A.
+ * \details   Rend la liste B vide.
+ * 
+ * \param     list         Un pointeur vers la liste
+ * 
+ * \return    Un \e void* étant la donnée à la fin de la liste.
+ */
+void ZSinglyLinkedList_appendTwoLists(ZSinglyLinkedList *listA, ZSinglyLinkedList *listB);
+
 /*
  * Search functions
  */

@@ -49,6 +49,8 @@ void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ab2f2be64354663cea7ae05bde
 \begin{DoxyCompactList}\small\item\em Renvoie le premier élement de la liste. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8f2c1fee}{ZSingly\+Linked\+List\+\_\+show\+Value\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_a90dd490769b6796cd2a783404846fa02}{ZSingly\+Linked\+List\+\_\+append\+Two\+Lists}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$listA, \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$listB)
+\begin{DoxyCompactList}\small\item\em Ajoute la liste B à la fin de la liste A. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_a3f61bf84fc340e587bb9cffc48c36334}{ZSingly\+Linked\+List\+\_\+linear\+Search\+First\+Occurence}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a5f3352f471524bca4baf33467fc340cf}{ZSingly\+Linked\+List\+\_\+linear\+Search\+Positions}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
@@ -99,6 +101,26 @@ La structure qui contient un élement de la liste.
 Contient un pointeur générique vers la donnée, et un pointeur vers l\textquotesingle{}élement suivant de la liste 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a90dd490769b6796cd2a783404846fa02}\label{_z_singly_linked_list_8h_a90dd490769b6796cd2a783404846fa02}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_appendTwoLists@{ZSinglyLinkedList\_appendTwoLists}}
+\index{ZSinglyLinkedList\_appendTwoLists@{ZSinglyLinkedList\_appendTwoLists}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_appendTwoLists()}{ZSinglyLinkedList\_appendTwoLists()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+append\+Two\+Lists (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{listA,  }\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{listB }\end{DoxyParamCaption})}
+
+
+
+Ajoute la liste B à la fin de la liste A. 
+
+Rend la liste B invalide. Il n\textquotesingle{}y aura plus besoin de libérer la liste B mais seulement la liste A.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape void$\ast$} étant la donnée à la fin de la liste. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}\label{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_BubbleSort@{ZSinglyLinkedList\_BubbleSort}}
 \index{ZSinglyLinkedList\_BubbleSort@{ZSinglyLinkedList\_BubbleSort}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
