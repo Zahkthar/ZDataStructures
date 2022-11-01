@@ -181,7 +181,7 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
 
 // Sort functions
 void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void *valueA, void *valueB)) {
-    ZSinglyLinkedListNode *lastCellToCheck = NULL;
+    ZSinglyLinkedListNode *lastNodeToCheck = NULL;
 
     // Si la liste est vide, on s'arrête
     if(list->length == 0) { return; }
@@ -189,24 +189,24 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
     // Commencement du tri
     while(true) {
         bool isSorted = true;
-        ZSinglyLinkedListNode *currentCell = list->head;
+        ZSinglyLinkedListNode *currentNode = list->head;
         
         // On parcours la liste du début à la fin
-        while(currentCell->next != lastCellToCheck) {
+        while(currentNode->next != lastNodeToCheck) {
             // Si currentData > nextData
-            if(compareFunction(currentCell->data, currentCell->next->data)) {
+            if(compareFunction(currentNode->data, currentNode->next->data)) {
                 // On swap les data
-                void *tmpData = currentCell->data;
-                currentCell->data = currentCell->next->data;
-                currentCell->next->data = tmpData;
+                void *tmpData = currentNode->data;
+                currentNode->data = currentNode->next->data;
+                currentNode->next->data = tmpData;
                 
                 isSorted = false; // La liste n'est pas trié
             }
-            currentCell = currentCell->next;
+            currentNode = currentNode->next;
         }
 
         // La valeur la plus grande a forcément été poussée tout à la fin de la liste, ce qui réduit la liste à parcourir
-        lastCellToCheck = currentCell;
+        lastNodeToCheck = currentNode;
         // Si la liste est déjà triée, ne pas faire toutes les passes restantes
         if(isSorted == true) {
             break;

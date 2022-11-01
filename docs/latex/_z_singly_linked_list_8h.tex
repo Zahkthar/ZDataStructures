@@ -136,7 +136,7 @@ Renvoie le nombre d\textquotesingle{}occurence d\textquotesingle{}une donnée da
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Le nombre d\textquotesingle{}occurence de la data {\itshape data} dans la liste 
+Le nombre d\textquotesingle{}élément de la liste pour lesquels la fonction {\itshape compare\+Function} a renvoyée true. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}\label{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_create@{ZSinglyLinkedList\_create}}
@@ -393,7 +393,7 @@ Recherche une donnée dans la liste selon une fonction de comparaison donnée en
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-La position de la première occurence de la data {\itshape data} dans la liste ou -\/1 si la data n\textquotesingle{}est pas dans la liste 
+La position de la première occurence dans la liste pour laquelle la fonction {\itshape compare\+Function} renvoie true. Renvoie -\/1 si aucune valeur ne renvoie true. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a5f3352f471524bca4baf33467fc340cf}\label{_z_singly_linked_list_8h_a5f3352f471524bca4baf33467fc340cf}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_linearSearchPositions@{ZSinglyLinkedList\_linearSearchPositions}}
@@ -415,7 +415,7 @@ Recherche une donnée dans la liste selon une fonction de comparaison donnée en
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Une liste chaînée de size\+\_\+t contenant les positions auquelles sont présentes la data {\itshape data} (Ne pas oublier de la libérer après utilisation) 
+Une liste chaînée de size\+\_\+t contenant les positions auquelles la fonction {\itshape compare\+Function} a renvoyée true (Ne pas oublier de la libérer après utilisation) 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}\label{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_showValue@{ZSinglyLinkedList\_showValue}}

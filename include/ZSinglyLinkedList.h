@@ -150,7 +150,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
  * \param     data              Un pointeur contenant la donnée à chercher
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    La position de la première occurence de la data \e data dans la liste ou -1 si la data n'est pas dans la liste
+ * \return    La position de la première occurence dans la liste pour laquelle la fonction \e compareFunction renvoie true. Renvoie -1 si aucune valeur ne renvoie true.
  */
 size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
@@ -161,7 +161,7 @@ size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, voi
  * \param     data              Un pointeur contenant la donnée à chercher
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    Une liste chaînée de size_t contenant les positions auquelles sont présentes la data \e data (Ne pas oublier de la libérer après utilisation)
+ * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e compareFunction a renvoyée true (Ne pas oublier de la libérer après utilisation)
  */
 ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
@@ -172,7 +172,7 @@ ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *li
  * \param     data              Un pointeur contenant la donnée à chercher
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    Le nombre d'occurence de la data \e data dans la liste
+ * \return    Le nombre d'élément de la liste pour lesquels la fonction \e compareFunction a renvoyée true.
  */
 size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
