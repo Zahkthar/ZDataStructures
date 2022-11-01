@@ -3,8 +3,6 @@ ZDataStructures is a library containing simple implementations of the most commo
 
 TODO :
 - Singly Linked List
-    - Reverse function
-    - Append two lists
 - Stack (Not implemented)
 - Queue (Not implemented)
 - Circular Linked List (Not implemented)

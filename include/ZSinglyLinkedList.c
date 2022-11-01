@@ -152,6 +152,24 @@ void ZSinglyLinkedList_appendTwoLists(ZSinglyLinkedList *listA, ZSinglyLinkedLis
     listB->length = 0;
 }
 
+void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list) {
+    // Gestion des cas spéciaux
+    if(list->length == 0) { return; }
+
+    ZSinglyLinkedListNode *previousNode = NULL;
+    ZSinglyLinkedListNode *currentNode = list->head;
+    ZSinglyLinkedListNode *nextNode;
+ 
+    while (currentNode != NULL) {
+        nextNode = currentNode->next;
+        currentNode->next = previousNode;
+        previousNode = currentNode;
+        currentNode = nextNode;
+    }
+
+    list->head = previousNode;
+}
+
 // Search functions
 size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;

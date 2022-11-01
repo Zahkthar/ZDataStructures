@@ -19,8 +19,9 @@ var searchData=
   ['zsinglylinkedlist_5fisempty_16',['ZSinglyLinkedList_isEmpty',['../_z_singly_linked_list_8h.html#a44526678dd4c53438f911ce4bfe40a8a',1,'ZSinglyLinkedList.c']]],
   ['zsinglylinkedlist_5flinearsearchfirstoccurence_17',['ZSinglyLinkedList_linearSearchFirstOccurence',['../_z_singly_linked_list_8h.html#a3f61bf84fc340e587bb9cffc48c36334',1,'ZSinglyLinkedList.c']]],
   ['zsinglylinkedlist_5flinearsearchpositions_18',['ZSinglyLinkedList_linearSearchPositions',['../_z_singly_linked_list_8h.html#a5f3352f471524bca4baf33467fc340cf',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fshowvalue_19',['ZSinglyLinkedList_showValue',['../_z_singly_linked_list_8h.html#afcd6d21ac45536f162f464fd224b002b',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fshowvalueback_20',['ZSinglyLinkedList_showValueBack',['../_z_singly_linked_list_8h.html#ad9a7b25cb3116f88ebb213db8f2c1fee',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlist_5fshowvaluefront_21',['ZSinglyLinkedList_showValueFront',['../_z_singly_linked_list_8h.html#ab2f2be64354663cea7ae05bdebe4d0a7',1,'ZSinglyLinkedList.c']]],
-  ['zsinglylinkedlistnode_22',['ZSinglyLinkedListNode',['../_z_singly_linked_list_8h.html#ab73c6c8eb4371b72dfab60b0ee6264ef',1,'ZSinglyLinkedListNode():&#160;ZSinglyLinkedList.h'],['../struct_z_singly_linked_list_node.html',1,'ZSinglyLinkedListNode']]]
+  ['zsinglylinkedlist_5freverselist_19',['ZSinglyLinkedList_reverseList',['../_z_singly_linked_list_8h.html#a91c9aab45158a718f2d6b708d1ff004f',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fshowvalue_20',['ZSinglyLinkedList_showValue',['../_z_singly_linked_list_8h.html#afcd6d21ac45536f162f464fd224b002b',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fshowvalueback_21',['ZSinglyLinkedList_showValueBack',['../_z_singly_linked_list_8h.html#ad9a7b25cb3116f88ebb213db8f2c1fee',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlist_5fshowvaluefront_22',['ZSinglyLinkedList_showValueFront',['../_z_singly_linked_list_8h.html#ab2f2be64354663cea7ae05bdebe4d0a7',1,'ZSinglyLinkedList.c']]],
+  ['zsinglylinkedlistnode_23',['ZSinglyLinkedListNode',['../_z_singly_linked_list_8h.html#ab73c6c8eb4371b72dfab60b0ee6264ef',1,'ZSinglyLinkedListNode():&#160;ZSinglyLinkedList.h'],['../struct_z_singly_linked_list_node.html',1,'ZSinglyLinkedListNode']]]
 ];
