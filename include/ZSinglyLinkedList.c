@@ -120,7 +120,7 @@ void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     // Gestion des cas spéciaux
-    if(position == 0 && currentNode != NULL) { return currentNode->data; }
+    if(position == 0) { return currentNode->data; }
     if(position >= list->length) { return NULL; }
 
     for(size_t i = 0; i < position; ++i) {
@@ -257,8 +257,9 @@ size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list) {
 
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format) {
     ZSinglyLinkedListNode *currentNode = list->head;
-    
-    for(size_t i = 0; i < list->length; ++i) {
+    size_t currentPosition = 0;
+
+    while(currentNode != NULL) {
         switch (format[0]) {
             case 'p': printf("%p ", currentNode->data); break;
             case 'd': printf("%d ", *(int32_t*)currentNode->data); break;
@@ -273,18 +274,23 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
             default: return;
         }
 
-        if((i + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
+        if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
+        
+        currentPosition++;
         currentNode = currentNode->next;
     }
 }
 
 void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value)) {
     ZSinglyLinkedListNode *currentNode = list->head;
+    size_t currentPosition = 0;
     
-    for(size_t i = 0; i < list->length; ++i) {
+    while(currentNode != NULL) {
         printFunction(currentNode->data);
 
-        if((i + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
+        if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
+        
+        currentPosition++;
         currentNode = currentNode->next;
     }
 }

@@ -9,7 +9,7 @@
 
 #include <stdio.h> // printf
 #include <stdlib.h> // malloc, free
-#include <stdint.h> // int32_t
+#include <stdint.h> // int32_t, uint32_t
 #include <string.h> // strnlen
 #include <stdbool.h> // bool, true, false
 

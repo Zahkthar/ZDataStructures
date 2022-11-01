@@ -5,10 +5,6 @@
 
 #include "ZSinglyLinkedList.h"
 
-void printInteger(void *value) {
-    printf("%d ", *(int32_t*)value);
-}
-
 int main(void) {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create();
     for(int32_t i = 0; i < 10; ++i) {
@@ -17,12 +13,12 @@ int main(void) {
     }
 
     printf("Before :\n");
-    ZSinglyLinkedList_dumpMemoryCallback(list, 20, &printInteger);
+    ZSinglyLinkedList_dumpMemoryFormat(list, 6, "d");
     
     ZSinglyLinkedList_reverseList(list);
 
     printf("After :\n");
-    ZSinglyLinkedList_dumpMemoryCallback(list, 20, &printInteger);
+    ZSinglyLinkedList_dumpMemoryFormat(list, 6, "d");
 
     ZSinglyLinkedList_free(list);
     return 0;
