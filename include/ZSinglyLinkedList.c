@@ -238,7 +238,7 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
             case 'f': printf("%f ", *(float*)currentNode->data); break;
             case 'l': if(format[1] == 'f' && strnlen(format, 3) == 2) { printf("%lf ", *(double*)currentNode->data); } break;
 
-            default: break;
+            default: return;
         }
 
         if((i + 1) % dataPerLine == 0 || currentNode->next == NULL) { printf("\n"); }
