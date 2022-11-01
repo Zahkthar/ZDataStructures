@@ -5,14 +5,9 @@
 
 #include "ZSinglyLinkedList.h"
 
-// Renvoie true si A > B -> tri par ordre croissant
-bool compareIntegersSort(void *valueA, void *valueB) {
-    return *(int32_t*)valueA > *(int32_t*)valueB;
-}
-
-// Renvoie true si A = B
+// Renvoie true si A > B
 bool compareIntegersSearch(void *valueA, void *valueB) {
-    return *(int32_t*)valueA == *(int32_t*)valueB;
+    return *(int32_t*)valueA > *(int32_t*)valueB;
 }
 
 void printInteger(void *value) {
@@ -22,23 +17,19 @@ void printInteger(void *value) {
 int main(void) {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create();
 
-    for(int32_t i = 10; i > 0; --i) {
+    for(int32_t i = 0; i < 10; ++i) {
         int32_t *a = malloc(sizeof(int32_t));
         *a = i; ZSinglyLinkedList_insertBack(list, a);
     }
 
     int32_t b = 8;
 
-    printf("Is value b in list ? %d\n", ZSinglyLinkedList_linearSearch(list, &b, &compareIntegersSearch));
+    ZSinglyLinkedList *positions = ZSinglyLinkedList_linearSearchPositions(list, &b, &compareIntegersSearch);
 
-    printf("Before :\n");
+    ZSinglyLinkedList_dumpMemoryCallback(positions, 20, &printInteger);
     ZSinglyLinkedList_dumpMemoryCallback(list, 20, &printInteger);
 
-    ZSinglyLinkedList_BubbleSort(list, &compareIntegersSort);
-    
-    printf("After :\n");
-    ZSinglyLinkedList_dumpMemoryCallback(list, 20, &printInteger);
-
+    ZSinglyLinkedList_free(positions);
     ZSinglyLinkedList_free(list);
     return 0;
 }

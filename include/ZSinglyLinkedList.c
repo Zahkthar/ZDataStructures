@@ -131,7 +131,7 @@ void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
 }
 
 void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list) {
-    return list->head->data;
+    return ZSinglyLinkedList_showValue(list, 0);
 }
 
 void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
@@ -139,7 +139,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
+size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     for(size_t i = 0; i < list->length; ++i) {
@@ -148,6 +148,35 @@ int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*c
     }
 
     return -1;
+}
+
+ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    ZSinglyLinkedList *positions = ZSinglyLinkedList_create();
+
+    for(size_t i = 0; i < list->length; ++i) {
+        if(compareFunction(data, currentNode->data)) {
+            size_t *currentPosition = malloc(sizeof(size_t)); *currentPosition = i;
+            ZSinglyLinkedList_insertBack(positions, currentPosition);
+        }
+        currentNode = currentNode->next;
+    }
+
+    return positions;
+}
+
+size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    size_t occurences = 0;
+
+    for(size_t i = 0; i < list->length; ++i) {
+        if(compareFunction(data, currentNode->data)) { occurences++; }
+        currentNode = currentNode->next;
+    }
+
+    return occurences;
 }
 
 // Sort functions

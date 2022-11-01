@@ -144,7 +144,7 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
  */
 
 /**
- * \brief     Recherche une donnée dans la liste selon un type spécifié par le format
+ * \brief     Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre
  * 
  * \param     list              Un pointeur vers la liste
  * \param     data              Un pointeur contenant la donnée à chercher
@@ -152,7 +152,29 @@ void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
  * 
  * \return    La position de la première occurence de la data \e data dans la liste ou -1 si la data n'est pas dans la liste
  */
-int ZSinglyLinkedList_linearSearch(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+
+/**
+ * \brief     Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions
+ * 
+ * \param     list              Un pointeur vers la liste
+ * \param     data              Un pointeur contenant la donnée à chercher
+ * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * 
+ * \return    Une liste chaînée de size_t contenant les positions auquelles sont présentes la data \e data (Ne pas oublier de la libérer après utilisation)
+ */
+ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+
+/**
+ * \brief     Renvoie le nombre d'occurence d'une donnée dans la liste
+ * 
+ * \param     list              Un pointeur vers la liste
+ * \param     data              Un pointeur contenant la donnée à chercher
+ * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * 
+ * \return    Le nombre d'occurence de la data \e data dans la liste
+ */
+size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
 /*
  * Sort functions
