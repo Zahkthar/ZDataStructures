@@ -36,7 +36,7 @@ typedef struct ZSinglyLinkedListNode {
 } ZSinglyLinkedListNode;
 
 /*
- * Allocation and free
+ * Allocation, free and clear
  */
 
 /**
@@ -49,11 +49,19 @@ ZSinglyLinkedList *ZSinglyLinkedList_create();
 
 /**
  * \brief     Libère la mémoire allouée par la liste
- * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode
+ * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode, puis libère la liste
  * 
  * \param     list   Un pointeur vers la liste
  */
 void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
+
+/**
+ * \brief     Vide la liste sans la supprimer
+ * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode
+ * 
+ * \param     list   Un pointeur vers la liste
+ */
+void ZSinglyLinkedList_clear(ZSinglyLinkedList *list);
 
 /*
  * Generic ZSinglyLinkedList functions

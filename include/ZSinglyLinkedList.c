@@ -13,10 +13,14 @@ ZSinglyLinkedList *ZSinglyLinkedList_create() {
 }
 
 void ZSinglyLinkedList_free(ZSinglyLinkedList *list) {
+    ZSinglyLinkedList_clear(list);
+    free(list);
+}
+
+void ZSinglyLinkedList_clear(ZSinglyLinkedList *list) {
     for (size_t i = 0; i < list->length; ++i) {
         ZSinglyLinkedList_deleteFront(list);
     }
-    free(list);
 }
 
 // Generic ZSinglyLinkedList functions
