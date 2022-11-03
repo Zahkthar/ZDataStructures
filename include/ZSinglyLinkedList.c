@@ -116,7 +116,7 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list) {
     ZSinglyLinkedList_delete(list, list->length - 1);
 }
 
-void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
+void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     // Gestion des cas spéciaux
@@ -130,12 +130,57 @@ void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position) {
     return currentNode->data;
 }
 
-void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list) {
-    return ZSinglyLinkedList_showValue(list, 0);
+void *ZSinglyLinkedList_getDataFront(ZSinglyLinkedList *list) {
+    return ZSinglyLinkedList_getData(list, 0);
 }
 
-void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list) {
-    return ZSinglyLinkedList_showValue(list, list->length - 1);
+void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list) {
+    return ZSinglyLinkedList_getData(list, list->length - 1);
+}
+
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position) {
+    // Gestion des cas spéciaux
+    if(position == 0) { return list->head; }
+    if(position >= list->length) { return NULL; }
+
+    ZSinglyLinkedListNode *currentNode = list->head;
+    for(size_t i = 0; i < position; ++i) {
+        currentNode = currentNode->next;
+    }
+    return currentNode;
+}
+
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list) {
+    return ZSinglyLinkedList_getNode(list, 0);
+}
+
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list) {
+    return ZSinglyLinkedList_getNode(list, list->length);
+}
+
+void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_t positionB) {
+    // Gestion des cas spéciaux
+    if(positionA >= list->length || positionB >= list->length) { return; }
+    if(positionA == positionB) { return; }
+
+    size_t nearestPosition = (positionA < positionB) ? positionA : positionB;
+    size_t delta = (nearestPosition == positionA) ? (positionB - positionA) : (positionA - positionB);
+
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    for(size_t i = 0; i < nearestPosition; ++i) {
+        currentNode = currentNode->next;
+    }
+
+    ZSinglyLinkedListNode *nearestNode = currentNode;
+
+    for(size_t i = 0; i < delta; ++i) {
+        currentNode = currentNode->next;
+    }
+
+    void *tmpData = nearestNode->data;
+    nearestNode->data = currentNode->data;
+    currentNode->data = tmpData;
 }
 
 void ZSinglyLinkedList_appendTwoLists(ZSinglyLinkedList *listA, ZSinglyLinkedList *listB) {

@@ -1,5 +1,5 @@
-#ifndef Z_DATA_STRUCTURES_H_INCLUDED
-#define Z_DATA_STRUCTURES_H_INCLUDED
+#ifndef ZDS_SINGLY_LINKED_LIST_H_INCLUDED
+#define ZDS_SINGLY_LINKED_LIST_H_INCLUDED
 
 /**
  * \file      ZSinglyLinkedList.h
@@ -119,7 +119,7 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list);
  * 
  * \return    Un \e void* étant la donnée à la position \e position de la liste.
  */
-void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position);
+void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position);
 
 /**
  * \brief     Renvoie le premier élement de la liste
@@ -128,7 +128,7 @@ void *ZSinglyLinkedList_showValue(ZSinglyLinkedList *list, size_t position);
  * 
  * \return    Un \e void* étant la donnée au début de la liste.
  */
-void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list);
+void *ZSinglyLinkedList_getDataFront(ZSinglyLinkedList *list);
 
 /**
  * \brief     Renvoie le dernier élement de la liste
@@ -137,7 +137,48 @@ void *ZSinglyLinkedList_showValueFront(ZSinglyLinkedList *list);
  * 
  * \return    Un \e void* étant la donnée à la fin de la liste.
  */
-void *ZSinglyLinkedList_showValueBack(ZSinglyLinkedList *list);
+void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list);
+
+/**
+ * \brief     Renvoie la cellule à la position \e position
+ * 
+ * \param     list         Un pointeur vers la liste
+ * \param     position     La position de la cellule à récupérer
+ * 
+ * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée
+ */
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position);
+
+/**
+ * \brief     Renvoie la première cellule de la liste
+ * 
+ * \param     list         Un pointeur vers la liste
+ * 
+ * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
+ */
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list);
+
+/**
+ * \brief     Renvoie la dernière cellule de la liste
+ * 
+ * \param     list         Un pointeur vers la liste
+ * 
+ * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
+ */
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list);
+
+/*
+ * Processing function
+ */
+
+/**
+ * \brief     Swap les data deux cellules aux positions données en paramètres
+ * 
+ * \param     list         Un pointeur vers la liste
+ * \param     positionA    La position de la première donnée
+ * \param     positionB    La position de la deuxième donnée
+ */
+void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_t positionB);
 
 /**
  * \brief     Ajoute la liste B à la fin de la liste A.
@@ -256,4 +297,4 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
  */
 void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value));
 
-#endif // Z_DATA_STRUCTURES_H_INCLUDED
+#endif // ZDS_SINGLY_LINKED_LIST_H_INCLUDED

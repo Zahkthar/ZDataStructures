@@ -43,12 +43,20 @@ void \mbox{\hyperlink{_z_singly_linked_list_8h_aefbcff6e3830207e06534ee964f72bc0
 \begin{DoxyCompactList}\small\item\em Supprime le premier élement de la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a2d5d1f3cca23db92eecdfb9c5fe3e842}{ZSingly\+Linked\+List\+\_\+delete\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Supprime le dernier élement de la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}{ZSingly\+Linked\+List\+\_\+show\+Value}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
+void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a1a0505626a4df8b6dec6d0d9fbdc72a5}{ZSingly\+Linked\+List\+\_\+get\+Data}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
 \begin{DoxyCompactList}\small\item\em Renvoie un élement de la liste à une position passée en paramètre. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ab2f2be64354663cea7ae05bdebe4d0a7}{ZSingly\+Linked\+List\+\_\+show\+Value\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad183614516eb2dda8997979089647ed9}{ZSingly\+Linked\+List\+\_\+get\+Data\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie le premier élement de la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8f2c1fee}{ZSingly\+Linked\+List\+\_\+show\+Value\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_af3c499f8a5966d00c92e983a70fded34}{ZSingly\+Linked\+List\+\_\+get\+Data\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a42793efe997361a144e8675695a1c8bf}{ZSingly\+Linked\+List\+\_\+get\+Node}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
+\begin{DoxyCompactList}\small\item\em Renvoie la cellule à la position {\itshape position}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_abb54c6c9a110df6f95f1868a9e0aecce}{ZSingly\+Linked\+List\+\_\+get\+Node\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Renvoie la première cellule de la liste. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a8d47d8273ac3d7e89dda9cad0b91c667}{ZSingly\+Linked\+List\+\_\+get\+Node\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Renvoie la dernière cellule de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_a32f6e5d6c23dc25694f7d7b76d447d03}{ZSingly\+Linked\+List\+\_\+swap\+Data}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t positionA, size\+\_\+t positionB)
+\begin{DoxyCompactList}\small\item\em Swap les data deux cellules aux positions données en paramètres. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a90dd490769b6796cd2a783404846fa02}{ZSingly\+Linked\+List\+\_\+append\+Two\+Lists}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$listA, \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$listB)
 \begin{DoxyCompactList}\small\item\em Ajoute la liste B à la fin de la liste A. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a91c9aab45158a718f2d6b708d1ff004f}{ZSingly\+Linked\+List\+\_\+reverse\+List}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
@@ -302,6 +310,62 @@ Libère tous les pointeurs de donnée et les élements de type {\itshape \mbox{\
 {\em list} & Un pointeur vers la liste \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a1a0505626a4df8b6dec6d0d9fbdc72a5}\label{_z_singly_linked_list_8h_a1a0505626a4df8b6dec6d0d9fbdc72a5}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getData@{ZSinglyLinkedList\_getData}}
+\index{ZSinglyLinkedList\_getData@{ZSinglyLinkedList\_getData}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getData()}{ZSinglyLinkedList\_getData()}}
+{\footnotesize\ttfamily void $\ast$ ZSingly\+Linked\+List\+\_\+get\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{size\+\_\+t}]{position }\end{DoxyParamCaption})}
+
+
+
+Renvoie un élement de la liste à une position passée en paramètre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em position} & La position de l\textquotesingle{}élement à retourner\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape void$\ast$} étant la donnée à la position {\itshape position} de la liste. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_af3c499f8a5966d00c92e983a70fded34}\label{_z_singly_linked_list_8h_af3c499f8a5966d00c92e983a70fded34}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getDataBack@{ZSinglyLinkedList\_getDataBack}}
+\index{ZSinglyLinkedList\_getDataBack@{ZSinglyLinkedList\_getDataBack}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getDataBack()}{ZSinglyLinkedList\_getDataBack()}}
+{\footnotesize\ttfamily void $\ast$ ZSingly\+Linked\+List\+\_\+get\+Data\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Renvoie le dernier élement de la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape void$\ast$} étant la donnée à la fin de la liste. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_ad183614516eb2dda8997979089647ed9}\label{_z_singly_linked_list_8h_ad183614516eb2dda8997979089647ed9}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getDataFront@{ZSinglyLinkedList\_getDataFront}}
+\index{ZSinglyLinkedList\_getDataFront@{ZSinglyLinkedList\_getDataFront}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getDataFront()}{ZSinglyLinkedList\_getDataFront()}}
+{\footnotesize\ttfamily void $\ast$ ZSingly\+Linked\+List\+\_\+get\+Data\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Renvoie le premier élement de la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape void$\ast$} étant la donnée au début de la liste. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_ac588981129ad556bd50d75104161721e}\label{_z_singly_linked_list_8h_ac588981129ad556bd50d75104161721e}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getLength@{ZSinglyLinkedList\_getLength}}
 \index{ZSinglyLinkedList\_getLength@{ZSinglyLinkedList\_getLength}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
@@ -319,6 +383,62 @@ Renvoie le nombre d\textquotesingle{}éléments de la liste.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Un {\itshape size\+\_\+t} étant le nombre d\textquotesingle{}éléments de la liste. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a42793efe997361a144e8675695a1c8bf}\label{_z_singly_linked_list_8h_a42793efe997361a144e8675695a1c8bf}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getNode@{ZSinglyLinkedList\_getNode}}
+\index{ZSinglyLinkedList\_getNode@{ZSinglyLinkedList\_getNode}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getNode()}{ZSinglyLinkedList\_getNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ ZSingly\+Linked\+List\+\_\+get\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{size\+\_\+t}]{position }\end{DoxyParamCaption})}
+
+
+
+Renvoie la cellule à la position {\itshape position}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em position} & La position de la cellule à récupérer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape ZSingly\+Linked\+List\+Node$\ast$} étant la cellule recherchée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a8d47d8273ac3d7e89dda9cad0b91c667}\label{_z_singly_linked_list_8h_a8d47d8273ac3d7e89dda9cad0b91c667}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getNodeBack@{ZSinglyLinkedList\_getNodeBack}}
+\index{ZSinglyLinkedList\_getNodeBack@{ZSinglyLinkedList\_getNodeBack}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getNodeBack()}{ZSinglyLinkedList\_getNodeBack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ ZSingly\+Linked\+List\+\_\+get\+Node\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Renvoie la dernière cellule de la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape ZSingly\+Linked\+List\+Node$\ast$} étant la cellule recherchée ou NULL si la liste est vide 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_abb54c6c9a110df6f95f1868a9e0aecce}\label{_z_singly_linked_list_8h_abb54c6c9a110df6f95f1868a9e0aecce}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_getNodeFront@{ZSinglyLinkedList\_getNodeFront}}
+\index{ZSinglyLinkedList\_getNodeFront@{ZSinglyLinkedList\_getNodeFront}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_getNodeFront()}{ZSinglyLinkedList\_getNodeFront()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ ZSingly\+Linked\+List\+\_\+get\+Node\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Renvoie la première cellule de la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un {\itshape ZSingly\+Linked\+List\+Node$\ast$} étant la cellule recherchée ou NULL si la liste est vide 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}\label{_z_singly_linked_list_8h_a4b7466ed183d6082a785b89493ddc8f1}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_insert@{ZSinglyLinkedList\_insert}}
@@ -456,59 +576,22 @@ Renverse la liste passée en paramètre.
 {\em list} & Un pointeur vers la liste \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}\label{_z_singly_linked_list_8h_afcd6d21ac45536f162f464fd224b002b}} 
-\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_showValue@{ZSinglyLinkedList\_showValue}}
-\index{ZSinglyLinkedList\_showValue@{ZSinglyLinkedList\_showValue}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
-\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_showValue()}{ZSinglyLinkedList\_showValue()}}
-{\footnotesize\ttfamily void $\ast$ ZSingly\+Linked\+List\+\_\+show\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{size\+\_\+t}]{position }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a32f6e5d6c23dc25694f7d7b76d447d03}\label{_z_singly_linked_list_8h_a32f6e5d6c23dc25694f7d7b76d447d03}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_swapData@{ZSinglyLinkedList\_swapData}}
+\index{ZSinglyLinkedList\_swapData@{ZSinglyLinkedList\_swapData}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_swapData()}{ZSinglyLinkedList\_swapData()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+swap\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{size\+\_\+t}]{positionA,  }\item[{size\+\_\+t}]{positionB }\end{DoxyParamCaption})}
 
 
 
-Renvoie un élement de la liste à une position passée en paramètre. 
+Swap les data deux cellules aux positions données en paramètres. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em list} & Un pointeur vers la liste \\
 \hline
-{\em position} & La position de l\textquotesingle{}élement à retourner\\
+{\em positionA} & La position de la première donnée \\
+\hline
+{\em positionB} & La position de la deuxième donnée \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Un {\itshape void$\ast$} étant la donnée à la position {\itshape position} de la liste. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8f2c1fee}\label{_z_singly_linked_list_8h_ad9a7b25cb3116f88ebb213db8f2c1fee}} 
-\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_showValueBack@{ZSinglyLinkedList\_showValueBack}}
-\index{ZSinglyLinkedList\_showValueBack@{ZSinglyLinkedList\_showValueBack}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
-\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_showValueBack()}{ZSinglyLinkedList\_showValueBack()}}
-{\footnotesize\ttfamily void $\ast$ ZSingly\+Linked\+List\+\_\+show\+Value\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
-
-
-
-Renvoie le dernier élement de la liste. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em list} & Un pointeur vers la liste\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Un {\itshape void$\ast$} étant la donnée à la fin de la liste. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_ab2f2be64354663cea7ae05bdebe4d0a7}\label{_z_singly_linked_list_8h_ab2f2be64354663cea7ae05bdebe4d0a7}} 
-\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_showValueFront@{ZSinglyLinkedList\_showValueFront}}
-\index{ZSinglyLinkedList\_showValueFront@{ZSinglyLinkedList\_showValueFront}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
-\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_showValueFront()}{ZSinglyLinkedList\_showValueFront()}}
-{\footnotesize\ttfamily void $\ast$ ZSingly\+Linked\+List\+\_\+show\+Value\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
-
-
-
-Renvoie le premier élement de la liste. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em list} & Un pointeur vers la liste\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Un {\itshape void$\ast$} étant la donnée au début de la liste. 
-\end{DoxyReturn}
