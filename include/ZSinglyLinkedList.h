@@ -176,7 +176,7 @@ ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list);
 ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list);
 
 /*
- * Processing function
+ * Processing functions
  */
 
 /**
@@ -218,7 +218,7 @@ void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list);
  * 
  * \return    La position de la première occurence dans la liste pour laquelle la fonction \e compareFunction renvoie true. Renvoie -1 si aucune valeur ne renvoie true.
  */
-size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
 /**
  * \brief     Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions
@@ -227,9 +227,9 @@ size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, voi
  * \param     data              Un pointeur contenant la donnée à chercher
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e compareFunction a renvoyée true (Ne pas oublier de la libérer après utilisation)
+ * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e compareFunction a renvoyée true (ne pas oublier de la libérer après utilisation)
  */
-ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
 /**
  * \brief     Renvoie le nombre d'occurence d'une donnée dans la liste
@@ -241,6 +241,16 @@ ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *li
  * \return    Le nombre d'élément de la liste pour lesquels la fonction \e compareFunction a renvoyée true.
  */
 size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+
+/**
+ * \brief     Renvoie la liste d'élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true
+ * 
+ * \param     list           Un pointeur vers la liste
+ * \param     testFunction   Un pointeur vers la fonction de test
+ * 
+ * \return    La liste d'élements de la liste d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation)
+ */
+ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value));
 
 /*
  * Sort functions

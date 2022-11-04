@@ -5,6 +5,10 @@
 
 #include "ZSinglyLinkedList.h"
 
+bool testFunction(void* value) {
+    return *(int32_t*)value > 5;
+}
+
 int main(void) {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create();
     for(int i = 0; i < 10; ++i) {
@@ -12,10 +16,15 @@ int main(void) {
         *a = i; ZSinglyLinkedList_insertBack(list, a);
     }
 
-    ZSinglyLinkedList_swapData(list, 0, 9);
+    ZSinglyLinkedList *filteredList = ZSinglyLinkedList_filter(list, &testFunction);
 
+    printf("Liste originale :\n");
     ZSinglyLinkedList_dumpMemoryFormat(list, 10, "d");
+    
+    printf("Liste filtree :\n");
+    ZSinglyLinkedList_dumpMemoryFormat(filteredList, 10, "d");
 
+    ZSinglyLinkedList_free(filteredList);
     ZSinglyLinkedList_free(list);
     return 0;
 }

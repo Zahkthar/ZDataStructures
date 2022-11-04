@@ -162,6 +162,7 @@ ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list) {
     return ZSinglyLinkedList_getNode(list, list->length);
 }
 
+// Processing functions
 void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_t positionB) {
     // Gestion des cas spéciaux
     if(positionA >= list->length || positionB >= list->length) { return; }
@@ -220,7 +221,7 @@ void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list) {
 }
 
 // Search functions
-size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
+size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     for(size_t i = 0; i < list->length; ++i) {
@@ -231,7 +232,7 @@ size_t ZSinglyLinkedList_linearSearchFirstOccurence(ZSinglyLinkedList *list, voi
     return -1;
 }
 
-ZSinglyLinkedList *ZSinglyLinkedList_linearSearchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
+ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB)) {
     ZSinglyLinkedListNode *currentNode = list->head;
 
     ZSinglyLinkedList *positions = ZSinglyLinkedList_create();
@@ -258,6 +259,21 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
     }
 
     return occurences;
+}
+
+ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value)) {
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    ZSinglyLinkedList *returnList = ZSinglyLinkedList_create();
+
+    for(size_t i = 0; i < list->length; ++i) {
+        if(testFunction(currentNode->data) == true) {
+            ZSinglyLinkedList_insertBack(returnList, currentNode->data);
+        }
+        currentNode = currentNode->next;
+    }
+
+    return returnList;
 }
 
 // Sort functions
