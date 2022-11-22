@@ -111,6 +111,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2e0a03f462076b77a2fc0704a3a2906d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a2e0a03f462076b77a2fc0704a3a2906d">ZSinglyLinkedList_free</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list)</td></tr>
 <tr class="memdesc:a2e0a03f462076b77a2fc0704a3a2906d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère la mémoire allouée par la liste.  <a href="_z_singly_linked_list_8h.html#a2e0a03f462076b77a2fc0704a3a2906d">More...</a><br /></td></tr>
 <tr class="separator:a2e0a03f462076b77a2fc0704a3a2906d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37cc69a1ef9b4178b83e5049233e447a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a37cc69a1ef9b4178b83e5049233e447a">ZSinglyLinkedList_clear</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list)</td></tr>
+<tr class="memdesc:a37cc69a1ef9b4178b83e5049233e447a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vide la liste sans la supprimer.  <a href="_z_singly_linked_list_8h.html#a37cc69a1ef9b4178b83e5049233e447a">More...</a><br /></td></tr>
+<tr class="separator:a37cc69a1ef9b4178b83e5049233e447a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b7466ed183d6082a785b89493ddc8f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a4b7466ed183d6082a785b89493ddc8f1">ZSinglyLinkedList_insert</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, size_t position, void *data)</td></tr>
 <tr class="memdesc:a4b7466ed183d6082a785b89493ddc8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un élement dans la liste.  <a href="_z_singly_linked_list_8h.html#a4b7466ed183d6082a785b89493ddc8f1">More...</a><br /></td></tr>
 <tr class="separator:a4b7466ed183d6082a785b89493ddc8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,15 +159,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a91c9aab45158a718f2d6b708d1ff004f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a91c9aab45158a718f2d6b708d1ff004f">ZSinglyLinkedList_reverseList</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list)</td></tr>
 <tr class="memdesc:a91c9aab45158a718f2d6b708d1ff004f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renverse la liste passée en paramètre.  <a href="_z_singly_linked_list_8h.html#a91c9aab45158a718f2d6b708d1ff004f">More...</a><br /></td></tr>
 <tr class="separator:a91c9aab45158a718f2d6b708d1ff004f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f61bf84fc340e587bb9cffc48c36334"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a3f61bf84fc340e587bb9cffc48c36334">ZSinglyLinkedList_linearSearchFirstOccurence</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
-<tr class="memdesc:a3f61bf84fc340e587bb9cffc48c36334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre.  <a href="_z_singly_linked_list_8h.html#a3f61bf84fc340e587bb9cffc48c36334">More...</a><br /></td></tr>
-<tr class="separator:a3f61bf84fc340e587bb9cffc48c36334"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f3352f471524bca4baf33467fc340cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a5f3352f471524bca4baf33467fc340cf">ZSinglyLinkedList_linearSearchPositions</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
-<tr class="memdesc:a5f3352f471524bca4baf33467fc340cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions.  <a href="_z_singly_linked_list_8h.html#a5f3352f471524bca4baf33467fc340cf">More...</a><br /></td></tr>
-<tr class="separator:a5f3352f471524bca4baf33467fc340cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa990b4af04f620d83dea502dde22078"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#afa990b4af04f620d83dea502dde22078">ZSinglyLinkedList_searchFirstOccurence</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
+<tr class="memdesc:afa990b4af04f620d83dea502dde22078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre.  <a href="_z_singly_linked_list_8h.html#afa990b4af04f620d83dea502dde22078">More...</a><br /></td></tr>
+<tr class="separator:afa990b4af04f620d83dea502dde22078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772e5af00e2422c0b0c10b0e32f08274"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#a772e5af00e2422c0b0c10b0e32f08274">ZSinglyLinkedList_searchPositions</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
+<tr class="memdesc:a772e5af00e2422c0b0c10b0e32f08274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions.  <a href="_z_singly_linked_list_8h.html#a772e5af00e2422c0b0c10b0e32f08274">More...</a><br /></td></tr>
+<tr class="separator:a772e5af00e2422c0b0c10b0e32f08274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3d05d00c0917ae1e21f94210f889203"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#ad3d05d00c0917ae1e21f94210f889203">ZSinglyLinkedList_countOccurrences</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, void *data, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
 <tr class="memdesc:ad3d05d00c0917ae1e21f94210f889203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie le nombre d'occurence d'une donnée dans la liste.  <a href="_z_singly_linked_list_8h.html#ad3d05d00c0917ae1e21f94210f889203">More...</a><br /></td></tr>
 <tr class="separator:ad3d05d00c0917ae1e21f94210f889203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afebee2bb8c76a87f15f72be950492b93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#afebee2bb8c76a87f15f72be950492b93">ZSinglyLinkedList_filter</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, bool(*testFunction)(void *value), void *(*copyFunction)(void *data))</td></tr>
+<tr class="memdesc:afebee2bb8c76a87f15f72be950492b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie la liste d'élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true.  <a href="_z_singly_linked_list_8h.html#afebee2bb8c76a87f15f72be950492b93">More...</a><br /></td></tr>
+<tr class="separator:afebee2bb8c76a87f15f72be950492b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af382607e4141a3f70cadc7f09d6e60bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_z_singly_linked_list_8h.html#af382607e4141a3f70cadc7f09d6e60bb">ZSinglyLinkedList_BubbleSort</a> (<a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *list, bool(*compareFunction)(void *valueA, void *valueB))</td></tr>
 <tr class="memdesc:af382607e4141a3f70cadc7f09d6e60bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trie la liste à l'aide d'un tri à bulle.  <a href="_z_singly_linked_list_8h.html#af382607e4141a3f70cadc7f09d6e60bb">More...</a><br /></td></tr>
 <tr class="separator:af382607e4141a3f70cadc7f09d6e60bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,6 +295,33 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
     <tr><td class="paramname">compareFunction</td><td>Un pointeur vers la fonction de comparaison </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a37cc69a1ef9b4178b83e5049233e447a" name="a37cc69a1ef9b4178b83e5049233e447a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37cc69a1ef9b4178b83e5049233e447a">&#9670;&nbsp;</a></span>ZSinglyLinkedList_clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZSinglyLinkedList_clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vide la liste sans la supprimer. </p>
+<p >Libère tous les pointeurs de donnée et les élements de type <em><a class="el" href="struct_z_singly_linked_list_node.html" title="La structure qui contient un élement de la liste.">ZSinglyLinkedListNode</a></em> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
   </table>
   </dd>
 </dl>
@@ -486,7 +519,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
-    <tr><td class="paramname">dataPerLine</td><td>Le nombre de données à afficher par ligne </td></tr>
+    <tr><td class="paramname">dataPerLine</td><td>Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique </td></tr>
     <tr><td class="paramname">printFunction</td><td>Un pointeur vers la fonction permettant de print un élément de la liste </td></tr>
   </table>
   </dd>
@@ -531,7 +564,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
-    <tr><td class="paramname">dataPerLine</td><td>Le nombre de données à afficher par ligne </td></tr>
+    <tr><td class="paramname">dataPerLine</td><td>Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique </td></tr>
     <tr><td class="paramname">format</td><td>Le format pour afficher correctement les données : <br  />
 <ul>
 <li>"p" -&gt; pointeur <br  />
@@ -560,6 +593,51 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="afebee2bb8c76a87f15f72be950492b93" name="afebee2bb8c76a87f15f72be950492b93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afebee2bb8c76a87f15f72be950492b93">&#9670;&nbsp;</a></span>ZSinglyLinkedList_filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> * ZSinglyLinkedList_filter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool(*)(void *value)&#160;</td>
+          <td class="paramname"><em>testFunction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(void *data)&#160;</td>
+          <td class="paramname"><em>copyFunction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renvoie la liste d'élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
+    <tr><td class="paramname">testFunction</td><td>Un pointeur vers la fonction de test </td></tr>
+    <tr><td class="paramname">compareFunction</td><td>Un pointeur vers la fonction de copie (renvoie un pointeur dont la donnée est égale à la donnée originale -&gt; alloue, affecte et renvoie le pointeur)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>La liste d'élements de la liste d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée. </dd></dl>
+
+</div>
+</div>
 <a id="a2e0a03f462076b77a2fc0704a3a2906d" name="a2e0a03f462076b77a2fc0704a3a2906d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e0a03f462076b77a2fc0704a3a2906d">&#9670;&nbsp;</a></span>ZSinglyLinkedList_free()</h2>
 
@@ -577,7 +655,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Libère la mémoire allouée par la liste. </p>
-<p >Libère tous les pointeurs de donnée et les élements de type <em><a class="el" href="struct_z_singly_linked_list_node.html" title="La structure qui contient un élement de la liste.">ZSinglyLinkedListNode</a></em> </p>
+<p >Libère tous les pointeurs de donnée et les élements de type <em><a class="el" href="struct_z_singly_linked_list_node.html" title="La structure qui contient un élement de la liste.">ZSinglyLinkedListNode</a></em>, puis libère la liste</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
@@ -946,14 +1024,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3f61bf84fc340e587bb9cffc48c36334" name="a3f61bf84fc340e587bb9cffc48c36334"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f61bf84fc340e587bb9cffc48c36334">&#9670;&nbsp;</a></span>ZSinglyLinkedList_linearSearchFirstOccurence()</h2>
+<a id="a91c9aab45158a718f2d6b708d1ff004f" name="a91c9aab45158a718f2d6b708d1ff004f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91c9aab45158a718f2d6b708d1ff004f">&#9670;&nbsp;</a></span>ZSinglyLinkedList_reverseList()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t ZSinglyLinkedList_linearSearchFirstOccurence </td>
+          <td class="memname">void ZSinglyLinkedList_reverseList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renverse la liste passée en paramètre. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afa990b4af04f620d83dea502dde22078" name="afa990b4af04f620d83dea502dde22078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa990b4af04f620d83dea502dde22078">&#9670;&nbsp;</a></span>ZSinglyLinkedList_searchFirstOccurence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ZSinglyLinkedList_searchFirstOccurence </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
           <td class="paramname"><em>list</em>, </td>
@@ -987,18 +1091,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>La position de la première occurence dans la liste pour laquelle la fonction <em>compareFunction</em> renvoie true. Renvoie -1 si aucune valeur ne renvoie true. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>La position de la première occurence dans la liste pour laquelle la fonction <em>compareFunction</em> renvoie true. Renvoie UINT64_MAX si aucune valeur ne renvoie true. </dd></dl>
 
 </div>
 </div>
-<a id="a5f3352f471524bca4baf33467fc340cf" name="a5f3352f471524bca4baf33467fc340cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f3352f471524bca4baf33467fc340cf">&#9670;&nbsp;</a></span>ZSinglyLinkedList_linearSearchPositions()</h2>
+<a id="a772e5af00e2422c0b0c10b0e32f08274" name="a772e5af00e2422c0b0c10b0e32f08274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a772e5af00e2422c0b0c10b0e32f08274">&#9670;&nbsp;</a></span>ZSinglyLinkedList_searchPositions()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> * ZSinglyLinkedList_linearSearchPositions </td>
+          <td class="memname"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> * ZSinglyLinkedList_searchPositions </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
           <td class="paramname"><em>list</em>, </td>
@@ -1032,33 +1136,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Une liste chaînée de size_t contenant les positions auquelles la fonction <em>compareFunction</em> a renvoyée true (Ne pas oublier de la libérer après utilisation) </dd></dl>
-
-</div>
-</div>
-<a id="a91c9aab45158a718f2d6b708d1ff004f" name="a91c9aab45158a718f2d6b708d1ff004f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91c9aab45158a718f2d6b708d1ff004f">&#9670;&nbsp;</a></span>ZSinglyLinkedList_reverseList()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ZSinglyLinkedList_reverseList </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_z_singly_linked_list.html">ZSinglyLinkedList</a> *&#160;</td>
-          <td class="paramname"><em>list</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Renverse la liste passée en paramètre. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">list</td><td>Un pointeur vers la liste </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>Une liste chaînée de size_t contenant les positions auquelles la fonction <em>compareFunction</em> a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée. </dd></dl>
 
 </div>
 </div>

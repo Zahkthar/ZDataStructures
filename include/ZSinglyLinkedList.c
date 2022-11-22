@@ -352,13 +352,13 @@ ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*test
  */
 void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void *valueA, void *valueB))
 {
-    ZSinglyLinkedListNode *lastNodeToCheck = NULL;
-
     // Si la liste est vide, on s'arrête
     if(list->length == 0)
     {
         return;
     }
+    
+    ZSinglyLinkedListNode *lastNodeToCheck = NULL;
     
     // Commencement du tri
     while(true)
@@ -450,9 +450,12 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
                 return;
         }
 
-        if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
+        if(dataPerLine != 0)
         {
-            printf("\n");
+            if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
+            {
+                printf("\n");
+            }
         }
         
         currentPosition++;
@@ -469,8 +472,12 @@ void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataP
     {
         printFunction(currentNode->data);
 
-        if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL) {
-            printf("\n");
+        if(dataPerLine != 0)
+        {
+            if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
+            {
+                printf("\n");
+            }
         }
         
         currentPosition++;

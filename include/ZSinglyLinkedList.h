@@ -227,7 +227,7 @@ size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *dat
  * \param     data              Un pointeur contenant la donnée à chercher
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e compareFunction a renvoyée true (ne pas oublier de la libérer après utilisation)
+ * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e compareFunction a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
  */
 ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
@@ -245,12 +245,13 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
 /**
  * \brief     Renvoie la liste d'élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true
  * 
- * \param     list           Un pointeur vers la liste
- * \param     testFunction   Un pointeur vers la fonction de test
+ * \param     list             Un pointeur vers la liste
+ * \param     testFunction     Un pointeur vers la fonction de test
+ * \param     compareFunction  Un pointeur vers la fonction de copie (renvoie un pointeur dont la donnée est égale à la donnée originale -> alloue, affecte et renvoie le pointeur)
  * 
- * \return    La liste d'élements de la liste d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation)
+ * \return    La liste d'élements de la liste d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
  */
-ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value), void* (*assignFunction)(void *data));
+ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value), void* (*copyFunction)(void *data));
 
 /*
  * Sort functions
@@ -292,7 +293,7 @@ size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list);
  * \details   Permet d'afficher un nombre de données par ligne de la liste dans un certain format
  * 
  * \param     list          Un pointeur vers la liste
- * \param     dataPerLine   Le nombre de données à afficher par ligne
+ * \param     dataPerLine   Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
  * \param     format        Le format pour afficher correctement les données : \n
  *                          - "p" -> pointeur \n
  *                          - "d" -> int32_t \n
@@ -310,7 +311,7 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
  * \brief     Affiche les données de la liste selon une forme définie par une fonction passée en paramètre
  * 
  * \param     list            Un pointeur vers la liste
- * \param     dataPerLine     Le nombre de données à afficher par ligne
+ * \param     dataPerLine     Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
  * \param     printFunction   Un pointeur vers la fonction permettant de print un élément de la liste
  */
 void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value));

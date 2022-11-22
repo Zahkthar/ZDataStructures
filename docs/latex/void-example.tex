@@ -1,0 +1,20 @@
+\hypertarget{void-example}{}\doxysection{void}
+Renvoie la liste d\textquotesingle{}élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true.
+
+Renvoie la liste d\textquotesingle{}élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em test\+Function} & Un pointeur vers la fonction de test\\
+\hline
+\end{DoxyParams}
+$\ast$assign\+Function(void $\ast$data) \{ int32\+\_\+t $\ast$container = malloc(sizeof(int32\+\_\+t)); $\ast$(int32\+\_\+t$\ast$)container = $\ast$(int32\+\_\+t$\ast$)data; return container; \}
+
+\begin{DoxyReturn}{Returns}
+La liste d\textquotesingle{}élements de la liste d\textquotesingle{}origine pour lesquels test\+Function() a renvoyé true (ne pas oublier de la libérer après utilisation)
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 
