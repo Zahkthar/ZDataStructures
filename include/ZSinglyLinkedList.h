@@ -216,7 +216,7 @@ void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list);
  * \param     data              Un pointeur contenant la donnée à chercher
  * \param     compareFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    La position de la première occurence dans la liste pour laquelle la fonction \e compareFunction renvoie true. Renvoie -1 si aucune valeur ne renvoie true.
+ * \return    La position de la première occurence dans la liste pour laquelle la fonction \e compareFunction renvoie true. Renvoie UINT64_MAX si aucune valeur ne renvoie true.
  */
 size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
 
@@ -250,7 +250,7 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
  * 
  * \return    La liste d'élements de la liste d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation)
  */
-ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value));
+ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value), void* (*assignFunction)(void *data));
 
 /*
  * Sort functions
