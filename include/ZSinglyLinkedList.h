@@ -24,10 +24,10 @@
 typedef struct ZSinglyLinkedList {
     // Attributs
     struct ZSinglyLinkedListNode *head;
+    struct ZSinglyLinkedListNode *tail;
     size_t length;
 
     // Fonctions
-    void (*printFunction)(void *value);
     void* (*cloneFunction)(void *data);
     void (*freeFunction)(void *data);
 } ZSinglyLinkedList;
@@ -62,7 +62,7 @@ ZSinglyLinkedList *ZSinglyLinkedList_create();
  * \param     cloneFunction   Un pointeur vers la fonction de clonage
  * \param     freeFunction    Un pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_setCallbackFunctions(ZSinglyLinkedList *list, void (*printFunction)(void *value), void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
+void ZSinglyLinkedList_setCallbackFunctions(ZSinglyLinkedList *list, void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
 
 /**
  * \brief     Libère la mémoire allouée par la liste
@@ -352,6 +352,6 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
  * \param     list            Un pointeur vers la liste
  * \param     dataPerLine     Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
  */
-void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine);
+void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value));
 
 #endif // ZDS_SINGLY_LINKED_LIST_H_INCLUDED
