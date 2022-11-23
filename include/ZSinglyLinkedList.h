@@ -19,11 +19,17 @@
 
 /**
  * \brief     La structure qui contient la liste
- * \details   Contient un pointeur vers la tête de la liste
+ * \details   Contient un pointeur vers la tête de la liste ainsi que des informations simplifiant l'usage des fonctions
  */
 typedef struct ZSinglyLinkedList {
+    // Attributs
     struct ZSinglyLinkedListNode *head;
     size_t length;
+
+    // Fonctions
+    void (*printFunction)(void *value);
+    void* (*cloneFunction)(void *data);
+    void (*freeFunction)(void *data);
 } ZSinglyLinkedList;
 
 /**
@@ -51,24 +57,32 @@ ZSinglyLinkedList *ZSinglyLinkedList_create();
  * \brief     Libère la mémoire allouée par la liste
  * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode, puis libère la liste
  * 
- * \param     list           Un pointeur vers la liste
- * \param     freeFunction   Le pointeur vers la fonction de libération
+ * \param     list            Un pointeur vers la liste
+ * \param     printFunction   Un pointeur vers la fonction d'affichage
+ * \param     cloneFunction   Un pointeur vers la fonction de clonage
+ * \param     freeFunction    Un pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_free(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_setCallbackFunctions(ZSinglyLinkedList *list, void (*printFunction)(void *value), void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
+
+/**
+ * \brief     Libère la mémoire allouée par la liste
+ * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode, puis libère la liste
+ * 
+ * \param     list           Un pointeur vers la liste
+ */
+void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
 
 /**
  * \brief     Vide la liste sans la supprimer
  * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode
  * 
  * \param     list           Un pointeur vers la liste
- * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_clear(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_clear(ZSinglyLinkedList *list);
 
 /*
  * Generic ZSinglyLinkedList functions
  */
-
 /**
  * \brief     Ajoute un élement dans la liste
  * \details   Crée un nouvel élement de type \e ZSinglyLinkedListNode et l'insère à la position \e position dans la liste
@@ -104,25 +118,22 @@ void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data);
  * 
  * \param     list           Un pointeur vers la liste
  * \param     position       La position de l'élement à supprimer
- * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position);
 
 /**
  * \brief     Supprime le premier élement de la liste
  * 
  * \param     list           Un pointeur vers la liste
- * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list);
 
 /**
  * \brief     Supprime le dernier élement de la liste
  * 
  * \param     list           Un pointeur vers la liste
- * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list);
 
 /**
  * \brief     Renvoie la cellule à la position \e position
@@ -187,9 +198,8 @@ void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list);
  * \param     list           Un pointeur vers la liste
  * \param     position       La position à laquelle modifier la donnée
  * \param     data           La nouvelle donnée
- * \param     freeFunction   Le pointeur vers la fonction de libération pour l'ancienne donnée
  */
-void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* data, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* data);
 
 /**
  * \brief     Modifie la donnée du premier élement de la liste
@@ -197,9 +207,8 @@ void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* d
  * 
  * \param     list           Un pointeur vers la liste
  * \param     data           La nouvelle donnée
- * \param     freeFunction   Le pointeur vers la fonction de libération pour l'ancienne donnée
  */
-void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void* data, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void* data);
 
 /**
  * \brief     Modifie la donnée du dernier élement de la liste
@@ -207,14 +216,12 @@ void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void* data, void (*
  * 
  * \param     list           Un pointeur vers la liste
  * \param     data           La nouvelle donnée
- * \param     freeFunction   Le pointeur vers la fonction de libération pour l'ancienne donnée
  */
-void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data, void (*freeFunction)(void *data));
+void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data);
 
 /*
  * Processing functions
  */
-
 /**
  * \brief     Swap les data deux cellules aux positions données en paramètres
  * 
@@ -244,55 +251,52 @@ void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list);
 /*
  * Search functions
  */
-
 /**
  * \brief     Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre
  * 
- * \param     list              Un pointeur vers la liste
- * \param     data              Un pointeur contenant la donnée à chercher
- * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * \param     list           Un pointeur vers la liste
+ * \param     data           Un pointeur contenant la donnée à chercher
+ * \param     testFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    La position de la première occurence dans la liste pour laquelle la fonction \e compareFunction renvoie true. Renvoie UINT64_MAX si aucune valeur ne renvoie true.
+ * \return    La position de la première occurence dans la liste pour laquelle la fonction \e testFunction renvoie true. Renvoie UINT64_MAX si aucune valeur ne renvoie true.
  */
-size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *data, bool (*testFunction)(void *valueA, void *valueB));
 
 /**
  * \brief     Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions
  * 
- * \param     list              Un pointeur vers la liste
- * \param     data              Un pointeur contenant la donnée à chercher
- * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * \param     list           Un pointeur vers la liste
+ * \param     data           Un pointeur contenant la donnée à chercher
+ * \param     testFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e compareFunction a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
+ * \return    Une liste chaînée de size_t contenant les positions auquelles la fonction \e testFunction a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
  */
-ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*testFunction)(void *valueA, void *valueB));
 
 /**
  * \brief     Renvoie le nombre d'occurence d'une donnée dans la liste
  * 
- * \param     list              Un pointeur vers la liste
- * \param     data              Un pointeur contenant la donnée à chercher
- * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * \param     list           Un pointeur vers la liste
+ * \param     data           Un pointeur contenant la donnée à chercher
+ * \param     testFunction   Un pointeur vers la fonction de comparaison
  * 
- * \return    Le nombre d'élément de la liste pour lesquels la fonction \e compareFunction a renvoyée true.
+ * \return    Le nombre d'élément de la liste pour lesquels la fonction \e testFunction a renvoyée true.
  */
-size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, bool (*compareFunction)(void *valueA, void *valueB));
+size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, bool (*testFunction)(void *valueA, void *valueB));
 
 /**
  * \brief     Renvoie la liste d'élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true
  * 
  * \param     list             Un pointeur vers la liste
  * \param     testFunction     Un pointeur vers la fonction de test
- * \param     compareFunction  Un pointeur vers la fonction de copie (renvoie un pointeur dont la donnée est égale à la donnée originale -> alloue, affecte et renvoie le pointeur)
- * 
+
  * \return    La liste d'élements de la liste d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
  */
-ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value), void* (*copyFunction)(void *data));
+ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value));
 
 /*
  * Sort functions
  */
-
 /**
  * \brief     Trie la liste à l'aide d'un tri à bulle 
  * 
@@ -305,7 +309,6 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
 /*
  * Debug singly linked list functions
  */
-
 /**
  * \brief     Renvoie true si la liste est vide, false sinon
  * 
@@ -348,8 +351,7 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
  * 
  * \param     list            Un pointeur vers la liste
  * \param     dataPerLine     Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
- * \param     printFunction   Un pointeur vers la fonction permettant de print un élément de la liste
  */
-void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value));
+void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine);
 
 #endif // ZDS_SINGLY_LINKED_LIST_H_INCLUDED
