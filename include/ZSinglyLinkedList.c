@@ -21,16 +21,16 @@ ZSinglyLinkedList *ZSinglyLinkedList_create()
     return newList;
 }
 
-void ZSinglyLinkedList_free(ZSinglyLinkedList *list)
+void ZSinglyLinkedList_free(ZSinglyLinkedList *list, void (*freeFunction)(void *data))
 {
-    ZSinglyLinkedList_clear(list);
+    ZSinglyLinkedList_clear(list, freeFunction);
     free(list);
 }
 
-void ZSinglyLinkedList_clear(ZSinglyLinkedList *list) {
+void ZSinglyLinkedList_clear(ZSinglyLinkedList *list, void (*freeFunction)(void *data)) {
     while(list->head != NULL)
     {
-        ZSinglyLinkedList_deleteFront(list);
+        ZSinglyLinkedList_deleteFront(list, freeFunction);
     }
 }
 
@@ -79,7 +79,7 @@ void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data)
     ZSinglyLinkedList_insert(list, list->length, data);
 }
 
-void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
+void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position, void (*freeFunction)(void *data))
 {
     // Gestion des cas spéciaux
     if(list->length == 0 || position >= list->length)
@@ -94,7 +94,7 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
         if(list->head != NULL)
         {
             list->head = list->head->next;
-            free(currentNode->data);
+            freeFunction(currentNode->data);
             free(currentNode);
         }
     }
@@ -107,61 +107,26 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
 
         ZSinglyLinkedListNode *del = currentNode->next;
         currentNode->next = currentNode->next->next;
-        free(del->data);
+        freeFunction(del->data);
         free(del);
     }
     
     list->length -= 1;
 }
 
-void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list)
+void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list, void (*freeFunction)(void *data))
 {
-    ZSinglyLinkedList_delete(list, 0);
+    ZSinglyLinkedList_delete(list, 0, freeFunction);
 }
 
-void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list)
+void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list, void (*freeFunction)(void *data))
 {
-    ZSinglyLinkedList_delete(list, list->length - 1);
-}
-
-void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position)
-{
-    // Gestion des cas spéciaux
-    if(position == 0) {
-        return list->head->data;
-    }
-
-    if(position >= list->length)
-    {
-        return NULL;
-    }
-
-    ZSinglyLinkedListNode *currentNode = list->head;
-    for(size_t i = 0; i < position; ++i)
-    {
-        currentNode = currentNode->next;
-    }
-    return currentNode->data;
-}
-
-void *ZSinglyLinkedList_getDataFront(ZSinglyLinkedList *list)
-{
-    return ZSinglyLinkedList_getData(list, 0);
-}
-
-void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list)
-{
-    return ZSinglyLinkedList_getData(list, list->length - 1);
+    ZSinglyLinkedList_delete(list, list->length - 1, freeFunction);
 }
 
 ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position)
 {
     // Gestion des cas spéciaux
-    if(position == 0)
-    {
-        return list->head;
-    }
-    
     if(position >= list->length)
     {
         return NULL;
@@ -185,6 +150,53 @@ ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list)
 ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list)
 {
     return ZSinglyLinkedList_getNode(list, list->length - 1);
+}
+
+void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position)
+{
+    ZSinglyLinkedListNode *currentNode = ZSinglyLinkedList_getNode(list, position);
+    
+    if(currentNode != NULL)
+    {
+        return currentNode->data;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+void *ZSinglyLinkedList_getDataFront(ZSinglyLinkedList *list)
+{
+    return ZSinglyLinkedList_getData(list, 0);
+}
+
+void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list)
+{
+    return ZSinglyLinkedList_getData(list, list->length - 1);
+}
+
+void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* data, void (*freeFunction)(void *data))
+{
+    ZSinglyLinkedListNode *node = ZSinglyLinkedList_getNode(list, position);
+
+    if(node == NULL)
+    {
+        return;
+    }
+
+    freeFunction(node->data);
+    node->data = data;
+}
+
+void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void* data, void (*freeFunction)(void *data))
+{
+    ZSinglyLinkedList_setData(list, 0, data, freeFunction);
+}
+
+void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data, void (*freeFunction)(void *data))
+{
+    ZSinglyLinkedList_setData(list, list->length - 1, data, freeFunction);
 }
 
 /*

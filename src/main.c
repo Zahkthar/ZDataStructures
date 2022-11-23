@@ -5,19 +5,9 @@
 
 #include "ZSinglyLinkedList.h"
 
-// TODO :
-// - Ajouter la fonction setData dans ZSinglyLinkedList
-
-void *assignFunction(void *data)
+void freeFunction(void* value)
 {
-    int32_t *container = malloc(sizeof(int32_t));
-    *(int32_t*)container = *(int32_t*)data;
-    return container;
-}
-
-bool testFunction(void *value)
-{
-    return *(int32_t*)value < 5;
+    free(value);
 }
 
 int main(void)
@@ -31,13 +21,9 @@ int main(void)
 
     // ----------------------------------------------------
 
-    ZSinglyLinkedList *filteredList = ZSinglyLinkedList_filter(list, &testFunction, &assignFunction);
-
-    *(int32_t*)ZSinglyLinkedList_getNode(list, 4)->data = 12;
-
     ZSinglyLinkedList_dumpMemoryFormat(list, 10, "d");
-    ZSinglyLinkedList_dumpMemoryFormat(filteredList, 10, "d");
+    printf("%d\n", *(int32_t*)ZSinglyLinkedList_getData(list, 1));
 
-    ZSinglyLinkedList_free(list);
+    ZSinglyLinkedList_free(list, &freeFunction);
     return 0;
 }

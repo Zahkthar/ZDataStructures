@@ -9,7 +9,7 @@
 
 #include <stdio.h> // printf
 #include <stdlib.h> // malloc, free
-#include <stdint.h> // int32_t, uint32_t
+#include <stdint.h> // int32_t, uint32_t, UINT64_MAX
 #include <string.h> // strnlen
 #include <stdbool.h> // bool, true, false
 
@@ -51,17 +51,19 @@ ZSinglyLinkedList *ZSinglyLinkedList_create();
  * \brief     Libère la mémoire allouée par la liste
  * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode, puis libère la liste
  * 
- * \param     list   Un pointeur vers la liste
+ * \param     list           Un pointeur vers la liste
+ * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_free(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_free(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
 
 /**
  * \brief     Vide la liste sans la supprimer
  * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode
  * 
- * \param     list   Un pointeur vers la liste
+ * \param     list           Un pointeur vers la liste
+ * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_clear(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_clear(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
 
 /*
  * Generic ZSinglyLinkedList functions
@@ -100,24 +102,55 @@ void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data);
 /**
  * \brief     Supprime un élement de la liste à une position passée en paramètre
  * 
- * \param     list         Un pointeur vers la liste
- * \param     position     La position de l'élement à supprimer
+ * \param     list           Un pointeur vers la liste
+ * \param     position       La position de l'élement à supprimer
+ * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position);
+void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position, void (*freeFunction)(void *data));
 
 /**
  * \brief     Supprime le premier élement de la liste
  * 
- * \param     list         Un pointeur vers la liste
+ * \param     list           Un pointeur vers la liste
+ * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
 
 /**
  * \brief     Supprime le dernier élement de la liste
  * 
- * \param     list         Un pointeur vers la liste
+ * \param     list           Un pointeur vers la liste
+ * \param     freeFunction   Le pointeur vers la fonction de libération
  */
-void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list, void (*freeFunction)(void *data));
+
+/**
+ * \brief     Renvoie la cellule à la position \e position
+ * 
+ * \param     list         Un pointeur vers la liste
+ * \param     position     La position de la cellule à récupérer
+ * 
+ * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée
+ */
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position);
+
+/**
+ * \brief     Renvoie la première cellule de la liste
+ * 
+ * \param     list         Un pointeur vers la liste
+ * 
+ * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
+ */
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list);
+
+/**
+ * \brief     Renvoie la dernière cellule de la liste
+ * 
+ * \param     list         Un pointeur vers la liste
+ * 
+ * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
+ */
+ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list);
 
 /**
  * \brief     Renvoie un élement de la liste à une position passée en paramètre
@@ -148,32 +181,35 @@ void *ZSinglyLinkedList_getDataFront(ZSinglyLinkedList *list);
 void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list);
 
 /**
- * \brief     Renvoie la cellule à la position \e position
+ * \brief     Modifie la donnée de la liste à la position passée en paramètre
+ * \details   Libère l'ancienne donnée via la fonction de libération passée en paramètre
  * 
- * \param     list         Un pointeur vers la liste
- * \param     position     La position de la cellule à récupérer
- * 
- * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée
+ * \param     list           Un pointeur vers la liste
+ * \param     position       La position à laquelle modifier la donnée
+ * \param     data           La nouvelle donnée
+ * \param     freeFunction   Le pointeur vers la fonction de libération pour l'ancienne donnée
  */
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position);
+void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* data, void (*freeFunction)(void *data));
 
 /**
- * \brief     Renvoie la première cellule de la liste
+ * \brief     Modifie la donnée du premier élement de la liste
+ * \details   Libère l'ancienne donnée via la fonction de libération passée en paramètre
  * 
- * \param     list         Un pointeur vers la liste
- * 
- * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
+ * \param     list           Un pointeur vers la liste
+ * \param     data           La nouvelle donnée
+ * \param     freeFunction   Le pointeur vers la fonction de libération pour l'ancienne donnée
  */
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void* data, void (*freeFunction)(void *data));
 
 /**
- * \brief     Renvoie la dernière cellule de la liste
+ * \brief     Modifie la donnée du dernier élement de la liste
+ * \details   Libère l'ancienne donnée via la fonction de libération passée en paramètre
  * 
- * \param     list         Un pointeur vers la liste
- * 
- * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
+ * \param     list           Un pointeur vers la liste
+ * \param     data           La nouvelle donnée
+ * \param     freeFunction   Le pointeur vers la fonction de libération pour l'ancienne donnée
  */
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list);
+void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data, void (*freeFunction)(void *data));
 
 /*
  * Processing functions
