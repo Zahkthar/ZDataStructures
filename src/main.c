@@ -22,9 +22,9 @@ void freeFunction(void *value)
     free(value);
 }
 
-bool testFunction(void *value)
+bool testFunction(void *valueA, void *valueB)
 {
-    return *(int32_t*)value >= 5;
+    return *(int32_t*)valueA == *(int32_t*)valueB;
 }
 
 int main(void)
@@ -40,14 +40,11 @@ int main(void)
 
     // ----------------------------------------------------
 
-    int32_t *b = malloc(sizeof(int32_t)); *b = 8;
-    
-    ZSinglyLinkedList *filteredList = ZSinglyLinkedList_filter(list, &testFunction);
-    ZSinglyLinkedList_dumpMemoryCallback(filteredList, 10, &printFunction);
+    int32_t *b = malloc(sizeof(int32_t)); *b = 9;
+    printf("%llu\n", ZSinglyLinkedList_searchFirstOccurence(list, b, &testFunction));
 
     ZSinglyLinkedList_dumpMemoryCallback(list, 10, &printFunction);
 
-    ZSinglyLinkedList_free(filteredList);
     ZSinglyLinkedList_free(list);
     return 0;
 }

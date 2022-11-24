@@ -321,12 +321,13 @@ size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *dat
 ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*testFunction)(void *valueA, void *valueB))
 {
     ZSinglyLinkedList *positions = ZSinglyLinkedList_create();
-    ZSinglyLinkedList_setCallbackFunctions(positions, list->cloneFunction, list->freeFunction);
 
     if(positions == NULL)
     {
         return NULL;
     }
+
+    ZSinglyLinkedList_setCallbackFunctions(positions, list->cloneFunction, list->freeFunction);
 
     ZSinglyLinkedListNode *currentNode = list->head;
 
@@ -351,7 +352,7 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
 
     size_t occurences = 0;
 
-    while(currentNode != list->tail)
+    while(currentNode != NULL)
     {
         if(testFunction(data, currentNode->data) == true)
         {
@@ -366,12 +367,13 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
 ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value))
 {
     ZSinglyLinkedList *returnList = ZSinglyLinkedList_create();
-    ZSinglyLinkedList_setCallbackFunctions(returnList, list->cloneFunction, list->freeFunction);
 
-    if(returnList == NULL || list->length == 0)
+    if(returnList == NULL)
     {
         return NULL;
     }
+
+    ZSinglyLinkedList_setCallbackFunctions(returnList, list->cloneFunction, list->freeFunction);
 
     ZSinglyLinkedListNode *currentNode = list->head;
 
@@ -411,7 +413,7 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
         while(currentNode->next != lastNodeToCheck)
         {
             // Si currentData > nextData
-            if(compareFunction(currentNode->data, currentNode->next->data))
+            if(compareFunction(currentNode->data, currentNode->next->data) == true)
             {
                 // On swap les data
                 void *tmpData = currentNode->data;
