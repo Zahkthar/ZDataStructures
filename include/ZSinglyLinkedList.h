@@ -7,8 +7,13 @@
  * \brief     Déclare les structures et les fonctions du module ZSinglyLinkedList.
  */
 
+/*
+ * TODO :
+ *  - Intersection of two LinkedList
+ */
+
 #include <stdio.h> // printf
-#include <stdlib.h> // malloc, free
+#include <stdlib.h> // malloc, free, size_t
 #include <stdint.h> // int32_t, uint32_t, UINT64_MAX
 #include <string.h> // strnlen
 #include <stdbool.h> // bool, true, false
@@ -28,7 +33,7 @@ typedef struct ZSinglyLinkedList {
     size_t length;
 
     // Fonctions
-    void* (*cloneFunction)(void *data);
+    void *(*cloneFunction)(void *data);
     void (*freeFunction)(void *data);
 } ZSinglyLinkedList;
 
@@ -54,11 +59,9 @@ typedef struct ZSinglyLinkedListNode {
 ZSinglyLinkedList *ZSinglyLinkedList_create();
 
 /**
- * \brief     Libère la mémoire allouée par la liste
- * \details   Libère tous les pointeurs de donnée et les élements de type \e ZSinglyLinkedListNode, puis libère la liste
+ * \brief     Affecte les pointeurs de fonctions clone et free dans la liste
  * 
  * \param     list            Un pointeur vers la liste
- * \param     printFunction   Un pointeur vers la fonction d'affichage
  * \param     cloneFunction   Un pointeur vers la fonction de clonage
  * \param     freeFunction    Un pointeur vers la fonction de libération
  */
