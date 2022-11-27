@@ -8,23 +8,16 @@ LIB_LOCALISATION = lib
 
 EXEC = ZDataStructures
 
-PROGRAM_SRC = main.c
-PROGRAM_OBJ = $(PROGRAM_SRC:.c=.o)
+SRC = main.c ZSinglyLinkedList.c ZDynamicArray.c
+OBJ = $(SRC:.c=.o)
 
-LIB_SRC = ZSinglyLinkedList.c ZDynamicArray.c
-LIB_OBJ = $(LIB_SRC:.c=.o)
-
-all : docs lib program
+all : program
 
 docs:
 	doxygen
 
-lib:
-	$(CXX) $(CXXFLAGS) -c include\ZSinglyLinkedList.c -o lib\ZSinglyLinkedList.o
-	$(CXX) $(CXXFLAGS) -c include\ZDynamicArray.c -o lib\ZDynamicArray.o
-
-program : $(PROGRAM_OBJ)
-	$(CXX) $(LINKER_FLAGS) $(addprefix obj\, $(PROGRAM_OBJ)) $(addprefix lib\, $(LIB_OBJ)) -o bin\$(EXEC) 
+program : $(OBJ)
+	$(CXX) $(LINKER_FLAGS) $(addprefix obj\, $(OBJ)) -o bin\$(EXEC) 
 
 %.o: src\%.c
 	$(CXX) $(CXXFLAGS) -c $< -o obj\$@ -I $(HEADERS_LOCALISATION)

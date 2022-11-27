@@ -1,0 +1,122 @@
+\hypertarget{_z_dynamic_array_8h}{}\doxysection{include/\+ZDynamic\+Array.h File Reference}
+\label{_z_dynamic_array_8h}\index{include/ZDynamicArray.h@{include/ZDynamicArray.h}}
+
+
+Déclare les structures et les fonctions du module \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}}.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_z_dynamic_array_8h_a6c3c674d50827c544f3839165534b77c}\label{_z_dynamic_array_8h_a6c3c674d50827c544f3839165534b77c}} 
+typedef struct \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} {\bfseries ZDynamic\+Array}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$ \mbox{\hyperlink{_z_dynamic_array_8h_a73e1f8dab9af38f5fa193953ce6e6452}{ZDynamic\+Array\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le tableau. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_dynamic_array_8h_ab5b7f8157b84f801413e83c3324c3b4c}{ZDynamic\+Array\+\_\+set\+Callback\+Functions}} (\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$dyn\+Arr, void $\ast$($\ast$clone\+Function)(void $\ast$data), void($\ast$free\+Function)(void $\ast$data))
+\begin{DoxyCompactList}\small\item\em Affecte les pointeurs de fonctions clone et free dans le tableau. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_dynamic_array_8h_adbbe9d8bc8e4ad47cba7bc89478551de}{ZDynamic\+Array\+\_\+free}} (\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$dyn\+Arr)
+\begin{DoxyCompactList}\small\item\em Libère toute la mémoire allouée par le tableau. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_dynamic_array_8h_ac6e871142cd8200f0a1376ef10424cad}{ZDynamic\+Array\+\_\+clear}} (\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$dyn\+Arr)
+\begin{DoxyCompactList}\small\item\em Vide le tableau et libère ses éléments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_dynamic_array_8h_a86eca3c3f78a051c3017fc09e81ade6d}{ZDynamic\+Array\+\_\+resize}} (\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$dyn\+Arr, size\+\_\+t new\+Size)
+\begin{DoxyCompactList}\small\item\em Modifie la quantité de mémoire allouée pour le tableau. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclare les structures et les fonctions du module \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}}. 
+
+\begin{DoxyAuthor}{Author}
+Zahkthar 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_z_dynamic_array_8h_ac6e871142cd8200f0a1376ef10424cad}\label{_z_dynamic_array_8h_ac6e871142cd8200f0a1376ef10424cad}} 
+\index{ZDynamicArray.h@{ZDynamicArray.h}!ZDynamicArray\_clear@{ZDynamicArray\_clear}}
+\index{ZDynamicArray\_clear@{ZDynamicArray\_clear}!ZDynamicArray.h@{ZDynamicArray.h}}
+\doxysubsubsection{\texorpdfstring{ZDynamicArray\_clear()}{ZDynamicArray\_clear()}}
+{\footnotesize\ttfamily void ZDynamic\+Array\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$}]{dyn\+Arr }\end{DoxyParamCaption})}
+
+
+
+Vide le tableau et libère ses éléments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dyn\+Arr} & Le pointeur vers le tableau à vider \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_dynamic_array_8h_a73e1f8dab9af38f5fa193953ce6e6452}\label{_z_dynamic_array_8h_a73e1f8dab9af38f5fa193953ce6e6452}} 
+\index{ZDynamicArray.h@{ZDynamicArray.h}!ZDynamicArray\_create@{ZDynamicArray\_create}}
+\index{ZDynamicArray\_create@{ZDynamicArray\_create}!ZDynamicArray.h@{ZDynamicArray.h}}
+\doxysubsubsection{\texorpdfstring{ZDynamicArray\_create()}{ZDynamicArray\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$ ZDynamic\+Array\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le tableau. 
+
+Crée un tableau d\textquotesingle{}une capacité de 16 éléments
+
+\begin{DoxyReturn}{Returns}
+Un pointeur vers un tableau dynamique de type {\itshape \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_z_dynamic_array_8h_adbbe9d8bc8e4ad47cba7bc89478551de}\label{_z_dynamic_array_8h_adbbe9d8bc8e4ad47cba7bc89478551de}} 
+\index{ZDynamicArray.h@{ZDynamicArray.h}!ZDynamicArray\_free@{ZDynamicArray\_free}}
+\index{ZDynamicArray\_free@{ZDynamicArray\_free}!ZDynamicArray.h@{ZDynamicArray.h}}
+\doxysubsubsection{\texorpdfstring{ZDynamicArray\_free()}{ZDynamicArray\_free()}}
+{\footnotesize\ttfamily void ZDynamic\+Array\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$}]{dyn\+Arr }\end{DoxyParamCaption})}
+
+
+
+Libère toute la mémoire allouée par le tableau. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dyn\+Arr} & Le pointeur vers le tableau à libérer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_dynamic_array_8h_a86eca3c3f78a051c3017fc09e81ade6d}\label{_z_dynamic_array_8h_a86eca3c3f78a051c3017fc09e81ade6d}} 
+\index{ZDynamicArray.h@{ZDynamicArray.h}!ZDynamicArray\_resize@{ZDynamicArray\_resize}}
+\index{ZDynamicArray\_resize@{ZDynamicArray\_resize}!ZDynamicArray.h@{ZDynamicArray.h}}
+\doxysubsubsection{\texorpdfstring{ZDynamicArray\_resize()}{ZDynamicArray\_resize()}}
+{\footnotesize\ttfamily void ZDynamic\+Array\+\_\+resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$}]{dyn\+Arr,  }\item[{size\+\_\+t}]{new\+Size }\end{DoxyParamCaption})}
+
+
+
+Modifie la quantité de mémoire allouée pour le tableau. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dyn\+Arr} & Le pointeur vers le tableau à redimentionner \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_dynamic_array_8h_ab5b7f8157b84f801413e83c3324c3b4c}\label{_z_dynamic_array_8h_ab5b7f8157b84f801413e83c3324c3b4c}} 
+\index{ZDynamicArray.h@{ZDynamicArray.h}!ZDynamicArray\_setCallbackFunctions@{ZDynamicArray\_setCallbackFunctions}}
+\index{ZDynamicArray\_setCallbackFunctions@{ZDynamicArray\_setCallbackFunctions}!ZDynamicArray.h@{ZDynamicArray.h}}
+\doxysubsubsection{\texorpdfstring{ZDynamicArray\_setCallbackFunctions()}{ZDynamicArray\_setCallbackFunctions()}}
+{\footnotesize\ttfamily void ZDynamic\+Array\+\_\+set\+Callback\+Functions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamic\+Array}} $\ast$}]{dyn\+Arr,  }\item[{void $\ast$($\ast$)(void $\ast$data)}]{clone\+Function,  }\item[{void($\ast$)(void $\ast$data)}]{free\+Function }\end{DoxyParamCaption})}
+
+
+
+Affecte les pointeurs de fonctions clone et free dans le tableau. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers le tableau \\
+\hline
+{\em clone\+Function} & Un pointeur vers la fonction de clonage \\
+\hline
+{\em free\+Function} & Un pointeur vers la fonction de libération \\
+\hline
+\end{DoxyParams}

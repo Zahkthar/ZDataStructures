@@ -1,0 +1,65 @@
+\hypertarget{_z_dynamic_array_8h_source}{}\doxysection{ZDynamic\+Array.\+h}
+\label{_z_dynamic_array_8h_source}\index{include/ZDynamicArray.h@{include/ZDynamicArray.h}}
+\mbox{\hyperlink{_z_dynamic_array_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef ZDS\_DYNAMIC\_ARRAY\_H\_INCLUDED}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ZDS\_DYNAMIC\_ARRAY\_H\_INCLUDED}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <stdlib.h>} \textcolor{comment}{// size\_t}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{comment}{/*}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Dynamic Array}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}} \{}
+\DoxyCodeLine{16     \textcolor{comment}{// Attributs}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} **data;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{size\_t} capacity;}
+\DoxyCodeLine{19     \textcolor{keywordtype}{size\_t} nbElements;}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{comment}{// Functions}}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} *(*cloneFunction)(\textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{23     void (*freeFunction)(\textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{24 \} \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/*}}
+\DoxyCodeLine{27 \textcolor{comment}{ * Allocation, free and clear}}
+\DoxyCodeLine{28 \textcolor{comment}{ */}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{36 \mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}} *\mbox{\hyperlink{_z_dynamic_array_8h_a73e1f8dab9af38f5fa193953ce6e6452}{ZDynamicArray\_create}}();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{45 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_dynamic_array_8h_ab5b7f8157b84f801413e83c3324c3b4c}{ZDynamicArray\_setCallbackFunctions}}(\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}} *dynArr, \textcolor{keywordtype}{void}* (*cloneFunction)(\textcolor{keywordtype}{void} *data), \textcolor{keywordtype}{void} (*freeFunction)(\textcolor{keywordtype}{void} *data));}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_dynamic_array_8h_adbbe9d8bc8e4ad47cba7bc89478551de}{ZDynamicArray\_free}}(\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}} *dynArr);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{59 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_dynamic_array_8h_ac6e871142cd8200f0a1376ef10424cad}{ZDynamicArray\_clear}}(\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}} *dynArr);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{66 \textcolor{keywordtype}{void} \mbox{\hyperlink{_z_dynamic_array_8h_a86eca3c3f78a051c3017fc09e81ade6d}{ZDynamicArray\_resize}}(\mbox{\hyperlink{struct_z_dynamic_array}{ZDynamicArray}} *dynArr, \textcolor{keywordtype}{size\_t} newSize);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{/*}}
+\DoxyCodeLine{69 \textcolor{comment}{ * Generic ZSinglyLinkedList functions}}
+\DoxyCodeLine{70 \textcolor{comment}{ */}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{/*}}
+\DoxyCodeLine{74 \textcolor{comment}{ * Processing functions}}
+\DoxyCodeLine{75 \textcolor{comment}{ */}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{/*}}
+\DoxyCodeLine{79 \textcolor{comment}{ * Search functions}}
+\DoxyCodeLine{80 \textcolor{comment}{ */}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{comment}{/*}}
+\DoxyCodeLine{84 \textcolor{comment}{ * Sort functions}}
+\DoxyCodeLine{85 \textcolor{comment}{ */}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{comment}{/*}}
+\DoxyCodeLine{89 \textcolor{comment}{ * Debug DynamicArray functions}}
+\DoxyCodeLine{90 \textcolor{comment}{ */}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// ZDS\_DYNAMIC\_ARRAY\_H\_INCLUDED}}
+
+\end{DoxyCode}

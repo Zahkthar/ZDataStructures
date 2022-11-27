@@ -29,6 +29,8 @@ typedef struct \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linke
 \item 
 \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}{ZSingly\+Linked\+List\+\_\+create}} ()
 \begin{DoxyCompactList}\small\item\em Initialise la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_a844e96c1b78f0f7c66ad0cf60c407f80}{ZSingly\+Linked\+List\+\_\+set\+Callback\+Functions}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$($\ast$clone\+Function)(void $\ast$data), void($\ast$free\+Function)(void $\ast$data))
+\begin{DoxyCompactList}\small\item\em Affecte les pointeurs de fonctions clone et free dans la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a2e0a03f462076b77a2fc0704a3a2906d}{ZSingly\+Linked\+List\+\_\+free}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Libère la mémoire allouée par la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a37cc69a1ef9b4178b83e5049233e447a}{ZSingly\+Linked\+List\+\_\+clear}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
@@ -45,31 +47,37 @@ void \mbox{\hyperlink{_z_singly_linked_list_8h_aefbcff6e3830207e06534ee964f72bc0
 \begin{DoxyCompactList}\small\item\em Supprime le premier élement de la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a2d5d1f3cca23db92eecdfb9c5fe3e842}{ZSingly\+Linked\+List\+\_\+delete\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Supprime le dernier élement de la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a1a0505626a4df8b6dec6d0d9fbdc72a5}{ZSingly\+Linked\+List\+\_\+get\+Data}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
-\begin{DoxyCompactList}\small\item\em Renvoie un élement de la liste à une position passée en paramètre. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad183614516eb2dda8997979089647ed9}{ZSingly\+Linked\+List\+\_\+get\+Data\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
-\begin{DoxyCompactList}\small\item\em Renvoie le premier élement de la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_af3c499f8a5966d00c92e983a70fded34}{ZSingly\+Linked\+List\+\_\+get\+Data\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
-\begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a42793efe997361a144e8675695a1c8bf}{ZSingly\+Linked\+List\+\_\+get\+Node}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
 \begin{DoxyCompactList}\small\item\em Renvoie la cellule à la position {\itshape position}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_abb54c6c9a110df6f95f1868a9e0aecce}{ZSingly\+Linked\+List\+\_\+get\+Node\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie la première cellule de la liste. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_z_singly_linked_list_node}{ZSingly\+Linked\+List\+Node}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a8d47d8273ac3d7e89dda9cad0b91c667}{ZSingly\+Linked\+List\+\_\+get\+Node\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renvoie la dernière cellule de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a1a0505626a4df8b6dec6d0d9fbdc72a5}{ZSingly\+Linked\+List\+\_\+get\+Data}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position)
+\begin{DoxyCompactList}\small\item\em Renvoie un élement de la liste à une position passée en paramètre. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_ad183614516eb2dda8997979089647ed9}{ZSingly\+Linked\+List\+\_\+get\+Data\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Renvoie le premier élement de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_af3c499f8a5966d00c92e983a70fded34}{ZSingly\+Linked\+List\+\_\+get\+Data\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Renvoie le dernier élement de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_ad325c3a9e9d37ed940795c3ef9b4b495}{ZSingly\+Linked\+List\+\_\+set\+Data}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t position, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Modifie la donnée de la liste à la position passée en paramètre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_ac8edfdbc8f9781d71d9b07fbb18a0dca}{ZSingly\+Linked\+List\+\_\+set\+Data\+Front}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Modifie la donnée du premier élement de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_z_singly_linked_list_8h_abbfb47e7763d1f97e43aaceb244a98d4}{ZSingly\+Linked\+List\+\_\+set\+Data\+Back}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Modifie la donnée du dernier élement de la liste. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a32f6e5d6c23dc25694f7d7b76d447d03}{ZSingly\+Linked\+List\+\_\+swap\+Data}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, size\+\_\+t positionA, size\+\_\+t positionB)
 \begin{DoxyCompactList}\small\item\em Swap les data deux cellules aux positions données en paramètres. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a90dd490769b6796cd2a783404846fa02}{ZSingly\+Linked\+List\+\_\+append\+Two\+Lists}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$listA, \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$listB)
 \begin{DoxyCompactList}\small\item\em Ajoute la liste B à la fin de la liste A. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_a91c9aab45158a718f2d6b708d1ff004f}{ZSingly\+Linked\+List\+\_\+reverse\+List}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list)
 \begin{DoxyCompactList}\small\item\em Renverse la liste passée en paramètre. \end{DoxyCompactList}\item 
-size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_afa990b4af04f620d83dea502dde22078}{ZSingly\+Linked\+List\+\_\+search\+First\+Occurence}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
+size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_a8b6cf6fed3d6022f7a26e91a936113f9}{ZSingly\+Linked\+List\+\_\+search\+First\+Occurence}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$test\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a772e5af00e2422c0b0c10b0e32f08274}{ZSingly\+Linked\+List\+\_\+search\+Positions}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
+\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a28810c0da16eafca44b953e0a063fe39}{ZSingly\+Linked\+List\+\_\+search\+Positions}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$test\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Recherche une donnée dans la liste selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions. \end{DoxyCompactList}\item 
-size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_ad3d05d00c0917ae1e21f94210f889203}{ZSingly\+Linked\+List\+\_\+count\+Occurrences}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
+size\+\_\+t \mbox{\hyperlink{_z_singly_linked_list_8h_a3f45f7022b589cf30ca9ff167cc267e9}{ZSingly\+Linked\+List\+\_\+count\+Occurrences}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, void $\ast$data, bool($\ast$test\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Renvoie le nombre d\textquotesingle{}occurence d\textquotesingle{}une donnée dans la liste. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_afebee2bb8c76a87f15f72be950492b93}{ZSingly\+Linked\+List\+\_\+filter}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, bool($\ast$test\+Function)(void $\ast$value), void $\ast$($\ast$copy\+Function)(void $\ast$data))
+\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ \mbox{\hyperlink{_z_singly_linked_list_8h_a8f4b0381f5a6a86b3777287b404adcf4}{ZSingly\+Linked\+List\+\_\+filter}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, bool($\ast$test\+Function)(void $\ast$value))
 \begin{DoxyCompactList}\small\item\em Renvoie la liste d\textquotesingle{}élement de la liste donnée en paramètre pour lesquels la fonction de test a renvoyée true. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_z_singly_linked_list_8h_af382607e4141a3f70cadc7f09d6e60bb}{ZSingly\+Linked\+List\+\_\+\+Bubble\+Sort}} (\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$list, bool($\ast$compare\+Function)(void $\ast$valueA, void $\ast$valueB))
 \begin{DoxyCompactList}\small\item\em Trie la liste à l\textquotesingle{}aide d\textquotesingle{}un tri à bulle. \end{DoxyCompactList}\item 
@@ -102,7 +110,7 @@ Zahkthar
 
 La structure qui contient la liste. 
 
-Contient un pointeur vers la tête de la liste \mbox{\Hypertarget{_z_singly_linked_list_8h_ab73c6c8eb4371b72dfab60b0ee6264ef}\label{_z_singly_linked_list_8h_ab73c6c8eb4371b72dfab60b0ee6264ef}} 
+Contient un pointeur vers la tête de la liste ainsi que des informations simplifiant l\textquotesingle{}usage des fonctions \mbox{\Hypertarget{_z_singly_linked_list_8h_ab73c6c8eb4371b72dfab60b0ee6264ef}\label{_z_singly_linked_list_8h_ab73c6c8eb4371b72dfab60b0ee6264ef}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedListNode@{ZSinglyLinkedListNode}}
 \index{ZSinglyLinkedListNode@{ZSinglyLinkedListNode}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedListNode}{ZSinglyLinkedListNode}}
@@ -169,11 +177,11 @@ Libère tous les pointeurs de donnée et les élements de type {\itshape \mbox{\
 {\em list} & Un pointeur vers la liste \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_ad3d05d00c0917ae1e21f94210f889203}\label{_z_singly_linked_list_8h_ad3d05d00c0917ae1e21f94210f889203}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a3f45f7022b589cf30ca9ff167cc267e9}\label{_z_singly_linked_list_8h_a3f45f7022b589cf30ca9ff167cc267e9}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_countOccurrences@{ZSinglyLinkedList\_countOccurrences}}
 \index{ZSinglyLinkedList\_countOccurrences@{ZSinglyLinkedList\_countOccurrences}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_countOccurrences()}{ZSinglyLinkedList\_countOccurrences()}}
-{\footnotesize\ttfamily size\+\_\+t ZSingly\+Linked\+List\+\_\+count\+Occurrences (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{compare\+Function }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily size\+\_\+t ZSingly\+Linked\+List\+\_\+count\+Occurrences (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{test\+Function }\end{DoxyParamCaption})}
 
 
 
@@ -185,11 +193,11 @@ Renvoie le nombre d\textquotesingle{}occurence d\textquotesingle{}une donnée da
 \hline
 {\em data} & Un pointeur contenant la donnée à chercher \\
 \hline
-{\em compare\+Function} & Un pointeur vers la fonction de comparaison\\
+{\em test\+Function} & Un pointeur vers la fonction de comparaison\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Le nombre d\textquotesingle{}élément de la liste pour lesquels la fonction {\itshape compare\+Function} a renvoyée true. 
+Le nombre d\textquotesingle{}élément de la liste pour lesquels la fonction {\itshape test\+Function} a renvoyée true. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}\label{_z_singly_linked_list_8h_a100b12d57ec3da3257c8de79840739a5}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_create@{ZSinglyLinkedList\_create}}
@@ -269,8 +277,6 @@ Affiche les données de la liste selon une forme définie par une fonction pass�
 \hline
 {\em data\+Per\+Line} & Le nombre de données à afficher par ligne, mettre 0 si l\textquotesingle{}on ne veut pas de mise à la ligne automatique \\
 \hline
-{\em print\+Function} & Un pointeur vers la fonction permettant de print un élément de la liste \\
-\hline
 \end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}\label{_z_singly_linked_list_8h_a125bc8c896d438c1330a5e453d8fded2}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_dumpMemoryFormat@{ZSinglyLinkedList\_dumpMemoryFormat}}
@@ -314,11 +320,11 @@ Permet d\textquotesingle{}afficher un nombre de données par ligne de la liste d
 \end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_afebee2bb8c76a87f15f72be950492b93}\label{_z_singly_linked_list_8h_afebee2bb8c76a87f15f72be950492b93}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a8f4b0381f5a6a86b3777287b404adcf4}\label{_z_singly_linked_list_8h_a8f4b0381f5a6a86b3777287b404adcf4}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_filter@{ZSinglyLinkedList\_filter}}
 \index{ZSinglyLinkedList\_filter@{ZSinglyLinkedList\_filter}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_filter()}{ZSinglyLinkedList\_filter()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ ZSingly\+Linked\+List\+\_\+filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{bool($\ast$)(void $\ast$value)}]{test\+Function,  }\item[{void $\ast$($\ast$)(void $\ast$data)}]{copy\+Function }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ ZSingly\+Linked\+List\+\_\+filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{bool($\ast$)(void $\ast$value)}]{test\+Function }\end{DoxyParamCaption})}
 
 
 
@@ -328,9 +334,7 @@ Renvoie la liste d\textquotesingle{}élement de la liste donnée en paramètre p
 \begin{DoxyParams}{Parameters}
 {\em list} & Un pointeur vers la liste \\
 \hline
-{\em test\+Function} & Un pointeur vers la fonction de test \\
-\hline
-{\em compare\+Function} & Un pointeur vers la fonction de copie (renvoie un pointeur dont la donnée est égale à la donnée originale -\/\texorpdfstring{$>$}{>} alloue, affecte et renvoie le pointeur)\\
+{\em test\+Function} & Un pointeur vers la fonction de test\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -575,11 +579,11 @@ Renverse la liste passée en paramètre.
 {\em list} & Un pointeur vers la liste \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_afa990b4af04f620d83dea502dde22078}\label{_z_singly_linked_list_8h_afa990b4af04f620d83dea502dde22078}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a8b6cf6fed3d6022f7a26e91a936113f9}\label{_z_singly_linked_list_8h_a8b6cf6fed3d6022f7a26e91a936113f9}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_searchFirstOccurence@{ZSinglyLinkedList\_searchFirstOccurence}}
 \index{ZSinglyLinkedList\_searchFirstOccurence@{ZSinglyLinkedList\_searchFirstOccurence}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_searchFirstOccurence()}{ZSinglyLinkedList\_searchFirstOccurence()}}
-{\footnotesize\ttfamily size\+\_\+t ZSingly\+Linked\+List\+\_\+search\+First\+Occurence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{compare\+Function }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily size\+\_\+t ZSingly\+Linked\+List\+\_\+search\+First\+Occurence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{test\+Function }\end{DoxyParamCaption})}
 
 
 
@@ -591,17 +595,17 @@ Recherche une donnée dans la liste selon une fonction de comparaison donnée en
 \hline
 {\em data} & Un pointeur contenant la donnée à chercher \\
 \hline
-{\em compare\+Function} & Un pointeur vers la fonction de comparaison\\
+{\em test\+Function} & Un pointeur vers la fonction de comparaison\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-La position de la première occurence dans la liste pour laquelle la fonction {\itshape compare\+Function} renvoie true. Renvoie UINT64\+\_\+\+MAX si aucune valeur ne renvoie true. 
+La position de la première occurence dans la liste pour laquelle la fonction {\itshape test\+Function} renvoie true. Renvoie UINT64\+\_\+\+MAX si aucune valeur ne renvoie true. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{_z_singly_linked_list_8h_a772e5af00e2422c0b0c10b0e32f08274}\label{_z_singly_linked_list_8h_a772e5af00e2422c0b0c10b0e32f08274}} 
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a28810c0da16eafca44b953e0a063fe39}\label{_z_singly_linked_list_8h_a28810c0da16eafca44b953e0a063fe39}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_searchPositions@{ZSinglyLinkedList\_searchPositions}}
 \index{ZSinglyLinkedList\_searchPositions@{ZSinglyLinkedList\_searchPositions}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
 \doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_searchPositions()}{ZSinglyLinkedList\_searchPositions()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ ZSingly\+Linked\+List\+\_\+search\+Positions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{compare\+Function }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$ ZSingly\+Linked\+List\+\_\+search\+Positions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data,  }\item[{bool($\ast$)(void $\ast$valueA, void $\ast$valueB)}]{test\+Function }\end{DoxyParamCaption})}
 
 
 
@@ -613,12 +617,90 @@ Recherche une donnée dans la liste selon une fonction de comparaison donnée en
 \hline
 {\em data} & Un pointeur contenant la donnée à chercher \\
 \hline
-{\em compare\+Function} & Un pointeur vers la fonction de comparaison\\
+{\em test\+Function} & Un pointeur vers la fonction de comparaison\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Une liste chaînée de size\+\_\+t contenant les positions auquelles la fonction {\itshape compare\+Function} a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l\textquotesingle{}allocation a échouée. 
+Une liste chaînée de size\+\_\+t contenant les positions auquelles la fonction {\itshape test\+Function} a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l\textquotesingle{}allocation a échouée. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_a844e96c1b78f0f7c66ad0cf60c407f80}\label{_z_singly_linked_list_8h_a844e96c1b78f0f7c66ad0cf60c407f80}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_setCallbackFunctions@{ZSinglyLinkedList\_setCallbackFunctions}}
+\index{ZSinglyLinkedList\_setCallbackFunctions@{ZSinglyLinkedList\_setCallbackFunctions}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_setCallbackFunctions()}{ZSinglyLinkedList\_setCallbackFunctions()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+set\+Callback\+Functions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$($\ast$)(void $\ast$data)}]{clone\+Function,  }\item[{void($\ast$)(void $\ast$data)}]{free\+Function }\end{DoxyParamCaption})}
+
+
+
+Affecte les pointeurs de fonctions clone et free dans la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em clone\+Function} & Un pointeur vers la fonction de clonage \\
+\hline
+{\em free\+Function} & Un pointeur vers la fonction de libération \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_ad325c3a9e9d37ed940795c3ef9b4b495}\label{_z_singly_linked_list_8h_ad325c3a9e9d37ed940795c3ef9b4b495}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_setData@{ZSinglyLinkedList\_setData}}
+\index{ZSinglyLinkedList\_setData@{ZSinglyLinkedList\_setData}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_setData()}{ZSinglyLinkedList\_setData()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+set\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{size\+\_\+t}]{position,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Modifie la donnée de la liste à la position passée en paramètre. 
+
+Libère l\textquotesingle{}ancienne donnée via la fonction de libération passée en paramètre
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em position} & La position à laquelle modifier la donnée \\
+\hline
+{\em data} & La nouvelle donnée \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_abbfb47e7763d1f97e43aaceb244a98d4}\label{_z_singly_linked_list_8h_abbfb47e7763d1f97e43aaceb244a98d4}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_setDataBack@{ZSinglyLinkedList\_setDataBack}}
+\index{ZSinglyLinkedList\_setDataBack@{ZSinglyLinkedList\_setDataBack}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_setDataBack()}{ZSinglyLinkedList\_setDataBack()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+set\+Data\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Modifie la donnée du dernier élement de la liste. 
+
+Libère l\textquotesingle{}ancienne donnée via la fonction de libération passée en paramètre
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em data} & La nouvelle donnée \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_z_singly_linked_list_8h_ac8edfdbc8f9781d71d9b07fbb18a0dca}\label{_z_singly_linked_list_8h_ac8edfdbc8f9781d71d9b07fbb18a0dca}} 
+\index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_setDataFront@{ZSinglyLinkedList\_setDataFront}}
+\index{ZSinglyLinkedList\_setDataFront@{ZSinglyLinkedList\_setDataFront}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
+\doxysubsubsection{\texorpdfstring{ZSinglyLinkedList\_setDataFront()}{ZSinglyLinkedList\_setDataFront()}}
+{\footnotesize\ttfamily void ZSingly\+Linked\+List\+\_\+set\+Data\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_z_singly_linked_list}{ZSingly\+Linked\+List}} $\ast$}]{list,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Modifie la donnée du premier élement de la liste. 
+
+Libère l\textquotesingle{}ancienne donnée via la fonction de libération passée en paramètre
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Un pointeur vers la liste \\
+\hline
+{\em data} & La nouvelle donnée \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{_z_singly_linked_list_8h_a32f6e5d6c23dc25694f7d7b76d447d03}\label{_z_singly_linked_list_8h_a32f6e5d6c23dc25694f7d7b76d447d03}} 
 \index{ZSinglyLinkedList.h@{ZSinglyLinkedList.h}!ZSinglyLinkedList\_swapData@{ZSinglyLinkedList\_swapData}}
 \index{ZSinglyLinkedList\_swapData@{ZSinglyLinkedList\_swapData}!ZSinglyLinkedList.h@{ZSinglyLinkedList.h}}
