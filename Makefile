@@ -11,7 +11,7 @@ EXEC = ZDataStructures
 PROGRAM_SRC = main.c
 PROGRAM_OBJ = $(PROGRAM_SRC:.c=.o)
 
-LIB_SRC = ZSinglyLinkedList.c
+LIB_SRC = ZSinglyLinkedList.c ZDynamicArray.c
 LIB_OBJ = $(LIB_SRC:.c=.o)
 
 all : docs lib program
@@ -21,6 +21,7 @@ docs:
 
 lib:
 	$(CXX) $(CXXFLAGS) -c include\ZSinglyLinkedList.c -o lib\ZSinglyLinkedList.o
+	$(CXX) $(CXXFLAGS) -c include\ZDynamicArray.c -o lib\ZDynamicArray.o
 
 program : $(PROGRAM_OBJ)
 	$(CXX) $(LINKER_FLAGS) $(addprefix obj\, $(PROGRAM_OBJ)) $(addprefix lib\, $(LIB_OBJ)) -o bin\$(EXEC) 
