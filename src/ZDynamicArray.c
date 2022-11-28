@@ -1,6 +1,9 @@
 #include "ZDynamicArray.h"
 
-ZDynamicArray *ZDynamicArray_create()
+/*
+ * Allocation, free and clear
+ */
+ZDynamicArray *ZDynamicArray_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
     ZDynamicArray *newArray = malloc(sizeof(ZDynamicArray));
 
@@ -8,16 +11,10 @@ ZDynamicArray *ZDynamicArray_create()
     newArray->nbElements = 0;
     newArray->data = malloc(newArray->capacity * sizeof(void*));
 
-    newArray->cloneFunction = NULL;
-    newArray->freeFunction = NULL;
+    newArray->cloneFunction = cloneFunction;
+    newArray->freeFunction = freeFunction;
 
     return newArray;
-}
-
-void ZDynamicArray_setCallbackFunctions(ZDynamicArray *dynArr, void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
-{
-    dynArr->cloneFunction = cloneFunction;
-    dynArr->freeFunction = freeFunction;
 }
 
 void ZDynamicArray_free(ZDynamicArray *dynArr)
@@ -36,7 +33,10 @@ void ZDynamicArray_clear(ZDynamicArray *dynArr)
 
     dynArr->nbElements = 0;
 
-    ZDynamicArray_resize(dynArr, 16);
+    if(dynArr->capacity != 16)
+    {
+        ZDynamicArray_resize(dynArr, 16);
+    }
 }
 
 void ZDynamicArray_resize(ZDynamicArray *dynArr, size_t newSize)

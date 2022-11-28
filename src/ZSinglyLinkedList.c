@@ -7,7 +7,7 @@
 /*
  * Allocation, free and clear
  */
-ZSinglyLinkedList *ZSinglyLinkedList_create()
+ZSinglyLinkedList *ZSinglyLinkedList_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
     ZSinglyLinkedList *newList = malloc(sizeof(ZSinglyLinkedList));
 
@@ -21,16 +21,10 @@ ZSinglyLinkedList *ZSinglyLinkedList_create()
 
     newList->length = 0;
 
-    newList->cloneFunction = NULL;
-    newList->freeFunction = NULL;
+    newList->cloneFunction = cloneFunction;
+    newList->freeFunction = freeFunction;
 
     return newList;
-}
-
-void ZSinglyLinkedList_setCallbackFunctions(ZSinglyLinkedList *list, void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
-{
-    list->cloneFunction = cloneFunction;
-    list->freeFunction = freeFunction;
 }
 
 void ZSinglyLinkedList_free(ZSinglyLinkedList *list)
@@ -320,14 +314,12 @@ size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *dat
 
 ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, void *data, bool (*testFunction)(void *valueA, void *valueB))
 {
-    ZSinglyLinkedList *positions = ZSinglyLinkedList_create();
+    ZSinglyLinkedList *positions = ZSinglyLinkedList_create(list->cloneFunction, list->freeFunction);
 
     if(positions == NULL)
     {
         return NULL;
     }
-
-    ZSinglyLinkedList_setCallbackFunctions(positions, list->cloneFunction, list->freeFunction);
 
     ZSinglyLinkedListNode *currentNode = list->head;
 
@@ -366,14 +358,12 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
 
 ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*testFunction)(void *value))
 {
-    ZSinglyLinkedList *returnList = ZSinglyLinkedList_create();
+    ZSinglyLinkedList *returnList = ZSinglyLinkedList_create(list->cloneFunction, list->freeFunction);
 
     if(returnList == NULL)
     {
         return NULL;
     }
-
-    ZSinglyLinkedList_setCallbackFunctions(returnList, list->cloneFunction, list->freeFunction);
 
     ZSinglyLinkedListNode *currentNode = list->head;
 

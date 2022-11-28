@@ -4,7 +4,6 @@ CXXFLAGS = -Wall -Wextra -O0 -g# Mettre -O1 ou -O2 à la place de -g pour la ver
 LINKER_FLAGS =
 
 HEADERS_LOCALISATION = include
-LIB_LOCALISATION = lib
 
 EXEC = ZDataStructures
 

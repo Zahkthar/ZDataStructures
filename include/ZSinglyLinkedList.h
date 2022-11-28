@@ -54,18 +54,12 @@ typedef struct ZSinglyLinkedListNode {
  * \brief     Initialise la liste
  * \details   Met à NULL le pointeur vers la tête pour avoir une liste vide
  * 
+ * \param cloneFunction  Un pointeur vers la fonction de clonage d'un élément
+ * \param freeFunction   Un pointeur vers la fonction de libération d'un élément
+ * 
  * \return    Un pointeur vers une liste vide de type \e ZSinglyLinkedList dont la valeur de la tête est à NULL
  */
-ZSinglyLinkedList *ZSinglyLinkedList_create();
-
-/**
- * \brief     Affecte les pointeurs de fonctions clone et free dans la liste
- * 
- * \param     list            Un pointeur vers la liste
- * \param     cloneFunction   Un pointeur vers la fonction de clonage
- * \param     freeFunction    Un pointeur vers la fonction de libération
- */
-void ZSinglyLinkedList_setCallbackFunctions(ZSinglyLinkedList *list, void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
+ZSinglyLinkedList *ZSinglyLinkedList_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
 
 /**
  * \brief     Libère la mémoire allouée par la liste

@@ -31,18 +31,12 @@ typedef struct ZDynamicArray {
  * \brief     Initialise le tableau
  * \details   Crée un tableau d'une capacité de 16 éléments
  * 
+ * \param cloneFunction  Un pointeur vers la fonction de clonage d'un élément
+ * \param freeFunction   Un pointeur vers la fonction de libération d'un élément
+ * 
  * \return    Un pointeur vers un tableau dynamique de type \e ZDynamicArray
  */
-ZDynamicArray *ZDynamicArray_create();
-
-/**
- * \brief     Affecte les pointeurs de fonctions clone et free dans le tableau
- * 
- * \param     list            Un pointeur vers le tableau
- * \param     cloneFunction   Un pointeur vers la fonction de clonage
- * \param     freeFunction    Un pointeur vers la fonction de libération
- */
-void ZDynamicArray_setCallbackFunctions(ZDynamicArray *dynArr, void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
+ZDynamicArray *ZDynamicArray_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
 
 /**
  * \brief     Libère toute la mémoire allouée par le tableau
