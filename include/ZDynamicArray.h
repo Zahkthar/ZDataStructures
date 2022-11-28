@@ -8,6 +8,8 @@
  */
 
 #include <stdlib.h> // size_t
+#include <stdint.h> // int32_t
+#include <stdbool.h> // bool
 
 /*
  * Dynamic Array
@@ -60,7 +62,7 @@ void ZDynamicArray_clear(ZDynamicArray *dynArr);
 void ZDynamicArray_resize(ZDynamicArray *dynArr, size_t newSize);
 
 /*
- * Generic ZSinglyLinkedList functions
+ * Generic ZDynamicArray functions
  */
 
 
@@ -83,5 +85,49 @@ void ZDynamicArray_resize(ZDynamicArray *dynArr, size_t newSize);
  * Debug DynamicArray functions
  */
 
+/**
+ * \brief     Renvoie true si le tableau est vide, false sinon
+ * 
+ * \param     dynArr   Un pointeur vers le tableau
+ * 
+ * \return    Un \e bool valant true si le tableau est vide.
+ */
+bool ZDynamicArray_isEmpty(ZDynamicArray *dynArr);
+
+/**
+ * \brief     Renvoie le nombre d'éléments du tableau
+ * 
+ * \param     dynArr   Un pointeur vers le tableau
+ * 
+ * \return    Un \e size_t étant le nombre d'éléments du tableau.
+ */
+size_t ZDynamicArray_getLength(ZDynamicArray *dynArr);
+
+/**
+ * \brief     Affiche les données du tableau selon une forme définie par un format
+ * \details   Permet d'afficher un nombre de données par ligne ddu tableau dans un certain format
+ * 
+ * \param     dynArr        Un pointeur vers le tableau
+ * \param     dataPerLine   Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
+ * \param     format        Le format pour afficher correctement les données : \n
+ *                          - "p" -> pointeur \n
+ *                          - "d" -> int32_t \n
+ *                          - "u" -> uint32_t \n
+ *                          - "o" -> octal \n
+ *                          - "x" -> hexadécimal \n
+ *                          - "c" -> char \n
+ *                          - "s" -> char* \n
+ *                          - "f" -> float \n
+ *                          - "lf" -> double \n
+ */
+void ZDynamicArray_dumpMemoryFormat(ZDynamicArray *dynArr, int32_t dataPerLine, char *format);
+
+/**
+ * \brief     Affiche les données du tableau selon une forme définie par une fonction passée en paramètre
+ * 
+ * \param     dynArr          Un pointeur vers le tableau
+ * \param     dataPerLine     Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
+ */
+void ZDynamicArray_dumpMemoryCallback(ZDynamicArray *dynArr, int32_t dataPerLine, void (*printFunction)(void *value));
 
 #endif // ZDS_DYNAMIC_ARRAY_H_INCLUDED
