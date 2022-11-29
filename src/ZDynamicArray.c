@@ -165,6 +165,54 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data)
 /*
  * Processing functions
  */
+void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t positionB)
+{
+    // Cas d'erreur
+    if(positionA >= dynArr->nbElements || positionB >= dynArr->nbElements)
+    {
+        return;
+    }
+
+    void *tmp = dynArr->data[positionA];
+    dynArr->data[positionA] = dynArr->data[positionB];
+    dynArr->data[positionB] = tmp;
+}
+
+void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB)
+{
+    // Cas d'erreur
+    if(ZDynamicArray_isEmpty(dynArrA) == true || ZDynamicArray_isEmpty(dynArrB) == true)
+    {
+        return;
+    }
+
+    dynArrA->capacity += dynArrB->capacity;
+    ZDynamicArray_resize(dynArrA, dynArrA->capacity);
+
+    for(size_t i = 0; i < dynArrB->nbElements; ++i)
+    {
+        ZDynamicArray_setDataBack(dynArrA, dynArrB->data[i]);
+    }
+
+    dynArrB->capacity = 16;
+    dynArrB->nbElements = 0;
+    ZDynamicArray_resize(dynArrB, dynArrB->capacity);
+}
+
+void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr)
+{
+    // Cas d'erreur
+    if(ZDynamicArray_isEmpty(dynArr) == true)
+    {
+        return;
+    }
+
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = 0; i < length / 2; ++i)
+    {
+        ZDynamicArray_swapData(dynArr, i, length - i - 1);
+    }
+}
 
 /*
  * Search functions
@@ -173,6 +221,36 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data)
 /*
  * Sort functions
  */
+void ZDynamicArray_BubbleSort(ZDynamicArray *dynArr, bool (*compareFunction)(void *valueA, void *valueB))
+{
+    // Cas d'erreur
+    if(ZDynamicArray_isEmpty(dynArr) == true)
+    {
+        return;
+    }
+    
+    // Commencement du tri
+    bool isArraySorted = true;
+
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = length - 1; i > 0; --i)
+    {
+        isArraySorted = true;
+        for(size_t j = 0; j < i; ++j)
+        {
+            if(compareFunction(dynArr->data[j], dynArr->data[j + 1]) == true)
+            {
+                ZDynamicArray_swapData(dynArr, j + 1, j);
+                isArraySorted = false;
+            }
+        }
+
+        if(isArraySorted == true)
+        {
+            break;
+        }
+    }
+}
 
 /*
  * Debug DynamicArray functions

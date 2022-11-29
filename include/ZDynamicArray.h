@@ -172,6 +172,32 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data);
  * Processing functions
  */
 
+/**
+ * \brief     Swap les data deux cases aux positions données en paramètres
+ * 
+ * \param     dynArr       Un pointeur vers le tableau
+ * \param     positionA    La position de la première donnée
+ * \param     positionB    La position de la deuxième donnée
+ */
+void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t positionB);
+
+/**
+ * \brief     Ajoute le tableau B derrière le tableau A.
+ * \details   Rend le tableau B vide.
+ * 
+ * \param     dynArr       Un pointeur vers le tableau
+ * 
+ * \return    Un \e void* étant la donnée à la fin du tableau.
+ */
+void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB);
+
+/**
+ * \brief     Renverse le tableau passé en paramètre
+ * 
+ * \param     dynArr       Un pointeur vers le tableau
+ */
+void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr);
+
 
 /*
  * Search functions
@@ -182,6 +208,14 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data);
  * Sort functions
  */
 
+/**
+ * \brief     Trie le tableau à l'aide d'un tri à bulle 
+ * 
+ * \param     list              Un pointeur vers le tableau
+ * \param     compareFunction   Un pointeur vers la fonction de comparaison
+ * 
+ */
+void ZDynamicArray_BubbleSort(ZDynamicArray *dynArr, bool (*compareFunction)(void *valueA, void *valueB));
 
 /*
  * Debug DynamicArray functions
