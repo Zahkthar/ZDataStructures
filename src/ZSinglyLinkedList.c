@@ -9,6 +9,11 @@
  */
 ZSinglyLinkedList *ZSinglyLinkedList_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
+    if(cloneFunction == NULL || freeFunction == NULL)
+    {
+        return NULL;
+    }
+
     ZSinglyLinkedList *newList = malloc(sizeof(ZSinglyLinkedList));
 
     if(newList == NULL)
