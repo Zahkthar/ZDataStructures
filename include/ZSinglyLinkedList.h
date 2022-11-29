@@ -7,16 +7,11 @@
  * \brief     Déclare les structures et les fonctions du module ZSinglyLinkedList.
  */
 
-/*
- * TODO :
- *  - Intersection of two LinkedList
- */
-
-#include <stdio.h> // printf
-#include <stdlib.h> // malloc, free, size_t
-#include <stdint.h> // int32_t, uint32_t, UINT64_MAX
-#include <string.h> // strnlen
-#include <stdbool.h> // bool, true, false
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdbool.h>
 
 /*
  * Singly Linked List
