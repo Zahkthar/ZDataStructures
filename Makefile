@@ -2,7 +2,7 @@ CXX = gcc
 CXXFLAGS = -Wall -Wextra -O0 -g# Mettre -O1 ou -O2 à la place de -g pour la version prod
 
 LINKER_FLAGS = 
-TESTS_LINKER_FLAGS =
+TESTS_LINKER_FLAGS = -lcriterion
 
 HEADERS_LOCALISATION = include
 LIB_LOCALISATION = lib
@@ -34,7 +34,7 @@ $(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 tests: $(LIB_LOCALISATION) $(TESTS_FOLDER)/bin $(TESTBINS)
 	
 $(TESTS_FOLDER)/bin/%: $(TESTS_FOLDER)/src/%.c
-	$(CXX) $(CXXFLAGS) $< $(OBJS) -o $@ -I $(HEADERS_LOCALISATION) -L $(LIB_LOCALISATION) $(TESTS_LINKER_FLAGS)
+	$(CXX) $(CXXFLAGS) $< $(OBJS:obj/main.o=) -o $@ -I $(HEADERS_LOCALISATION) -L $(LIB_LOCALISATION) $(TESTS_LINKER_FLAGS)
 
 $(TESTS_FOLDER)/bin:
 	mkdir $@

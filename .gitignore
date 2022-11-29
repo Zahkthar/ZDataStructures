@@ -7,3 +7,5 @@ obj/*.o
 lib/*.o
 
 bin/*.exe
+
+tests/bin/*.exe
