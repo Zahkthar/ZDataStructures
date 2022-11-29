@@ -217,6 +217,80 @@ void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr)
 /*
  * Search functions
  */
+size_t ZDynamicArray_searchFirstOccurence(ZDynamicArray *dynArr, void *data, bool (*testFunction)(void *valueA, void *valueB))
+{
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = 0; i < length; ++i)
+    {
+        if(testFunction(data, dynArr->data[i]) == true)
+        {
+            return i;
+        }
+    }
+
+    return UINT64_MAX;
+}
+
+ZDynamicArray *ZDynamicArray_searchPositions(ZDynamicArray *dynArr, void *data, bool (*testFunction)(void *valueA, void *valueB))
+{
+    ZDynamicArray *positions = ZDynamicArray_create(dynArr->cloneFunction, dynArr->freeFunction);
+
+    if(positions == NULL)
+    {
+        return NULL;
+    }
+
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = 0; i < length; ++i)
+    {
+        if(testFunction(data, dynArr->data[i]) == true)
+        {
+            size_t *currentPosition = malloc(sizeof(size_t));
+            *currentPosition = i;
+            ZDynamicArray_insertBack(positions, currentPosition);
+        }
+    }
+
+    return positions;
+}
+
+size_t ZDynamicArray_countOccurrences(ZDynamicArray *dynArr, void *data, bool (*testFunction)(void *valueA, void *valueB))
+{
+    size_t occurences = 0;
+
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = 0; i < length; ++i)
+    {
+        if(testFunction(data, dynArr->data[i]) == true)
+        {
+            occurences++;
+        }
+    }
+
+    return occurences;
+}
+
+ZDynamicArray *ZDynamicArray_filter(ZDynamicArray *dynArr, bool (*testFunction)(void *value))
+{
+    ZDynamicArray *returnList = ZDynamicArray_create(dynArr->cloneFunction, dynArr->freeFunction);
+
+    if(returnList == NULL)
+    {
+        return NULL;
+    }
+
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = 0; i < length; ++i)
+    {
+        if(testFunction(dynArr->data[i]) == true)
+        {
+            void *copyData = dynArr->cloneFunction(dynArr->data[i]);
+            ZDynamicArray_insertBack(returnList, copyData);
+        }
+    }
+
+    return returnList;
+}
 
 /*
  * Sort functions

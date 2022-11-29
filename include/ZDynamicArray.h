@@ -203,6 +203,49 @@ void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr);
  * Search functions
  */
 
+/**
+ * \brief     Recherche une donnée dans le tableau selon une fonction de comparaison donnée en paramètre
+ * 
+ * \param     dynArr         Un pointeur vers le tableau
+ * \param     data           Un pointeur contenant la donnée à chercher
+ * \param     testFunction   Un pointeur vers la fonction de comparaison
+ * 
+ * \return    La position de la première occurence dans le tableau pour laquelle la fonction \e testFunction renvoie true. Renvoie UINT64_MAX si aucune valeur ne renvoie true.
+ */
+size_t ZDynamicArray_searchFirstOccurence(ZDynamicArray *dynArr, void *data, bool (*testFunction)(void *valueA, void *valueB));
+
+/**
+ * \brief     Recherche une donnée dans le tableau selon une fonction de comparaison donnée en paramètre et renvoie un tableau de positions
+ * 
+ * \param     dynArr         Un pointeur vers le tableau
+ * \param     data           Un pointeur contenant la donnée à chercher
+ * \param     testFunction   Un pointeur vers la fonction de comparaison
+ * 
+ * \return    Un tableau de size_t contenant les positions auquelles la fonction \e testFunction a renvoyée true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
+ */
+ZDynamicArray *ZDynamicArray_searchPositions(ZDynamicArray *dynArr, void *data, bool (*testFunction)(void *valueA, void *valueB));
+
+/**
+ * \brief     Renvoie le nombre d'occurence d'une donnée dans un tableau
+ * 
+ * \param     dynArr         Un pointeur vers le tableau
+ * \param     data           Un pointeur contenant la donnée à chercher
+ * \param     testFunction   Un pointeur vers la fonction de comparaison
+ * 
+ * \return    Le nombre d'élément du tableau pour lesquels la fonction \e testFunction a renvoyée true.
+ */
+size_t ZDynamicArray_countOccurrences(ZDynamicArray *dynArr, void *data, bool (*testFunction)(void *valueA, void *valueB));
+
+/**
+ * \brief     Renvoie un tableau d'élement du tableau donnée en paramètre pour lesquels la fonction de test a renvoyée true
+ * 
+ * \param     dynArr           Un pointeur vers la liste
+ * \param     testFunction     Un pointeur vers la fonction de test
+
+ * \return    Le tableau d'élements du tableau d'origine pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
+ */
+ZDynamicArray *ZDynamicArray_filter(ZDynamicArray *dynArr, bool (*testFunction)(void *value));
+
 
 /*
  * Sort functions
