@@ -45,14 +45,156 @@ void ZDynamicArray_resize(ZDynamicArray *dynArr, size_t newSize)
     dynArr->data = realloc(dynArr->data, dynArr->capacity * sizeof(void*));
 }
 
+/*
+ * Generic ZDynamicArray functions
+ */
+void ZDynamicArray_insert(ZDynamicArray *dynArr, size_t position, void *data)
+{
+    // Cas d'erreurs
+    if(position > dynArr->nbElements)
+    {
+        return;
+    }
+
+    // Si la liste est pleine, augmenter sa taille
+    if(ZDynamicArray_isFull(dynArr) == true)
+    {
+        ZDynamicArray_resize(dynArr, dynArr->capacity * 2);
+    }
+
+    if(position == dynArr->nbElements)
+    {
+        dynArr->data[position] = data;
+    }
+    else
+    {
+        memmove(dynArr->data + position + 1, dynArr->data + position, dynArr->nbElements - position - 1);
+        dynArr->data[position] = data;
+    }
+}
+
+void ZDynamicArray_insertFront(ZDynamicArray *dynArr, void *data)
+{
+    ZDynamicArray_insert(dynArr, 0, data);
+}
+
+void ZDynamicArray_insertBack(ZDynamicArray *dynArr, void *data)
+{
+    ZDynamicArray_insert(dynArr, dynArr->nbElements, data);
+}
+
+void ZDynamicArray_delete(ZDynamicArray *dynArr, size_t position)
+{
+    if(ZDynamicArray_isEmpty(dynArr) == true || position >= dynArr->nbElements)
+    {
+        return;
+    }
+
+    dynArr->freeFunction(dynArr->data[position]);
+
+    if(position != dynArr->nbElements)
+    {
+        memmove(dynArr->data + position, dynArr->data + position + 1, dynArr->nbElements - position - 1);
+    }
+
+    dynArr->nbElements--;
+
+    if(dynArr->capacity >= 16)
+    {
+        float ratio = dynArr->nbElements / dynArr->capacity;
+        if(ratio <= 0.25)
+        {
+            ZDynamicArray_resize(dynArr, dynArr->capacity / 2);
+        }
+    }
+}
+
+void ZDynamicArray_deleteFront(ZDynamicArray *dynArr)
+{
+    ZDynamicArray_delete(dynArr, 0);
+}
+
+void ZDynamicArray_deleteBack(ZDynamicArray *dynArr)
+{
+    ZDynamicArray_delete(dynArr, dynArr->nbElements - 1);
+}
+
+void *ZDynamicArray_getData(ZDynamicArray *dynArr, size_t position)
+{
+    // Cas d'erreur
+    if(position >= dynArr->nbElements)
+    {
+        return NULL;
+    }
+
+    return dynArr->data[position];
+}
+
+void *ZDynamicArray_getDataFront(ZDynamicArray *dynArr)
+{
+    return ZDynamicArray_getData(dynArr, 0);
+}
+
+void *ZDynamicArray_getDataBack(ZDynamicArray *dynArr)
+{
+    return ZDynamicArray_getData(dynArr, dynArr->nbElements - 1);
+}
+
+void ZDynamicArray_setData(ZDynamicArray *dynArr, size_t position, void* data)
+{
+    // Cas d'erreur
+    if(position >= dynArr->nbElements)
+    {
+        return;
+    }
+
+    dynArr->freeFunction(dynArr->data[position]);
+    dynArr->data[position] = data;
+}
+
+void ZDynamicArray_setDataFront(ZDynamicArray *dynArr, void* data)
+{
+    ZDynamicArray_setData(dynArr, 0, data);
+}
+
+void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data)
+{
+    ZDynamicArray_setData(dynArr, dynArr->nbElements - 1, data);
+}
+
+/*
+ * Processing functions
+ */
+
+/*
+ * Search functions
+ */
+
+/*
+ * Sort functions
+ */
+
+/*
+ * Debug DynamicArray functions
+ */
 bool ZDynamicArray_isEmpty(ZDynamicArray *dynArr)
 {
     return dynArr->nbElements == 0;
 }
 
+bool ZDynamicArray_isFull(ZDynamicArray *dynArr)
+{
+    return dynArr->nbElements == dynArr->capacity;
+}
+
 size_t ZDynamicArray_getLength(ZDynamicArray *dynArr)
 {
     return dynArr->nbElements;
+}
+
+size_t ZDynamicArray_getCapacity(ZDynamicArray *dynArr)
+{
+    return dynArr->capacity;
 }
 
 void ZDynamicArray_dumpMemoryFormat(ZDynamicArray *dynArr, int32_t dataPerLine, char *format)
