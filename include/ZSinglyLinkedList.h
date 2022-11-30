@@ -320,6 +320,18 @@ bool ZSinglyLinkedList_isEmpty(ZSinglyLinkedList *list);
 size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list);
 
 /**
+ * \brief     Renvoie true si la liste est égale au tableau (selon une fonction passée en paramètre), false sinon
+ * 
+ * \param   list            Un pointeur vers la liste
+ * \param   array           Le tableau à comparer
+ * \param   arraySize       La taille du tableau
+ * \param   equalsFunction  La fonction de comparaison
+ * 
+ * \return    Un \e bool valant true si la liste est égale au tableau.
+ */
+bool ZSinglyLinkedList_compareWithArray(ZSinglyLinkedList *list, void **array, size_t arraySize, bool (*equalsFunction)(void *valueA, void *valueB));
+
+/**
  * \brief     Affiche les données de la liste selon une forme définie par un format
  * \details   Permet d'afficher un nombre de données par ligne de la liste dans un certain format
  * 

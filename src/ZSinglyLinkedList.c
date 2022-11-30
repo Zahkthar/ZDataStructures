@@ -444,6 +444,22 @@ size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list)
     return list->length;
 }
 
+bool ZSinglyLinkedList_compareWithArray(ZSinglyLinkedList *list, void **array, size_t arraySize, bool (*equalsFunction)(void *valueA, void *valueB))
+{
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    for(size_t i = 0; i < arraySize; ++i)
+    {
+        if(equalsFunction(currentNode->data, array[i]) == false)
+        {
+            return false;
+        }
+        currentNode = currentNode->next;
+    }
+
+    return true;
+}
+
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format)
 {
     ZSinglyLinkedListNode *currentNode = list->head;
