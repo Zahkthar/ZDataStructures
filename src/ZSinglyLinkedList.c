@@ -122,6 +122,11 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
             list->head = list->head->next;
             list->freeFunction(currentNode->data);
             free(currentNode);
+
+            if(list->length == 1)
+            {
+                list->tail = NULL;
+            }
         }
     }
     else // Dans la liste
@@ -135,6 +140,11 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
         currentNode->next = currentNode->next->next;
         list->freeFunction(del->data);
         free(del);
+
+        if(position == list->length - 1)
+        {
+            list->tail = currentNode;
+        }
     }
     
     list->length -= 1;

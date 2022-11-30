@@ -156,7 +156,21 @@ Test(ZSinglyLinkedList, delete)
 Test(ZSinglyLinkedList, clear)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    
+
+    // Insertion
+    int32_t *newValue = NULL;
+    for(size_t i = 0; i < 10; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZSinglyLinkedList_insertBack(list, newValue);
+    }
+
+    // Clear
+    ZSinglyLinkedList_clear(list);
+    cr_assert(list->head == NULL);
+    cr_assert(list->tail == NULL);
+    cr_assert(list->length == 0);
+
     ZSinglyLinkedList_free(list);
 }
 
