@@ -9,6 +9,11 @@
  */
 ZSinglyLinkedList *ZSinglyLinkedList_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
+    if(cloneFunction == NULL || freeFunction == NULL)
+    {
+        return NULL;
+    }
+
     ZSinglyLinkedList *newList = malloc(sizeof(ZSinglyLinkedList));
 
     if(newList == NULL)
@@ -117,6 +122,11 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
             list->head = list->head->next;
             list->freeFunction(currentNode->data);
             free(currentNode);
+
+            if(list->length == 1)
+            {
+                list->tail = NULL;
+            }
         }
     }
     else // Dans la liste
@@ -130,6 +140,11 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
         currentNode->next = currentNode->next->next;
         list->freeFunction(del->data);
         free(del);
+
+        if(position == list->length - 1)
+        {
+            list->tail = currentNode;
+        }
     }
     
     list->length -= 1;
@@ -437,6 +452,22 @@ bool ZSinglyLinkedList_isEmpty(ZSinglyLinkedList *list)
 size_t ZSinglyLinkedList_getLength(ZSinglyLinkedList *list)
 {
     return list->length;
+}
+
+bool ZSinglyLinkedList_compareWithArray(ZSinglyLinkedList *list, void **array, size_t arraySize, bool (*equalsFunction)(void *valueA, void *valueB))
+{
+    ZSinglyLinkedListNode *currentNode = list->head;
+
+    for(size_t i = 0; i < arraySize; ++i)
+    {
+        if(equalsFunction(currentNode->data, array[i]) == false)
+        {
+            return false;
+        }
+        currentNode = currentNode->next;
+    }
+
+    return true;
 }
 
 void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPerLine, char *format)

@@ -5,6 +5,11 @@
  */
 ZDynamicArray *ZDynamicArray_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
+    if(cloneFunction == NULL || freeFunction == NULL)
+    {
+        return NULL;
+    }
+
     ZDynamicArray *newArray = malloc(sizeof(ZDynamicArray));
 
     newArray->capacity = 16;
