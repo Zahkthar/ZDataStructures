@@ -65,7 +65,6 @@ Test(ZSinglyLinkedList, compareWithArray)
 
     // Libération
     for(size_t i = 0; i < 10; ++i) { free(equalArray[i]); free(differentArray[i]); }
-
     ZSinglyLinkedList_free(list);
 }
 
@@ -112,7 +111,6 @@ Test(ZSinglyLinkedList, delete)
     {
         newValueList = malloc(sizeof(int32_t)); *newValueList = i;
         newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
-
         ZSinglyLinkedList_insertBack(list, newValueList);
         compareArray[i] = newValueArray;
     }
@@ -149,7 +147,6 @@ Test(ZSinglyLinkedList, delete)
 
     // Libération
     for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
-
     ZSinglyLinkedList_free(list);
 }
 
@@ -246,6 +243,140 @@ Test(ZSinglyLinkedList, setData)
     cr_expect(list->tail->data != NULL, "The data at the tail must not be NULL");
     ZSinglyLinkedList_setDataBack(list, NULL);
     cr_expect(list->tail->data == NULL, "The data at the tail must not be NULL");
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, swapData)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+    void *compareArray[10]; size_t arraySize = 10;
+
+    // Insertion
+    int32_t *newValueList = NULL;
+    int32_t *newValueArray = NULL;
+
+    for(size_t i = 0; i < 10; ++i)
+    {
+        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
+        ZSinglyLinkedList_insertBack(list, newValueList);
+        compareArray[i] = newValueArray;
+    }
+
+    // Test
+    ZSinglyLinkedList_swapData(list, 1, 2);
+    void *tmp = compareArray[1]; compareArray[1] = compareArray[2]; compareArray[2] = tmp;
+    cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true, "The values are not swapped");
+
+    ZSinglyLinkedList_swapData(list, 4, 7);
+    tmp = compareArray[4]; compareArray[4] = compareArray[7]; compareArray[7] = tmp;
+    cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true, "The values are not swapped");
+
+    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, appendTwoLists)
+{
+    ZSinglyLinkedList *list1 = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+    ZSinglyLinkedList *list2 = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+    void *compareArray[10]; size_t arraySize = 10;
+
+    // Insertion
+    int32_t *newValueList = NULL;
+    int32_t *newValueArray = NULL;
+
+    for(size_t i = 0; i < 10; ++i)
+    {
+        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
+
+        if(i < 5) { ZSinglyLinkedList_insertBack(list1, newValueList); }
+        else { ZSinglyLinkedList_insertBack(list2, newValueList); }
+
+        compareArray[i] = newValueArray;
+    }
+
+    // Test
+    ZSinglyLinkedList_appendTwoLists(list1, list2);
+    cr_expect(ZSinglyLinkedList_compareWithArray(list1, compareArray, arraySize, &equalsFunction) == true, "The list is not append");
+
+    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    ZSinglyLinkedList_free(list1);
+    ZSinglyLinkedList_free(list2);
+}
+
+Test(ZSinglyLinkedList, reverseList)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+    void *compareArray[10]; size_t arraySize = 10;
+
+    // Insertion
+    int32_t *newValueList = NULL;
+    int32_t *newValueArray = NULL;
+
+    for(size_t i = 0; i < 10; ++i)
+    {
+        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t)); *newValueArray = 9 - i;
+        ZSinglyLinkedList_insertBack(list, newValueList);
+        compareArray[i] = newValueArray;
+    }
+
+    // Test
+    ZSinglyLinkedList_reverseList(list);
+    cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true, "the list is not reversed");
+
+    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, searchFirstOccurence)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, searchPositions)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, countOccurrences)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, filter)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, BubbleSort)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, isEmpty)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    ZSinglyLinkedList_free(list);
+}
+
+Test(ZSinglyLinkedList, getLength)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
 
     ZSinglyLinkedList_free(list);
 }
