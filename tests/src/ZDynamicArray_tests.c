@@ -141,14 +141,52 @@ Test(ZDynamicArray, resize)
 Test(ZDynamicArray, getData)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 32; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    cr_expect(*(int32_t*)ZDynamicArray_getDataFront(dynArr) == 0, "getDataFront doesn't return the right data");
+
+    for(int32_t i = 0; i < 32; ++i)
+    {
+        cr_expect(*(int32_t*)ZDynamicArray_getData(dynArr, i) == i, "getData doesn't return the right data");
+    }
+
+    cr_expect(*(int32_t*)ZDynamicArray_getDataBack(dynArr) == 31, "getDataBack doesn't return the right data");
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, setData)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 32; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    newValue = malloc(sizeof(int32_t)); *newValue = 32;
+    ZDynamicArray_setDataFront(dynArr, newValue);
+    cr_expect(*(int32_t*)dynArr->data[0] == 32, "setDataFront doesn't set the data correctly");
+
+    for(int32_t i = 33; i < 63; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_setData(dynArr, i - 32, newValue);
+        cr_expect(*(int32_t*)dynArr->data[i - 32] == i, "setData doesn't set the data correctly");
+    }
     
+    newValue = malloc(sizeof(int32_t)); *newValue = 63;
+    ZDynamicArray_setDataBack(dynArr, newValue);
+    cr_expect(*(int32_t*)dynArr->data[dynArr->nbElements - 1] == 63, "setDataBack doesn't set the data correctly");
+
     ZDynamicArray_free(dynArr);
 }
 
