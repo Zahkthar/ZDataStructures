@@ -30,8 +30,7 @@ Test(ZDynamicArray, create) {
 
 Test(ZDynamicArray, insert)
 {
-    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);    
     int32_t *newValue;
 
     for(int32_t i = 3; i >= 0; --i)
@@ -41,7 +40,6 @@ Test(ZDynamicArray, insert)
 
         cr_expect(*(int32_t*)dynArr->data[0] == i, "The value is not correct");
         cr_expect(dynArr->capacity == 16, "The capacity doesn't change at this point");
-        
     }
 
     for(int32_t i = 10; i < 16; ++i)
@@ -52,6 +50,7 @@ Test(ZDynamicArray, insert)
         cr_expect(*(int32_t*)dynArr->data[dynArr->nbElements - 1] == i, "The value is not correct");
         cr_expect(dynArr->capacity == 16, "The capacity doesn't change at this point");
     }
+
     for(int32_t i = 9; i > 3; --i)
     {
         newValue = malloc(sizeof(int32_t)); *newValue = i;
@@ -68,6 +67,25 @@ Test(ZDynamicArray, delete)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
     
+    int32_t *newValue;
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    ZDynamicArray_deleteFront(dynArr);
+    cr_expect(*(int32_t*)dynArr->data[0] == 1);
+    cr_expect(dynArr->nbElements == 15);
+
+    ZDynamicArray_deleteBack(dynArr);
+    cr_expect(*(int32_t*)dynArr->data[dynArr->nbElements - 1] == 14);
+    cr_expect(dynArr->nbElements == 14);
+
+    ZDynamicArray_delete(dynArr, 1);
+    cr_expect(*(int32_t*)dynArr->data[1] == 3);
+    cr_expect(dynArr->nbElements == 13);
+
     ZDynamicArray_free(dynArr);
 }
 

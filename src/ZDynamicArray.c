@@ -99,16 +99,16 @@ void ZDynamicArray_delete(ZDynamicArray *dynArr, size_t position)
 
     dynArr->freeFunction(dynArr->data[position]);
 
-    if(position != dynArr->nbElements)
+    if(position < dynArr->nbElements - 1)
     {
-        memmove(dynArr->data + position, dynArr->data + position + 1, dynArr->nbElements - position - 1);
+        memmove(dynArr->data + position, dynArr->data + position + 1, sizeof(void*) * (dynArr->nbElements - position - 1));
     }
 
     dynArr->nbElements--;
 
-    if(dynArr->capacity >= 16)
+    if(dynArr->capacity > 16)
     {
-        float ratio = dynArr->nbElements / dynArr->capacity;
+        double ratio = dynArr->nbElements / dynArr->capacity;
         if(ratio <= 0.25)
         {
             ZDynamicArray_resize(dynArr, dynArr->capacity / 2);
