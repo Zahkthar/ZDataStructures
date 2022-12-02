@@ -75,20 +75,19 @@ Test(ZDynamicArray, delete)
     }
 
     ZDynamicArray_deleteFront(dynArr);
-    cr_expect(*(int32_t*)dynArr->data[0] == 1);
-    cr_expect(dynArr->nbElements == 15);
+    cr_expect(*(int32_t*)dynArr->data[0] == 1, "The first value is not correct");
+    cr_expect(dynArr->nbElements == 15, "The number of element is not correct");
 
     ZDynamicArray_deleteBack(dynArr);
-    cr_expect(*(int32_t*)dynArr->data[dynArr->nbElements - 1] == 14);
-    cr_expect(dynArr->nbElements == 14);
+    cr_expect(*(int32_t*)dynArr->data[dynArr->nbElements - 1] == 14, "The last value is not correct");
+    cr_expect(dynArr->nbElements == 14, "The number of element is not correct");
 
     ZDynamicArray_delete(dynArr, 1);
-    cr_expect(*(int32_t*)dynArr->data[1] == 3);
-    cr_expect(dynArr->nbElements == 13);
+    cr_expect(*(int32_t*)dynArr->data[1] == 3, "The value at position 1 is not correct");
+    cr_expect(dynArr->nbElements == 13, "The number of element is not correct");
 
     ZDynamicArray_free(dynArr);
 }
-
 
 Test(ZDynamicArray, clear)
 {
@@ -103,8 +102,8 @@ Test(ZDynamicArray, clear)
 
     ZDynamicArray_clear(dynArr);
 
-    cr_expect(dynArr->capacity == 16);
-    cr_expect(dynArr->nbElements == 0);
+    cr_expect(dynArr->capacity == 16, "The capacity is not correct");
+    cr_expect(dynArr->nbElements == 0, "Element number is not 0 after a clear");
 
     ZDynamicArray_free(dynArr);
 }
@@ -114,7 +113,7 @@ Test(ZDynamicArray, resize)
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
     int32_t *newValue;
 
-    cr_expect(dynArr->capacity == 16);
+    cr_expect(dynArr->capacity == 16, "The initial capacity is not 16");
 
     for(int32_t i = 0; i < 17; ++i)
     {
@@ -122,7 +121,7 @@ Test(ZDynamicArray, resize)
         ZDynamicArray_insertBack(dynArr, newValue);
     }
 
-    cr_expect(dynArr->capacity == 32);
+    cr_expect(dynArr->capacity == 32, "The capacity should be 32");
 
     for(int32_t i = 17; i < 33; ++i)
     {
@@ -130,11 +129,11 @@ Test(ZDynamicArray, resize)
         ZDynamicArray_insertBack(dynArr, newValue);
     }
     
-    cr_expect(dynArr->capacity == 64);
+    cr_expect(dynArr->capacity == 64, "The capacity should be 64");
 
     ZDynamicArray_clear(dynArr);
 
-    cr_expect(dynArr->capacity == 16);
+    cr_expect(dynArr->capacity == 16, "The capacity should be 16");
 
     ZDynamicArray_free(dynArr);
 }
