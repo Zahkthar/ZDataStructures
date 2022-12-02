@@ -66,8 +66,8 @@ Test(ZDynamicArray, insert)
 Test(ZDynamicArray, delete)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
     int32_t *newValue;
+
     for(int32_t i = 0; i < 16; ++i)
     {
         newValue = malloc(sizeof(int32_t)); *newValue = i;
@@ -93,14 +93,49 @@ Test(ZDynamicArray, delete)
 Test(ZDynamicArray, clear)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 32; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    ZDynamicArray_clear(dynArr);
+
+    cr_expect(dynArr->capacity == 16);
+    cr_expect(dynArr->nbElements == 0);
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, resize)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    int32_t *newValue;
+
+    cr_expect(dynArr->capacity == 16);
+
+    for(int32_t i = 0; i < 17; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    cr_expect(dynArr->capacity == 32);
+
+    for(int32_t i = 17; i < 33; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
     
+    cr_expect(dynArr->capacity == 64);
+
+    ZDynamicArray_clear(dynArr);
+
+    cr_expect(dynArr->capacity == 16);
+
     ZDynamicArray_free(dynArr);
 }
 
