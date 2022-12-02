@@ -28,6 +28,50 @@ Test(ZDynamicArray, create) {
     ZDynamicArray_free(dynArr);
 }
 
+Test(ZDynamicArray, insert)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    int32_t *newValue;
+
+    for(int32_t i = 3; i >= 0; --i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertFront(dynArr, newValue);
+
+        cr_expect(*(int32_t*)dynArr->data[0] == i, "The value is not correct");
+        cr_expect(dynArr->capacity == 16, "The capacity doesn't change at this point");
+        
+    }
+
+    for(int32_t i = 10; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+
+        cr_expect(*(int32_t*)dynArr->data[dynArr->nbElements - 1] == i, "The value is not correct");
+        cr_expect(dynArr->capacity == 16, "The capacity doesn't change at this point");
+    }
+    for(int32_t i = 9; i > 3; --i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insert(dynArr, 4, newValue);
+
+        cr_expect(*(int32_t*)dynArr->data[4] == i, "The value is not correct");
+        cr_expect(dynArr->capacity == 16, "The capacity doesn't change at this point");
+    }
+
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, delete)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+
 Test(ZDynamicArray, clear)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
@@ -36,20 +80,6 @@ Test(ZDynamicArray, clear)
 }
 
 Test(ZDynamicArray, resize)
-{
-    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
-    ZDynamicArray_free(dynArr);
-}
-
-Test(ZDynamicArray, insert)
-{
-    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
-    ZDynamicArray_free(dynArr);
-}
-
-Test(ZDynamicArray, delete)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
     

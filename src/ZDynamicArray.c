@@ -67,15 +67,17 @@ void ZDynamicArray_insert(ZDynamicArray *dynArr, size_t position, void *data)
         ZDynamicArray_resize(dynArr, dynArr->capacity * 2);
     }
 
-    if(position == dynArr->nbElements)
+    if(position == dynArr->nbElements) // Insersion en fin de tableau
     {
         dynArr->data[position] = data;
     }
     else
     {
-        memmove(dynArr->data + position + 1, dynArr->data + position, dynArr->nbElements - position - 1);
+        memmove(dynArr->data + position + 1, dynArr->data + position, sizeof(void*) * (dynArr->nbElements - position));
         dynArr->data[position] = data;
     }
+
+    dynArr->nbElements++;
 }
 
 void ZDynamicArray_insertFront(ZDynamicArray *dynArr, void *data)
