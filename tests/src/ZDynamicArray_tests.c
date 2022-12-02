@@ -27,3 +27,129 @@ Test(ZDynamicArray, create) {
 
     ZDynamicArray_free(dynArr);
 }
+
+Test(ZDynamicArray, clear)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, resize)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, insert)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, delete)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, getData)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, setData)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, swapData)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, appendTwoArrays)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, reverseArray)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, searchFirstOccurence)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, searchPositions)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, countOccurrences)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, filter)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, BubbleSort)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, isEmpty)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, isFull)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, getLength)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
+
+Test(ZDynamicArray, getCapacity)
+{
+    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    ZDynamicArray_free(dynArr);
+}
