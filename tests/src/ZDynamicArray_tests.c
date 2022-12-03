@@ -1,4 +1,7 @@
 #include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <time.h>
 
 #include <criterion/criterion.h>
 
@@ -202,20 +205,20 @@ Test(ZDynamicArray, swapData)
     }
 
     ZDynamicArray_swapData(dynArr, 0, 1);
-    cr_expect(*(int32_t*)dynArr->data[0] == 1);
-    cr_expect(*(int32_t*)dynArr->data[1] == 0);
+    cr_expect(*(int32_t*)dynArr->data[0] == 1, "Values are not swapped");
+    cr_expect(*(int32_t*)dynArr->data[1] == 0, "Values are not swapped");
     
     ZDynamicArray_swapData(dynArr, 10, 12);
-    cr_expect(*(int32_t*)dynArr->data[10] == 12);
-    cr_expect(*(int32_t*)dynArr->data[12] == 10);
+    cr_expect(*(int32_t*)dynArr->data[10] == 12, "Values are not swapped");
+    cr_expect(*(int32_t*)dynArr->data[12] == 10, "Values are not swapped");
     
     ZDynamicArray_swapData(dynArr, 7, 14);
-    cr_expect(*(int32_t*)dynArr->data[7] == 14);
-    cr_expect(*(int32_t*)dynArr->data[14] == 7);
+    cr_expect(*(int32_t*)dynArr->data[7] == 14, "Values are not swapped");
+    cr_expect(*(int32_t*)dynArr->data[14] == 7, "Values are not swapped");
     
     ZDynamicArray_swapData(dynArr, 8, 2);
-    cr_expect(*(int32_t*)dynArr->data[8] == 2);
-    cr_expect(*(int32_t*)dynArr->data[2] == 8);
+    cr_expect(*(int32_t*)dynArr->data[8] == 2, "Values are not swapped");
+    cr_expect(*(int32_t*)dynArr->data[2] == 8, "Values are not swapped");
 
     ZDynamicArray_free(dynArr);
 }
@@ -239,17 +242,17 @@ Test(ZDynamicArray, appendTwoArrays)
         ZDynamicArray_insertBack(dynArr2, newValue2);
     }
 
-    cr_expect(dynArr1->nbElements == 64);
-    cr_expect(dynArr2->nbElements == 32);
-    cr_expect(dynArr1->capacity == 64);
-    cr_expect(dynArr2->capacity == 32);
+    cr_expect(dynArr1->nbElements == 64, "Elements number is not correct");
+    cr_expect(dynArr2->nbElements == 32, "Elements number is not correct");
+    cr_expect(dynArr1->capacity == 64, "Capacity is not correct");
+    cr_expect(dynArr2->capacity == 32, "Capacity is not correct");
 
     ZDynamicArray_appendTwoArrays(dynArr1, dynArr2, false);
 
-    cr_expect(dynArr1->nbElements == 96);
-    cr_expect(dynArr2->nbElements == 0);
-    cr_expect(dynArr1->capacity == 128);
-    cr_expect(dynArr2->capacity == 16);
+    cr_expect(dynArr1->nbElements == 96, "Elements number is not correct");
+    cr_expect(dynArr2->nbElements == 0, "Elements number is not correct");
+    cr_expect(dynArr1->capacity == 128, "Capacity is not correct");
+    cr_expect(dynArr2->capacity == 16, "Capacity is not correct");
 
     ZDynamicArray_free(dynArr1);
     ZDynamicArray_free(dynArr2);
@@ -271,14 +274,14 @@ Test(ZDynamicArray, reverseArray)
 
     for(int32_t i = 0; i < 16; ++i)
     {
-        cr_expect(*(int32_t*)dynArr->data[i] == normalArray[i]);
+        cr_expect(*(int32_t*)dynArr->data[i] == normalArray[i], "Array is not correct");
     }
 
     ZDynamicArray_reverseArray(dynArr);
 
     for(int32_t i = 0; i < 16; ++i)
     {
-        cr_expect(*(int32_t*)dynArr->data[i] == reversedArray[i]);
+        cr_expect(*(int32_t*)dynArr->data[i] == reversedArray[i], "Array is not reversed");
     }
 
     ZDynamicArray_free(dynArr);
@@ -304,7 +307,7 @@ Test(ZDynamicArray, searchFirstOccurence)
     for(int32_t i = 0; i < 16; ++i)
     {
         compareValue = malloc(sizeof(int32_t)); *compareValue = i;
-        cr_expect((int32_t)ZDynamicArray_searchFirstOccurence(dynArr, compareValue, &equalsFunction) == i);
+        cr_expect((int32_t)ZDynamicArray_searchFirstOccurence(dynArr, compareValue, &equalsFunction) == i, "First occurence is not at the good place");
         free(compareValue);
     }
 
@@ -326,23 +329,60 @@ Test(ZDynamicArray, searchPositions)
 
     int32_t *compareValue = malloc(sizeof(int32_t)); *compareValue = 7;
     ZDynamicArray *resultArray = ZDynamicArray_searchPositions(dynArr, compareValue, &equalsFunction);
-    cr_expect(*(int32_t*)resultArray->data[0] == 7);
-    cr_expect(*(int32_t*)resultArray->data[1] == 8);
+    cr_expect(*(int32_t*)resultArray->data[0] == 7, "Position is not correct");
+    cr_expect(*(int32_t*)resultArray->data[1] == 8, "Position is not correct");
 
+    free(compareValue);
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, countOccurrences)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    *(int32_t*)ZDynamicArray_getData(dynArr, 8) = 7;
+
+    int32_t *compareValue = malloc(sizeof(int32_t)); *compareValue = 7;
+    cr_expect(ZDynamicArray_countOccurrences(dynArr, compareValue, &equalsFunction) == 2, "Occurence count is not correct");
+    *compareValue = 2;
+    cr_expect(ZDynamicArray_countOccurrences(dynArr, compareValue, &equalsFunction) == 1, "Occurence count is not correct");
+
+    free(compareValue);
     ZDynamicArray_free(dynArr);
+}
+
+static bool testFunctionFilter(void *valueA)
+{
+    return *(int32_t*)valueA < 5;
 }
 
 Test(ZDynamicArray, filter)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    int32_t compareArray[] = { 0, 1, 2, 3, 4 };
+
+    ZDynamicArray *filteredArray = ZDynamicArray_filter(dynArr, &testFunctionFilter);
+
+    for(size_t i = 0; i < filteredArray->nbElements; ++i)
+    {
+        cr_expect(*(int32_t*)filteredArray->data[i] == compareArray[i], "filter value is not correct");
+    }
+
     ZDynamicArray_free(dynArr);
 }
 
