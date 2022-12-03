@@ -185,10 +185,10 @@ void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t posi
     dynArr->data[positionB] = tmp;
 }
 
-void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB)
+void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB, bool freeArrayB)
 {
     // Cas d'erreur
-    if(ZDynamicArray_isEmpty(dynArrA) == true || ZDynamicArray_isEmpty(dynArrB) == true)
+    if(ZDynamicArray_isEmpty(dynArrB) == true)
     {
         return;
     }
@@ -199,13 +199,21 @@ void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArr
     }
 
     dynArrB->nbElements = 0;
-    if(dynArrB->capacity != 16)
+
+    if(freeArrayB == true)
     {
-        ZDynamicArray_resize(dynArrB, 16);
+        ZDynamicArray_free(dynArrB);
+    }
+    else
+    {
+        if(dynArrB->capacity != 16)
+        {
+            ZDynamicArray_resize(dynArrB, 16);
+        }
     }
 }
 
-void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr)
+void ZDynamicArray_reverseArray(ZDynamicArray *dynArr)
 {
     // Cas d'erreur
     if(ZDynamicArray_isEmpty(dynArr) == true)

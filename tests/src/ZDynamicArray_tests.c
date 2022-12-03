@@ -244,7 +244,7 @@ Test(ZDynamicArray, appendTwoArrays)
     cr_expect(dynArr1->capacity == 64);
     cr_expect(dynArr2->capacity == 32);
 
-    ZDynamicArray_appendTwoArrays(dynArr1, dynArr2);
+    ZDynamicArray_appendTwoArrays(dynArr1, dynArr2, false);
 
     cr_expect(dynArr1->nbElements == 96);
     cr_expect(dynArr2->nbElements == 0);
@@ -258,7 +258,29 @@ Test(ZDynamicArray, appendTwoArrays)
 Test(ZDynamicArray, reverseArray)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+
+    int32_t normalArray[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+    int32_t reversedArray[] = { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+
+    int32_t *newValue;
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        cr_expect(*(int32_t*)dynArr->data[i] == normalArray[i]);
+    }
+
+    ZDynamicArray_reverseArray(dynArr);
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        cr_expect(*(int32_t*)dynArr->data[i] == reversedArray[i]);
+    }
+
     ZDynamicArray_free(dynArr);
 }
 
