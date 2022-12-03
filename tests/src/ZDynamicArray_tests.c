@@ -284,17 +284,51 @@ Test(ZDynamicArray, reverseArray)
     ZDynamicArray_free(dynArr);
 }
 
+static bool equalsFunction(void *valueA, void *valueB)
+{
+    return *(int32_t*)valueA == *(int32_t*)valueB;
+}
+
 Test(ZDynamicArray, searchFirstOccurence)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    int32_t *compareValue;
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        compareValue = malloc(sizeof(int32_t)); *compareValue = i;
+        cr_expect((int32_t)ZDynamicArray_searchFirstOccurence(dynArr, compareValue, &equalsFunction) == i);
+        free(compareValue);
+    }
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, searchPositions)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    *(int32_t*)ZDynamicArray_getData(dynArr, 8) = 7;
+
+    int32_t *compareValue = malloc(sizeof(int32_t)); *compareValue = 7;
+    ZDynamicArray *resultArray = ZDynamicArray_searchPositions(dynArr, compareValue, &equalsFunction);
+    cr_expect(*(int32_t*)resultArray->data[0] == 7);
+    cr_expect(*(int32_t*)resultArray->data[1] == 8);
+
     ZDynamicArray_free(dynArr);
 }
 
