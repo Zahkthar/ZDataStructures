@@ -386,37 +386,111 @@ Test(ZDynamicArray, filter)
     ZDynamicArray_free(dynArr);
 }
 
+static bool sortFunctionArray(void *valueA, void* valueB)
+{
+    return *(int32_t*)valueA > *(int32_t*)valueB;
+}
+
+static int sortFunctionQSort(const void *valueA, const void* valueB)
+{
+    return (*(int32_t*)valueA - *(int32_t*)valueB);
+}
+
 Test(ZDynamicArray, BubbleSort)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
     
+    int32_t array[18] = { 4, 9, 2, 3, 4, 5, 1, 7, 2, 5, 6, 8, 9, 1, 0, 21, 4, 5 };
+
+    int32_t *newValue;
+    for(size_t i = 0; i < 18; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = array[i];
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    qsort(array, 18, sizeof(int32_t), &sortFunctionQSort);
+    ZDynamicArray_BubbleSort(dynArr, &sortFunctionArray);
+
+    for(size_t i = 0; i < 18; ++i)
+    {
+        cr_expect(*(int32_t*)dynArr->data[i] == array[i], "Array is not sorted correctly");
+    }
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, isEmpty)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    cr_expect(ZDynamicArray_isEmpty(dynArr) == true, "Array is empty");
+
+    newValue = malloc(sizeof(int32_t)); *newValue = 12;
+    ZDynamicArray_insertBack(dynArr, newValue);
+
+    cr_expect(ZDynamicArray_isEmpty(dynArr) == false, "Array is not empty");
+
+    ZDynamicArray_deleteBack(dynArr);
+
+    cr_expect(ZDynamicArray_isEmpty(dynArr) == true, "Array is empty");
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, isFull)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    cr_expect(ZDynamicArray_isFull(dynArr) == false, "Array is not full");
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    cr_expect(ZDynamicArray_isFull(dynArr) == true, "Array is full");
+
+    ZDynamicArray_deleteBack(dynArr);
+
+    cr_expect(ZDynamicArray_isFull(dynArr) == false, "Array is not full");
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, getLength)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+        cr_expect((int32_t)ZDynamicArray_getLength(dynArr) == i + 1, "The length must be i + 1");
+        cr_expect(ZDynamicArray_getLength(dynArr) == dynArr->nbElements, "The length must be equals to dynArr->nbElements");
+    }
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, getCapacity)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
-    
+    int32_t *newValue;
+
+    cr_expect(ZDynamicArray_getCapacity(dynArr) == 16, "The getCapacity function doen't return the right value");
+
+    for(int32_t i = 0; i < 17; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    cr_expect(ZDynamicArray_getCapacity(dynArr) == 32, "The getCapacity function doen't return the right value");
+
     ZDynamicArray_free(dynArr);
 }
