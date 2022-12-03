@@ -525,6 +525,7 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
         currentPosition++;
         currentNode = currentNode->next;
     }
+    printf("\n");
 }
 
 void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataPerLine, void (*printFunction)(void *value))
@@ -547,4 +548,5 @@ void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataP
         currentPosition++;
         currentNode = currentNode->next;
     }
+    printf("\n");
 }

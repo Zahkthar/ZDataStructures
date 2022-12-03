@@ -185,18 +185,20 @@ void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t posi
  * \brief     Ajoute le tableau B derrière le tableau A.
  * \details   Rend le tableau B vide.
  * 
- * \param     dynArr       Un pointeur vers le tableau
+ * \param     dynArrA      Un pointeur vers le tableau A
+ * \param     dynArrB      Un pointeur vers le tableau B
+ * \param     freeArrayB   true pour libérer automatiquement la liste B, false sinon
  * 
  * \return    Un \e void* étant la donnée à la fin du tableau.
  */
-void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB);
+void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB, bool freeArrayB);
 
 /**
  * \brief     Renverse le tableau passé en paramètre
  * 
  * \param     dynArr       Un pointeur vers le tableau
  */
-void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr);
+void ZDynamicArray_reverseArray(ZDynamicArray *dynArr);
 
 
 /*
@@ -324,6 +326,7 @@ void ZDynamicArray_dumpMemoryFormat(ZDynamicArray *dynArr, int32_t dataPerLine, 
  * 
  * \param     dynArr          Un pointeur vers le tableau
  * \param     dataPerLine     Le nombre de données à afficher par ligne, mettre 0 si l'on ne veut pas de mise à la ligne automatique
+ * \param     printFunction   L'adresse de la fonction d'affichage
  */
 void ZDynamicArray_dumpMemoryCallback(ZDynamicArray *dynArr, int32_t dataPerLine, void (*printFunction)(void *value));
 

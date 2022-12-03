@@ -67,15 +67,17 @@ void ZDynamicArray_insert(ZDynamicArray *dynArr, size_t position, void *data)
         ZDynamicArray_resize(dynArr, dynArr->capacity * 2);
     }
 
-    if(position == dynArr->nbElements)
+    if(position == dynArr->nbElements) // Insersion en fin de tableau
     {
         dynArr->data[position] = data;
     }
     else
     {
-        memmove(dynArr->data + position + 1, dynArr->data + position, dynArr->nbElements - position - 1);
+        memmove(dynArr->data + position + 1, dynArr->data + position, sizeof(void*) * (dynArr->nbElements - position));
         dynArr->data[position] = data;
     }
+
+    dynArr->nbElements++;
 }
 
 void ZDynamicArray_insertFront(ZDynamicArray *dynArr, void *data)
@@ -97,16 +99,16 @@ void ZDynamicArray_delete(ZDynamicArray *dynArr, size_t position)
 
     dynArr->freeFunction(dynArr->data[position]);
 
-    if(position != dynArr->nbElements)
+    if(position < dynArr->nbElements - 1)
     {
-        memmove(dynArr->data + position, dynArr->data + position + 1, dynArr->nbElements - position - 1);
+        memmove(dynArr->data + position, dynArr->data + position + 1, sizeof(void*) * (dynArr->nbElements - position - 1));
     }
 
     dynArr->nbElements--;
 
-    if(dynArr->capacity >= 16)
+    if(dynArr->capacity > 16)
     {
-        float ratio = dynArr->nbElements / dynArr->capacity;
+        double ratio = dynArr->nbElements / dynArr->capacity;
         if(ratio <= 0.25)
         {
             ZDynamicArray_resize(dynArr, dynArr->capacity / 2);
@@ -183,28 +185,35 @@ void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t posi
     dynArr->data[positionB] = tmp;
 }
 
-void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB)
+void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB, bool freeArrayB)
 {
     // Cas d'erreur
-    if(ZDynamicArray_isEmpty(dynArrA) == true || ZDynamicArray_isEmpty(dynArrB) == true)
+    if(ZDynamicArray_isEmpty(dynArrB) == true)
     {
         return;
     }
 
-    dynArrA->capacity += dynArrB->capacity;
-    ZDynamicArray_resize(dynArrA, dynArrA->capacity);
-
     for(size_t i = 0; i < dynArrB->nbElements; ++i)
     {
-        ZDynamicArray_setDataBack(dynArrA, dynArrB->data[i]);
+        ZDynamicArray_insertBack(dynArrA, dynArrB->data[i]);
     }
 
-    dynArrB->capacity = 16;
     dynArrB->nbElements = 0;
-    ZDynamicArray_resize(dynArrB, dynArrB->capacity);
+
+    if(freeArrayB == true)
+    {
+        ZDynamicArray_free(dynArrB);
+    }
+    else
+    {
+        if(dynArrB->capacity != 16)
+        {
+            ZDynamicArray_resize(dynArrB, 16);
+        }
+    }
 }
 
-void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr)
+void ZDynamicArray_reverseArray(ZDynamicArray *dynArr)
 {
     // Cas d'erreur
     if(ZDynamicArray_isEmpty(dynArr) == true)
@@ -404,6 +413,7 @@ void ZDynamicArray_dumpMemoryFormat(ZDynamicArray *dynArr, int32_t dataPerLine, 
             }
         }
     }
+    printf("\n");
 }
 
 void ZDynamicArray_dumpMemoryCallback(ZDynamicArray *dynArr, int32_t dataPerLine, void (*printFunction)(void *value))
@@ -421,4 +431,5 @@ void ZDynamicArray_dumpMemoryCallback(ZDynamicArray *dynArr, int32_t dataPerLine
             }
         }
     }
+    printf("\n");
 }
