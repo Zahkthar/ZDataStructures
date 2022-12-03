@@ -193,17 +193,16 @@ void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArr
         return;
     }
 
-    dynArrA->capacity += dynArrB->capacity;
-    ZDynamicArray_resize(dynArrA, dynArrA->capacity);
-
     for(size_t i = 0; i < dynArrB->nbElements; ++i)
     {
-        ZDynamicArray_setDataBack(dynArrA, dynArrB->data[i]);
+        ZDynamicArray_insertBack(dynArrA, dynArrB->data[i]);
     }
 
-    dynArrB->capacity = 16;
     dynArrB->nbElements = 0;
-    ZDynamicArray_resize(dynArrB, dynArrB->capacity);
+    if(dynArrB->capacity != 16)
+    {
+        ZDynamicArray_resize(dynArrB, 16);
+    }
 }
 
 void ZDynamicArray_reverseArrays(ZDynamicArray *dynArr)
@@ -406,6 +405,7 @@ void ZDynamicArray_dumpMemoryFormat(ZDynamicArray *dynArr, int32_t dataPerLine, 
             }
         }
     }
+    printf("\n");
 }
 
 void ZDynamicArray_dumpMemoryCallback(ZDynamicArray *dynArr, int32_t dataPerLine, void (*printFunction)(void *value))
@@ -423,4 +423,5 @@ void ZDynamicArray_dumpMemoryCallback(ZDynamicArray *dynArr, int32_t dataPerLine
             }
         }
     }
+    printf("\n");
 }

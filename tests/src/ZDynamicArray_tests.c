@@ -193,15 +193,66 @@ Test(ZDynamicArray, setData)
 Test(ZDynamicArray, swapData)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    int32_t *newValue;
+
+    for(int32_t i = 0; i < 16; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(dynArr, newValue);
+    }
+
+    ZDynamicArray_swapData(dynArr, 0, 1);
+    cr_expect(*(int32_t*)dynArr->data[0] == 1);
+    cr_expect(*(int32_t*)dynArr->data[1] == 0);
     
+    ZDynamicArray_swapData(dynArr, 10, 12);
+    cr_expect(*(int32_t*)dynArr->data[10] == 12);
+    cr_expect(*(int32_t*)dynArr->data[12] == 10);
+    
+    ZDynamicArray_swapData(dynArr, 7, 14);
+    cr_expect(*(int32_t*)dynArr->data[7] == 14);
+    cr_expect(*(int32_t*)dynArr->data[14] == 7);
+    
+    ZDynamicArray_swapData(dynArr, 8, 2);
+    cr_expect(*(int32_t*)dynArr->data[8] == 2);
+    cr_expect(*(int32_t*)dynArr->data[2] == 8);
+
     ZDynamicArray_free(dynArr);
 }
 
 Test(ZDynamicArray, appendTwoArrays)
 {
-    ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    ZDynamicArray *dynArr1 = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    ZDynamicArray *dynArr2 = ZDynamicArray_create(&cloneFunction, &freeFunction);
     
-    ZDynamicArray_free(dynArr);
+    int32_t *newValue1;
+    for(int32_t i = 0; i < 64; ++i)
+    {
+        newValue1 = malloc(sizeof(int32_t)); *newValue1 = i;
+        ZDynamicArray_insertBack(dynArr1, newValue1);
+    }
+
+    int32_t *newValue2;
+    for(int32_t i = 0; i < 32; ++i)
+    {
+        newValue2 = malloc(sizeof(int32_t)); *newValue2 = i;
+        ZDynamicArray_insertBack(dynArr2, newValue2);
+    }
+
+    cr_expect(dynArr1->nbElements == 64);
+    cr_expect(dynArr2->nbElements == 32);
+    cr_expect(dynArr1->capacity == 64);
+    cr_expect(dynArr2->capacity == 32);
+
+    ZDynamicArray_appendTwoArrays(dynArr1, dynArr2);
+
+    cr_expect(dynArr1->nbElements == 96);
+    cr_expect(dynArr2->nbElements == 0);
+    cr_expect(dynArr1->capacity == 128);
+    cr_expect(dynArr2->capacity == 16);
+
+    ZDynamicArray_free(dynArr1);
+    ZDynamicArray_free(dynArr2);
 }
 
 Test(ZDynamicArray, reverseArray)
