@@ -8,3 +8,7 @@ ZDS-cppcheck-build-dir
 obj/*.o
 
 tests/bin/*.exe
+
+lib/ZDataStructures.dll
+lib/ZDataStructures.dll.a
+tests/bin/ZDataStructures.dll
