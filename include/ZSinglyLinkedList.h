@@ -302,6 +302,15 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
  * Debug singly linked list functions
  */
 /**
+ * \brief     Renvoie true si la liste est circulaire, false sinon
+ * 
+ * \param     list   Un pointeur vers la liste
+ * 
+ * \return    Un \e bool valant true si la liste est circulaire.
+ */
+bool ZSinglyLinkedList_isCircular(ZSinglyLinkedList *list);
+
+/**
  * \brief     Renvoie true si la liste est vide, false sinon
  * 
  * \param     list   Un pointeur vers la liste

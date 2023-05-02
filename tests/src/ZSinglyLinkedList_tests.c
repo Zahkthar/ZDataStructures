@@ -469,6 +469,26 @@ Test(ZSinglyLinkedList, BubbleSort)
     ZSinglyLinkedList_free(list);
 }
 
+Test(ZSinglyLinkedList, isCircular)
+{
+    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+
+    // Insertion
+    int32_t *newValue = NULL;
+    for(size_t i = 0; i < 10; ++i)
+    {
+        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZSinglyLinkedList_insertBack(list, newValue);
+    }
+    cr_expect(ZSinglyLinkedList_isCircular(list) == false, "La liste n'est pas circulaire");
+    
+    list->tail->next = list->head; // insertBack insèrerais la liste en tant que data et non en tant que noeud
+    
+    cr_expect(ZSinglyLinkedList_isCircular(list) == true, "La liste est circulaire");
+
+    ZSinglyLinkedList_free(list);
+}
+
 Test(ZSinglyLinkedList, isEmpty)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);

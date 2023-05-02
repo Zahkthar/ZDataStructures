@@ -39,9 +39,31 @@ void ZSinglyLinkedList_free(ZSinglyLinkedList *list)
 }
 
 void ZSinglyLinkedList_clear(ZSinglyLinkedList *list) {
-    while(list->head != NULL)
+    if(ZSinglyLinkedList_isCircular(list) == false)
     {
-        ZSinglyLinkedList_deleteFront(list);
+        while(list->head != NULL)
+        {
+            ZSinglyLinkedList_deleteFront(list);
+        }
+    }
+    else
+    {
+        ZSinglyLinkedListNode *tmp;
+        ZSinglyLinkedListNode *current = list->head->next;
+        
+        // Destruction du 2ème jusqu'au premier en parcourant la liste
+        while(current != list->head)
+        {
+            tmp = current->next;
+            list->freeFunction(current->data);
+            free(current);
+            current = tmp;
+        }
+
+        // Suppression de la tête
+        list->freeFunction(list->head->data);
+        free(list->head);
+        list->head = NULL;
     }
 }
 
@@ -444,6 +466,30 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
 /*
  * Debug singly linked list functions
  */
+bool ZSinglyLinkedList_isCircular(ZSinglyLinkedList *list)
+{
+    if(list == NULL || list->head == NULL)
+    {
+        return false;
+    }
+
+    ZSinglyLinkedListNode *slow = list->head;
+    ZSinglyLinkedListNode *fast = list->head;
+
+    while(fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if(slow == fast)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool ZSinglyLinkedList_isEmpty(ZSinglyLinkedList *list)
 {
     return (list->length == 0);
