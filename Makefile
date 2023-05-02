@@ -18,7 +18,7 @@ TESTS_FOLDER = tests
 TESTS = $(wildcard $(TESTS_FOLDER)/src/*.c)
 TESTBINS = $(patsubst $(TESTS_FOLDER)/src/%.c, $(TESTS_FOLDER)/bin/%, $(TESTS))
 
-all : program tests
+all : docs program tests
 
 docs:
 	doxygen

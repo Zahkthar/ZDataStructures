@@ -1,5 +1,7 @@
 .vscode
 
+docs
+
 ZDS.cppcheck
 ZDS-cppcheck-build-dir
 
