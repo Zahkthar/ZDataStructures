@@ -6,8 +6,5 @@ ZDS.cppcheck
 ZDS-cppcheck-build-dir
 
 obj/*.o
-lib/*.o
-
-bin/*.exe
 
 tests/bin/*.exe

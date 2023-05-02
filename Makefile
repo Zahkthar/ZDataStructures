@@ -1,49 +1,63 @@
+# Compiler
 CXX = gcc
 CXXFLAGS = -Wall -Wextra -O0 -g# Mettre -O1 ou -O2 à la place de -g pour la version prod
 
+# Linker
 LINKER_FLAGS = 
-TESTS_LINKER_FLAGS = -lcriterion
+TESTS_LINKER_FLAGS = -lzdatastructures -lcriterion
 
+# General variables
 HEADERS_LOCALISATION = include
 LIB_LOCALISATION = lib
 
-EXEC = ZDataStructures
+DLL_NAME = ZDataStructures
 
+# Source and objects folders/files
 SRC_FOLDER = src
 OBJ_FOLDER = obj
 SRCS = $(wildcard $(SRC_FOLDER)/*.c)
 OBJS = $(patsubst $(SRC_FOLDER)/%.c, $(OBJ_FOLDER)/%.o, $(SRCS))
 
+# Tests folder/files
 TESTS_FOLDER = tests
 TESTS = $(wildcard $(TESTS_FOLDER)/src/*.c)
 TESTBINS = $(patsubst $(TESTS_FOLDER)/src/%.c, $(TESTS_FOLDER)/bin/%, $(TESTS))
 
-all : docs program tests
+# Generate all
+all : docs lib tests
 
+# Generate docs
 docs:
 	doxygen
 
-
-program : $(OBJS)
-	$(CXX) $(OBJS) -o bin/$(EXEC) -L $(LIB_LOCALISATION) $(LINKER_FLAGS)
+# Generate the lib
+lib: $(OBJS)
+	$(CXX) -shared -o $(LIB_LOCALISATION)/$(DLL_NAME).dll \
+	-Wl,--out-implib=$(LIB_LOCALISATION)/$(DLL_NAME).dll.a \
+	-Wl,--export-all-symbols \
+	-Wl,--enable-auto-import \
+	$(OBJS) -L $(LIB_LOCALISATION) $(LINKER_FLAGS)
 
 $(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(HEADERS_LOCALISATION)
 
+# Generate the tests
+tests: $(TESTBINS) dlltests $(TESTS_FOLDER)/bin
 
-tests: $(LIB_LOCALISATION) $(TESTS_FOLDER)/bin $(TESTBINS)
-	
 $(TESTS_FOLDER)/bin/%: $(TESTS_FOLDER)/src/%.c
-	$(CXX) $(CXXFLAGS) $< $(OBJS:obj/main.o=) -o $@ -I $(HEADERS_LOCALISATION) -L $(LIB_LOCALISATION) $(TESTS_LINKER_FLAGS)
+	$(CXX) $(CXXFLAGS) $< -o $@ -I $(HEADERS_LOCALISATION) -L $(LIB_LOCALISATION) $(TESTS_LINKER_FLAGS)
 
 $(TESTS_FOLDER)/bin:
 	mkdir $@
 
+dlltests:
+	copy $(LIB_LOCALISATION)\$(DLL_NAME).dll $(TESTS_FOLDER)\bin
 
+# Clean rules
 clean:
 	del /f /q obj\*.o
 
 mrproper: clean
-	del /f /q bin\$(EXEC).exe
+	del /f /q $(LIB_LOCALISATION)\$(DLL_NAME).dll
 	
-.PHONY: all docs program tests clean mrproper
+.PHONY: all docs lib tests clean mrproper
