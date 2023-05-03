@@ -28,7 +28,7 @@ void ZStack_push(ZStack *stack, void *data)
 
 void *ZStack_pop(ZStack *stack)
 {
-    void *value = ZDynamicArray_getDataBack(stack);
+    void *value = stack->cloneFunction(ZDynamicArray_getDataBack(stack));
     ZDynamicArray_deleteBack(stack);
     return value;
 }
@@ -79,7 +79,7 @@ size_t ZStack_countOccurrences(ZStack *stack, void *data, bool (*testFunction)(v
     return ZDynamicArray_countOccurrences(stack, data, testFunction);
 }
 
-ZDynamicArray *ZStack_filter(ZStack *stack, bool (*testFunction)(void *value))
+ZStack *ZStack_filter(ZStack *stack, bool (*testFunction)(void *value))
 {
     return ZDynamicArray_filter(stack, testFunction);
 }
@@ -99,10 +99,10 @@ size_t ZStack_getSize(ZStack *stack)
 
 void ZStack_dumpMemoryFormat(ZStack *stack, int32_t dataPerLine, char *format)
 {
-    ZStack_dumpMemoryFormat(stack, dataPerLine, format);
+    ZDynamicArray_dumpMemoryFormat(stack, dataPerLine, format);
 }
 
 void ZStack_dumpMemoryCallback(ZStack *stack, int32_t dataPerLine, void (*printFunction)(void *value))
 {
-    ZStack_dumpMemoryCallback(stack, dataPerLine, printFunction);
+    ZDynamicArray_dumpMemoryCallback(stack, dataPerLine, printFunction);
 }

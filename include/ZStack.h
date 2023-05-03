@@ -31,7 +31,7 @@ typedef ZDynamicArray ZStack;
  * \param cloneFunction  Un pointeur vers la fonction de clonage d'un élément
  * \param freeFunction   Un pointeur vers la fonction de libération d'un élément
  * 
- * \return    Un pointeur vers la pile de type \e ZStack
+ * \return    Un pointeur vers la pile de type \e ZStack ou NULL si échec
  */
 ZStack *ZStack_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data));
 
@@ -164,9 +164,9 @@ size_t ZStack_countOccurrences(ZStack *stack, void *data, bool (*testFunction)(v
  * \param     stack           Un pointeur vers la liste
  * \param     testFunction     Un pointeur vers la fonction de test
 
- * \return    Un tableau avec les élements de la pile  pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
+ * \return    Une nouvelle pile avec les élements de la pile pour lesquels testFunction() a renvoyé true (ne pas oublier de la libérer après utilisation). Renvoie NULL si l'allocation a échouée.
  */
-ZDynamicArray *ZStack_filter(ZStack *stack, bool (*testFunction)(void *value));
+ZStack *ZStack_filter(ZStack *stack, bool (*testFunction)(void *value));
 
 
 /*
