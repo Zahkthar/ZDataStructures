@@ -188,8 +188,6 @@ void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t posi
  * \param     dynArrA      Un pointeur vers le tableau A
  * \param     dynArrB      Un pointeur vers le tableau B
  * \param     freeArrayB   true pour libérer automatiquement la liste B, false sinon
- * 
- * \return    Un \e void* étant la donnée à la fin du tableau.
  */
 void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB, bool freeArrayB);
 

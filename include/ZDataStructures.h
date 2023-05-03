@@ -13,4 +13,7 @@
 // Tableau dynamique (vector)
 #include "ZDynamicArray.h"
 
+// Stack
+#include "ZStack.h"
+
 #endif // ZDS_ALL_HEADERS_H_INCLUDED
