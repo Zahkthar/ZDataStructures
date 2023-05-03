@@ -265,6 +265,23 @@ void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data)
 /*
  * Processing functions
  */
+ZSinglyLinkedList *ZSinglyLinkedList_cloneList(ZSinglyLinkedList *list)
+{
+    ZSinglyLinkedList *newList = ZSinglyLinkedList_create(list->cloneFunction, list->freeFunction);
+
+    ZSinglyLinkedListNode *currentNode = list->head;
+    size_t length = ZSinglyLinkedList_getLength(list);
+
+    for(size_t i = 0; i < length; ++i)
+    {
+        ZSinglyLinkedList_insertBack(newList, list->cloneFunction(currentNode->data));
+
+        currentNode = currentNode->next;
+    }
+
+    return newList;
+}
+
 void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_t positionB) {
     // Gestion des cas spéciaux
     if(positionA >= list->length || positionB >= list->length || positionA == positionB)

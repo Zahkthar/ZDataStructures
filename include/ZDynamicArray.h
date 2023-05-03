@@ -173,6 +173,15 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data);
  */
 
 /**
+ * \brief     Clone le tableau et ses données
+ * 
+ * \param     dynArr       Un pointeur vers le tableau
+ * 
+ * \return    Un \e ZDynamicArray* étant le nouveau tableau contenant les données du premier ou NULL si la fonction échoue.
+ */
+ZDynamicArray *ZDynamicArray_cloneArray(ZDynamicArray *dynArr);
+
+/**
  * \brief     Swap les data deux cases aux positions données en paramètres
  * 
  * \param     dynArr       Un pointeur vers le tableau

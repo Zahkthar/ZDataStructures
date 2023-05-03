@@ -22,7 +22,7 @@ bool equalsFunction(void *valueA, void *valueB)
     return *(int32_t*)valueA == *(int32_t*)valueB;
 }
 
-Test(ZSinglyLinkedList, create)
+Test(ZStack, create)
 {
     // TODO
     cr_expect(1 == 2, "Tests Stack not done yet");

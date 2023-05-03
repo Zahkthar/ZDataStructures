@@ -1,23 +1,21 @@
 #include "ZStack.h"
 
-
 /*
  * Allocation, free and clear
  */
 ZStack *ZStack_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
-    // TODO
-    return NULL;
+    return ZDynamicArray_create(cloneFunction, freeFunction);
 }
 
 void ZStack_free(ZStack *stack)
 {
-    // TODO
+    ZDynamicArray_free(stack);
 }
 
 void ZStack_clear(ZStack *stack)
 {
-    // TODO
+    ZDynamicArray_clear(stack);
 }
 
 /*
@@ -25,39 +23,42 @@ void ZStack_clear(ZStack *stack)
  */
 void ZStack_push(ZStack *stack, void *data)
 {
-    // TODO
+    ZDynamicArray_insertBack(stack, data);
 }
 
 void *ZStack_pop(ZStack *stack)
 {
-    // TODO
-    return NULL;
+    void *value = ZDynamicArray_getDataBack(stack);
+    ZDynamicArray_deleteBack(stack);
+    return value;
 }
 
 void *ZStack_peek(ZStack *stack)
 {
-    // TODO
-    return NULL;
+    return ZDynamicArray_getDataBack(stack);
 }
 
 void *ZStack_peekPosition(ZStack *stack, size_t position)
 {
-    // TODO
-    return NULL;
+    return ZDynamicArray_getData(stack, position);
 }
 
 /*
  * Processing functions
  */
-void ZStack_pushStack(ZStack *stackA, ZStack *stackB, bool freeArrayB)
+ZStack *ZStack_cloneStack(ZStack *stack)
 {
-    // TODO
+    return ZDynamicArray_cloneArray(stack);
 }
 
-ZStack *ZStack_reverseStack(ZStack *stack)
+void ZStack_pushStack(ZStack *stackA, ZStack *stackB, bool freeStackB)
 {
-    // TODO
-    return NULL;
+    ZDynamicArray_appendTwoArrays(stackA, stackB, freeStackB);
+}
+
+void ZStack_reverseStack(ZStack *stack)
+{
+    ZDynamicArray_reverseArray(stack);
 }
 
 /*
@@ -65,26 +66,22 @@ ZStack *ZStack_reverseStack(ZStack *stack)
  */
 size_t ZStack_searchFirstOccurence(ZStack *stack, void *data, bool (*testFunction)(void *valueA, void *valueB))
 {
-    // TODO
-    return 0;
+    return ZDynamicArray_searchFirstOccurence(stack, data, testFunction);
 }
 
 ZDynamicArray *ZStack_searchPositions(ZStack *stack, void *data, bool (*testFunction)(void *valueA, void *valueB))
 {
-    // TODO
-    return NULL;
+    return ZDynamicArray_searchPositions(stack, data, testFunction);
 }
 
 size_t ZStack_countOccurrences(ZStack *stack, void *data, bool (*testFunction)(void *valueA, void *valueB))
 {
-    // TODO
-    return 0;
+    return ZDynamicArray_countOccurrences(stack, data, testFunction);
 }
 
 ZDynamicArray *ZStack_filter(ZStack *stack, bool (*testFunction)(void *value))
 {
-    // TODO
-    return NULL;
+    return ZDynamicArray_filter(stack, testFunction);
 }
 
 /*
@@ -92,22 +89,20 @@ ZDynamicArray *ZStack_filter(ZStack *stack, bool (*testFunction)(void *value))
  */
 bool ZStack_isEmpty(ZStack *stack)
 {
-    // TODO
-    return false;
+    return ZDynamicArray_isEmpty(stack);
 }
 
 size_t ZStack_getSize(ZStack *stack)
 {
-    // TODO
-    return 0;
+    return ZDynamicArray_getLength(stack);
 }
 
 void ZStack_dumpMemoryFormat(ZStack *stack, int32_t dataPerLine, char *format)
 {
-    // TODO
+    ZStack_dumpMemoryFormat(stack, dataPerLine, format);
 }
 
 void ZStack_dumpMemoryCallback(ZStack *stack, int32_t dataPerLine, void (*printFunction)(void *value))
 {
-    // TODO
+    ZStack_dumpMemoryCallback(stack, dataPerLine, printFunction);
 }

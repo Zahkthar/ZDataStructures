@@ -172,6 +172,20 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data)
 /*
  * Processing functions
  */
+
+ZDynamicArray *ZDynamicArray_cloneArray(ZDynamicArray *dynArr)
+{
+    ZDynamicArray *newArray = ZDynamicArray_create(dynArr->cloneFunction, dynArr->freeFunction);
+
+    size_t length = ZDynamicArray_getLength(dynArr);
+    for(size_t i = 0; i < length; ++i)
+    {
+        ZDynamicArray_insertBack(newArray, dynArr->cloneFunction(ZDynamicArray_getData(dynArr, i)));
+    }
+
+    return newArray;
+}
+
 void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t positionB)
 {
     // Cas d'erreur

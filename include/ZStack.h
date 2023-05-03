@@ -110,7 +110,7 @@ ZStack *ZStack_cloneStack(ZStack *stack);
  * \param     stackB      Un pointeur vers la pile B
  * \param     freeStackB  true pour libérer automatiquement la liste B, false sinon
  */
-void ZStack_pushStack(ZStack *stackA, ZStack *stackB, bool freeArrayB);
+void ZStack_pushStack(ZStack *stackA, ZStack *stackB, bool freeStackB);
 
 /**
  * \brief     Renverse la pile passé en paramètre
@@ -118,7 +118,7 @@ void ZStack_pushStack(ZStack *stackA, ZStack *stackB, bool freeArrayB);
  * 
  * \param     stack       Un pointeur vers la pile
  */
-ZStack *ZStack_reverseStack(ZStack *stack);
+void ZStack_reverseStack(ZStack *stack);
 
 
 /*
