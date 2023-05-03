@@ -193,6 +193,29 @@ Test(ZDynamicArray, setData)
     ZDynamicArray_free(dynArr);
 }
 
+Test(ZDynamicArray, cloneArray)
+{
+    ZDynamicArray *firstArray = ZDynamicArray_create(&cloneFunction, &freeFunction);
+    
+    for(size_t i = 0; i < 10; ++i)
+    {
+        int32_t *newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZDynamicArray_insertBack(firstArray, newValue);
+    }
+
+    ZDynamicArray *secondArray = ZDynamicArray_cloneArray(firstArray);
+
+    size_t length = ZDynamicArray_getLength(firstArray);
+    for(size_t i = 0; i < length; ++i)
+    {
+        cr_expect(*(int32_t*)ZDynamicArray_getData(firstArray, i) == *(int32_t*)ZDynamicArray_getData(secondArray, i), "The values are not equal");
+        cr_expect(ZDynamicArray_getData(firstArray, i) != ZDynamicArray_getData(secondArray, i), "The pointer are equals, the data is not cloned");
+    }
+
+    ZDynamicArray_free(firstArray);
+    ZDynamicArray_free(secondArray);
+}
+
 Test(ZDynamicArray, swapData)
 {
     ZDynamicArray *dynArr = ZDynamicArray_create(&cloneFunction, &freeFunction);

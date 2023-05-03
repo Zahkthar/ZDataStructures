@@ -214,6 +214,16 @@ void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data);
 /*
  * Processing functions
  */
+
+/**
+ * \brief     Clone la liste et ses données
+ * 
+ * \param     list       Un pointeur vers la liste
+ * 
+ * \return    Un \e ZSinglyLinkedList* étant la nouvelle liste contenant les données de la première ou NULL si la fonction échoue.
+ */
+ZSinglyLinkedList *ZSinglyLinkedList_cloneList(ZSinglyLinkedList *list);
+
 /**
  * \brief     Swap les data deux cellules aux positions données en paramètres
  * 

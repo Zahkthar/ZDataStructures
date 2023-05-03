@@ -173,6 +173,15 @@ void ZDynamicArray_setDataBack(ZDynamicArray *dynArr, void* data);
  */
 
 /**
+ * \brief     Clone le tableau et ses données
+ * 
+ * \param     dynArr       Un pointeur vers le tableau
+ * 
+ * \return    Un \e ZDynamicArray* étant le nouveau tableau contenant les données du premier ou NULL si la fonction échoue.
+ */
+ZDynamicArray *ZDynamicArray_cloneArray(ZDynamicArray *dynArr);
+
+/**
  * \brief     Swap les data deux cases aux positions données en paramètres
  * 
  * \param     dynArr       Un pointeur vers le tableau
@@ -188,8 +197,6 @@ void ZDynamicArray_swapData(ZDynamicArray *dynArr, size_t positionA, size_t posi
  * \param     dynArrA      Un pointeur vers le tableau A
  * \param     dynArrB      Un pointeur vers le tableau B
  * \param     freeArrayB   true pour libérer automatiquement la liste B, false sinon
- * 
- * \return    Un \e void* étant la donnée à la fin du tableau.
  */
 void ZDynamicArray_appendTwoArrays(ZDynamicArray *dynArrA, ZDynamicArray *dynArrB, bool freeArrayB);
 

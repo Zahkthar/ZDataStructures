@@ -247,6 +247,36 @@ Test(ZSinglyLinkedList, setData)
     ZSinglyLinkedList_free(list);
 }
 
+Test(ZSinglyLinkedList, cloneArray)
+{
+    ZSinglyLinkedList *firstList = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
+    
+    for(size_t i = 0; i < 10; ++i)
+    {
+        int32_t *newValue = malloc(sizeof(int32_t)); *newValue = i;
+        ZSinglyLinkedList_insertBack(firstList, newValue);
+    }
+
+    ZSinglyLinkedList *secondList = ZSinglyLinkedList_cloneList(firstList);
+
+    ZSinglyLinkedListNode *firstListCurrentNode = firstList->head;
+    ZSinglyLinkedListNode *secondListCurrentNode = secondList->head;
+
+    size_t length = ZSinglyLinkedList_getLength(firstList);
+
+    for(size_t i = 0; i < length; ++i)
+    {
+        cr_expect(*(int32_t*)firstListCurrentNode->data == *(int32_t*)secondListCurrentNode->data, "The values are not equal");
+        cr_expect(firstListCurrentNode->data != secondListCurrentNode->data, "The pointer are equals, the data is not cloned");
+
+        firstListCurrentNode = firstListCurrentNode->next;
+        secondListCurrentNode = secondListCurrentNode->next;
+    }
+
+    ZSinglyLinkedList_free(firstList);
+    ZSinglyLinkedList_free(secondList);
+}
+
 Test(ZSinglyLinkedList, swapData)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
