@@ -114,7 +114,6 @@ void ZStack_pushStack(ZStack *stackA, ZStack *stackB, bool freeStackB);
 
 /**
  * \brief     Renverse la pile passé en paramètre
- * \details   Crée une deuxième pile, ne pas oublier de libérer la première
  * 
  * \param     stack       Un pointeur vers la pile
  */

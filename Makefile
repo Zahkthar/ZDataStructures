@@ -51,13 +51,13 @@ $(TESTS_FOLDER)/bin:
 	mkdir $@
 
 dlltests:
-	copy $(LIB_LOCALISATION)\$(DLL_NAME).dll $(TESTS_FOLDER)\bin
+	cp $(LIB_LOCALISATION)/$(DLL_NAME).dll $(TESTS_FOLDER)/bin
 
 # Clean rules
 clean:
-	del /f /q obj\*.o
+	del /f /q obj/*.o
 
 mrproper: clean
-	del /f /q $(LIB_LOCALISATION)\$(DLL_NAME).dll
-	
+	del /f /q $(LIB_LOCALISATION)/$(DLL_NAME).dll
+
 .PHONY: all docs lib tests clean mrproper
