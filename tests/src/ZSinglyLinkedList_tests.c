@@ -171,28 +171,6 @@ Test(ZSinglyLinkedList, clear)
     ZSinglyLinkedList_free(list);
 }
 
-Test(ZSinglyLinkedList, getNode)
-{
-    ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-
-    // Insertion
-    int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
-    {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
-        ZSinglyLinkedList_insertBack(list, newValue);
-    }
-
-    cr_expect(ZSinglyLinkedList_getNodeFront(list) == list->head, "The node (getNodeFront) is not the right node");
-    cr_expect(ZSinglyLinkedList_getNode(list, 1) == list->head->next, "The node (getNode) is not the right node");   
-    cr_expect(ZSinglyLinkedList_getNode(list, 2) == list->head->next->next, "The node (getNode) is not the right node");   
-    cr_expect(ZSinglyLinkedList_getNode(list, 3) == list->head->next->next->next, "The node (getNode) is not the right node");   
-    cr_expect(ZSinglyLinkedList_getNode(list, 4) == list->head->next->next->next->next, "The node (getNode) is not the right node");    
-    cr_expect(ZSinglyLinkedList_getNodeBack(list) == list->tail, "The node (getNodeBack) is not the right node");
-    
-    ZSinglyLinkedList_free(list);
-}
-
 Test(ZSinglyLinkedList, getData)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);

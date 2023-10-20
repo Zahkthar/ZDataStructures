@@ -182,7 +182,7 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list)
     ZSinglyLinkedList_delete(list, list->length - 1);
 }
 
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position)
+void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position)
 {
     // Gestion des cas spéciaux
     if(position >= list->length)
@@ -192,7 +192,7 @@ ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t
 
     if(position == list->length - 1)
     {
-        return list->tail;
+        return list->tail->data;
     }
 
     ZSinglyLinkedListNode *currentNode = list->head;
@@ -201,23 +201,6 @@ ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t
     {
         currentNode = currentNode->next;
     }
-
-    return currentNode;
-}
-
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list)
-{
-    return ZSinglyLinkedList_getNode(list, 0);
-}
-
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list)
-{
-    return ZSinglyLinkedList_getNode(list, list->length - 1);
-}
-
-void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position)
-{
-    ZSinglyLinkedListNode *currentNode = ZSinglyLinkedList_getNode(list, position);
     
     if(currentNode != NULL)
     {
@@ -241,8 +224,26 @@ void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list)
 
 void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* data)
 {
-    ZSinglyLinkedListNode *node = ZSinglyLinkedList_getNode(list, position);
+    // Gestion des cas spéciaux
+    if(position >= list->length)
+    {
+        return;
+    }
 
+    ZSinglyLinkedListNode *node = list->head;
+
+    if(position == list->length - 1)
+    {
+        node = list->tail;
+    }
+    else
+    {
+        for(size_t i = 0; i < position; ++i)
+        {
+            node = node->next;
+        }
+    }
+    
     if(node == NULL) // Liste vide ou position invalide
     {
         return;

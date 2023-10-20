@@ -128,34 +128,6 @@ void ZSinglyLinkedList_deleteFront(ZSinglyLinkedList *list);
 void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list);
 
 /**
- * \brief     Renvoie la cellule à la position \e position
- * 
- * \param     list         Un pointeur vers la liste
- * \param     position     La position de la cellule à récupérer
- * 
- * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée
- */
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNode(ZSinglyLinkedList *list, size_t position);
-
-/**
- * \brief     Renvoie la première cellule de la liste
- * 
- * \param     list         Un pointeur vers la liste
- * 
- * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
- */
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeFront(ZSinglyLinkedList *list);
-
-/**
- * \brief     Renvoie la dernière cellule de la liste
- * 
- * \param     list         Un pointeur vers la liste
- * 
- * \return    Un \e ZSinglyLinkedListNode* étant la cellule recherchée ou NULL si la liste est vide
- */
-ZSinglyLinkedListNode *ZSinglyLinkedList_getNodeBack(ZSinglyLinkedList *list);
-
-/**
  * \brief     Renvoie un élement de la liste à une position passée en paramètre
  * 
  * \param     list         Un pointeur vers la liste
