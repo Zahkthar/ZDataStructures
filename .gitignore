@@ -1,14 +1,13 @@
 .vscode
 
+build/library/*.a
+build/library/*.dll
+
+build/tests/*.a
+build/tests/*.exe
+
 docs
 
-ZDS.cppcheck
-ZDS-cppcheck-build-dir
+zdatastructures/obj/*.o
 
-obj/*.o
-
-tests/bin/*.exe
-
-lib/ZDataStructures.dll
-lib/ZDataStructures.dll.a
-tests/bin/ZDataStructures.dll
+ZDS-cppcheck-build-dir/
