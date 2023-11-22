@@ -42,7 +42,7 @@ lib: $(LIBRARY_OBJS)
 	-Wl,--out-implib=$(LIBRARY_BUILD_FOLDER)/$(LIBRARY_NAME).dll.a \
 	-Wl,--export-all-symbols \
 	-Wl,--enable-auto-import \
-	$(OBJS) -L $(LIBRARY_BUILD_FOLDER) $(LIBRARY_LINKER_FLAGS)
+	$(LIBRARY_OBJS) -L $(LIBRARY_BUILD_FOLDER) $(LIBRARY_LINKER_FLAGS)
 	
 	$(LD) -relocatable $(LIBRARY_OBJS) -o $(LIBRARY_BUILD_FOLDER)/libzdatastructures.a
 
