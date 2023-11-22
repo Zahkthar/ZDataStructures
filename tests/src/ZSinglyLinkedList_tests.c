@@ -410,27 +410,14 @@ Test(ZSinglyLinkedList, searchFirstOccurence)
     }
 
     int32_t *data = malloc(sizeof(int32_t));
-    *data = 0;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 0, "The data is not at the good position");
-    *data = 1;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 1, "The data is not at the good position");
-    *data = 2;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 2, "The data is not at the good position");
-    *data = 3;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 3, "The data is not at the good position");
-    *data = 4;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 4, "The data is not at the good position");
-    *data = 5;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 5, "The data is not at the good position");
-    *data = 6;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 6, "The data is not at the good position");
-    *data = 7;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 7, "The data is not at the good position");
-    *data = 8;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 8, "The data is not at the good position");
-    *data = 9;
-    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 9, "The data is not at the good position");
 
+    for (int32_t i = 0; i < 10; ++i)
+    {
+        *data = i;
+        cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == (size_t)i, "The data is not at the good position");
+    }
+
+    free(data);
     ZSinglyLinkedList_free(list);
 }
 
