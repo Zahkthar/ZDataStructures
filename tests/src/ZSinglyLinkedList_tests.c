@@ -8,7 +8,7 @@
 void *cloneFunction(void *value)
 {
     int32_t *clone = malloc(sizeof(int32_t));
-    *clone = *(int32_t*)value;
+    *clone = *(int32_t *)value;
     return clone;
 }
 
@@ -19,7 +19,7 @@ void freeFunction(void *value)
 
 bool equalsFunction(void *valueA, void *valueB)
 {
-    return *(int32_t*)valueA == *(int32_t*)valueB;
+    return *(int32_t *)valueA == *(int32_t *)valueB;
 }
 
 Test(ZSinglyLinkedList, create)
@@ -44,15 +44,18 @@ Test(ZSinglyLinkedList, compareWithArray)
 
     // Insertion dans la liste et dans le tableau
     int32_t *newValueList = NULL;
-    
+
     int32_t *newValueEqualsArray = NULL;
     int32_t *newValueDifferentArray = NULL;
-    
-    for(size_t i = 0; i < 10; ++i)
+
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
-        newValueEqualsArray = malloc(sizeof(int32_t)); *newValueEqualsArray = i;
-        newValueDifferentArray = malloc(sizeof(int32_t)); *newValueDifferentArray = i + 1;
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i;
+        newValueEqualsArray = malloc(sizeof(int32_t));
+        *newValueEqualsArray = i;
+        newValueDifferentArray = malloc(sizeof(int32_t));
+        *newValueDifferentArray = i + 1;
 
         ZSinglyLinkedList_insertBack(list, newValueList);
         equalArray[i] = newValueEqualsArray;
@@ -64,53 +67,63 @@ Test(ZSinglyLinkedList, compareWithArray)
     cr_expect(ZSinglyLinkedList_compareWithArray(list, differentArray, 10, &equalsFunction) == false);
 
     // Libération
-    for(size_t i = 0; i < 10; ++i) { free(equalArray[i]); free(differentArray[i]); }
+    for (size_t i = 0; i < 10; ++i)
+    {
+        free(equalArray[i]);
+        free(differentArray[i]);
+    }
     ZSinglyLinkedList_free(list);
 }
 
 Test(ZSinglyLinkedList, insert)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    
+
     // Insertion dans une liste vide
-    int32_t *newValue = malloc(sizeof(int32_t)); *newValue = 1;
+    int32_t *newValue = malloc(sizeof(int32_t));
+    *newValue = 1;
     ZSinglyLinkedList_insert(list, 0, newValue);
 
-    cr_expect(*(int32_t*)(list->head->data) == *newValue);
+    cr_expect(*(int32_t *)(list->head->data) == *newValue);
     cr_expect(list->head->next == NULL);
     cr_expect(list->head == list->tail);
 
     // insertFront
-    newValue = malloc(sizeof(int32_t)); *newValue = 2;
+    newValue = malloc(sizeof(int32_t));
+    *newValue = 2;
     ZSinglyLinkedList_insertFront(list, newValue);
 
-    cr_expect(*(int32_t*)(list->head->data) == *newValue);
-    cr_expect(*(int32_t*)(list->head->next->data) == 1);
+    cr_expect(*(int32_t *)(list->head->data) == *newValue);
+    cr_expect(*(int32_t *)(list->head->next->data) == 1);
     cr_expect(list->head->next == list->tail);
 
     // insertBack
-    newValue = malloc(sizeof(int32_t)); *newValue = 3;
+    newValue = malloc(sizeof(int32_t));
+    *newValue = 3;
     ZSinglyLinkedList_insertBack(list, newValue);
-    
-    cr_expect(*(int32_t*)(list->tail->data) == *newValue);
+
+    cr_expect(*(int32_t *)(list->tail->data) == *newValue);
     cr_expect(list->head->next->next == list->tail);
-    
+
     ZSinglyLinkedList_free(list);
 }
 
 Test(ZSinglyLinkedList, delete)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 10;
+    void *compareArray[10];
+    size_t arraySize = 10;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
-        newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t));
+        *newValueArray = i;
         ZSinglyLinkedList_insertBack(list, newValueList);
         compareArray[i] = newValueArray;
     }
@@ -119,34 +132,46 @@ Test(ZSinglyLinkedList, delete)
 
     // deleteFront
     ZSinglyLinkedList_deleteFront(list);
-    free(compareArray[0]); memmove(compareArray, compareArray + 1, (arraySize - 1) * sizeof(void*)); arraySize--;
+    free(compareArray[0]);
+    memmove(compareArray, compareArray + 1, (arraySize - 1) * sizeof(void *));
+    arraySize--;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true);
     cr_expect(list->length == 9);
 
     // deleteBack
     ZSinglyLinkedList_deleteBack(list);
-    free(compareArray[arraySize - 1]); arraySize--;
+    free(compareArray[arraySize - 1]);
+    arraySize--;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true);
     cr_expect(list->length == 8);
-    
+
     // delete
     ZSinglyLinkedList_delete(list, 2);
-    free(compareArray[2]); memmove(compareArray + 2, compareArray + 3, (arraySize - 1) * sizeof(void*)); arraySize--;
+    free(compareArray[2]);
+    memmove(compareArray + 2, compareArray + 3, (arraySize - 1) * sizeof(void *));
+    arraySize--;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true);
     cr_expect(list->length == 7);
 
     ZSinglyLinkedList_delete(list, 3);
-    free(compareArray[3]); memmove(compareArray + 3, compareArray + 4, (arraySize - 1) * sizeof(void*)); arraySize--;
+    free(compareArray[3]);
+    memmove(compareArray + 3, compareArray + 4, (arraySize - 1) * sizeof(void *));
+    arraySize--;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true);
     cr_expect(list->length == 6);
 
     ZSinglyLinkedList_delete(list, 1);
-    free(compareArray[1]); memmove(compareArray + 1, compareArray + 2, (arraySize - 1) * sizeof(void*)); arraySize--;
+    free(compareArray[1]);
+    memmove(compareArray + 1, compareArray + 2, (arraySize - 1) * sizeof(void *));
+    arraySize--;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true);
     cr_expect(list->length == 5);
 
     // Libération
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(list);
 }
 
@@ -156,9 +181,10 @@ Test(ZSinglyLinkedList, clear)
 
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(list, newValue);
     }
 
@@ -174,12 +200,13 @@ Test(ZSinglyLinkedList, clear)
 Test(ZSinglyLinkedList, getData)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    
+
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(list, newValue);
     }
 
@@ -199,12 +226,12 @@ Test(ZSinglyLinkedList, setData)
 
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(list, newValue);
     }
-
 
     cr_expect(list->head->data != NULL, "The data at the head must not be NULL");
     ZSinglyLinkedList_setDataFront(list, NULL);
@@ -228,10 +255,11 @@ Test(ZSinglyLinkedList, setData)
 Test(ZSinglyLinkedList, cloneArray)
 {
     ZSinglyLinkedList *firstList = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    
-    for(size_t i = 0; i < 10; ++i)
+
+    for (size_t i = 0; i < 10; ++i)
     {
-        int32_t *newValue = malloc(sizeof(int32_t)); *newValue = i;
+        int32_t *newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(firstList, newValue);
     }
 
@@ -242,9 +270,9 @@ Test(ZSinglyLinkedList, cloneArray)
 
     size_t length = ZSinglyLinkedList_getLength(firstList);
 
-    for(size_t i = 0; i < length; ++i)
+    for (size_t i = 0; i < length; ++i)
     {
-        cr_expect(*(int32_t*)firstListCurrentNode->data == *(int32_t*)secondListCurrentNode->data, "The values are not equal");
+        cr_expect(*(int32_t *)firstListCurrentNode->data == *(int32_t *)secondListCurrentNode->data, "The values are not equal");
         cr_expect(firstListCurrentNode->data != secondListCurrentNode->data, "The pointer are equals, the data is not cloned");
 
         firstListCurrentNode = firstListCurrentNode->next;
@@ -258,30 +286,40 @@ Test(ZSinglyLinkedList, cloneArray)
 Test(ZSinglyLinkedList, swapData)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 10;
+    void *compareArray[10];
+    size_t arraySize = 10;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
-        newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t));
+        *newValueArray = i;
         ZSinglyLinkedList_insertBack(list, newValueList);
         compareArray[i] = newValueArray;
     }
 
     // Test
     ZSinglyLinkedList_swapData(list, 1, 2);
-    void *tmp = compareArray[1]; compareArray[1] = compareArray[2]; compareArray[2] = tmp;
+    void *tmp = compareArray[1];
+    compareArray[1] = compareArray[2];
+    compareArray[2] = tmp;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true, "The values are not swapped");
 
     ZSinglyLinkedList_swapData(list, 4, 7);
-    tmp = compareArray[4]; compareArray[4] = compareArray[7]; compareArray[7] = tmp;
+    tmp = compareArray[4];
+    compareArray[4] = compareArray[7];
+    compareArray[7] = tmp;
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true, "The values are not swapped");
 
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(list);
 }
 
@@ -289,19 +327,28 @@ Test(ZSinglyLinkedList, appendTwoLists)
 {
     ZSinglyLinkedList *list1 = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
     ZSinglyLinkedList *list2 = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 10;
+    void *compareArray[10];
+    size_t arraySize = 10;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
-        newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t));
+        *newValueArray = i;
 
-        if(i < 5) { ZSinglyLinkedList_insertBack(list1, newValueList); }
-        else { ZSinglyLinkedList_insertBack(list2, newValueList); }
+        if (i < 5)
+        {
+            ZSinglyLinkedList_insertBack(list1, newValueList);
+        }
+        else
+        {
+            ZSinglyLinkedList_insertBack(list2, newValueList);
+        }
 
         compareArray[i] = newValueArray;
     }
@@ -310,7 +357,10 @@ Test(ZSinglyLinkedList, appendTwoLists)
     ZSinglyLinkedList_appendTwoLists(list1, list2);
     cr_expect(ZSinglyLinkedList_compareWithArray(list1, compareArray, arraySize, &equalsFunction) == true, "The list is not append");
 
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(list1);
     ZSinglyLinkedList_free(list2);
 }
@@ -318,16 +368,19 @@ Test(ZSinglyLinkedList, appendTwoLists)
 Test(ZSinglyLinkedList, reverseList)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 10;
+    void *compareArray[10];
+    size_t arraySize = 10;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
-        newValueArray = malloc(sizeof(int32_t)); *newValueArray = 9 - i;
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i;
+        newValueArray = malloc(sizeof(int32_t));
+        *newValueArray = 9 - i;
         ZSinglyLinkedList_insertBack(list, newValueList);
         compareArray[i] = newValueArray;
     }
@@ -336,7 +389,10 @@ Test(ZSinglyLinkedList, reverseList)
     ZSinglyLinkedList_reverseList(list);
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction) == true, "the list is not reversed");
 
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(list);
 }
 
@@ -346,23 +402,34 @@ Test(ZSinglyLinkedList, searchFirstOccurence)
 
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(list, newValue);
     }
 
     int32_t *data = malloc(sizeof(int32_t));
-    *data = 0; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 0, "The data is not at the good position");
-    *data = 1; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 1, "The data is not at the good position");
-    *data = 2; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 2, "The data is not at the good position");
-    *data = 3; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 3, "The data is not at the good position");
-    *data = 4; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 4, "The data is not at the good position");
-    *data = 5; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 5, "The data is not at the good position");
-    *data = 6; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 6, "The data is not at the good position");
-    *data = 7; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 7, "The data is not at the good position");
-    *data = 8; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 8, "The data is not at the good position");
-    *data = 9; cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 9, "The data is not at the good position");
+    *data = 0;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 0, "The data is not at the good position");
+    *data = 1;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 1, "The data is not at the good position");
+    *data = 2;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 2, "The data is not at the good position");
+    *data = 3;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 3, "The data is not at the good position");
+    *data = 4;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 4, "The data is not at the good position");
+    *data = 5;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 5, "The data is not at the good position");
+    *data = 6;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 6, "The data is not at the good position");
+    *data = 7;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 7, "The data is not at the good position");
+    *data = 8;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 8, "The data is not at the good position");
+    *data = 9;
+    cr_expect(ZSinglyLinkedList_searchFirstOccurence(list, data, &equalsFunction) == 9, "The data is not at the good position");
 
     ZSinglyLinkedList_free(list);
 }
@@ -370,26 +437,39 @@ Test(ZSinglyLinkedList, searchFirstOccurence)
 Test(ZSinglyLinkedList, searchPositions)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 0;
+    void *compareArray[10];
+    size_t arraySize = 0;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i) {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i % 2;
+    for (size_t i = 0; i < 10; ++i)
+    {
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i % 2;
         ZSinglyLinkedList_insertBack(list, newValueList);
 
-        if(i % 2 == 1) { newValueArray = malloc(sizeof(int32_t)); *newValueArray = i; compareArray[arraySize] = newValueArray; arraySize++; }
+        if (i % 2 == 1)
+        {
+            newValueArray = malloc(sizeof(int32_t));
+            *newValueArray = i;
+            compareArray[arraySize] = newValueArray;
+            arraySize++;
+        }
     }
 
-    int32_t* data = malloc(sizeof(int32_t)); *data = 1;
+    int32_t *data = malloc(sizeof(int32_t));
+    *data = 1;
     ZSinglyLinkedList *occurenceList = ZSinglyLinkedList_searchPositions(list, data, &equalsFunction);
-    
+
     cr_expect(ZSinglyLinkedList_compareWithArray(occurenceList, compareArray, arraySize, &equalsFunction) == true, "Les positions ne sont pas correctes");
 
     // Libération
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(occurenceList);
     ZSinglyLinkedList_free(list);
 }
@@ -400,13 +480,15 @@ Test(ZSinglyLinkedList, countOccurrences)
 
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = 4;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = 4;
         ZSinglyLinkedList_insertBack(list, newValue);
     }
 
-    int32_t *data = malloc(sizeof(int32_t)); *data = 4;
+    int32_t *data = malloc(sizeof(int32_t));
+    *data = 4;
     cr_expect(ZSinglyLinkedList_countOccurrences(list, data, &equalsFunction) == 10, "The occurence count is not correct");
 
     ZSinglyLinkedList_free(list);
@@ -414,26 +496,31 @@ Test(ZSinglyLinkedList, countOccurrences)
 
 static bool compareFunctionFilter(void *valueA)
 {
-    return *(int32_t*)valueA >= 5;
+    return *(int32_t *)valueA >= 5;
 }
 
 Test(ZSinglyLinkedList, filter)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 0;
+    void *compareArray[10];
+    size_t arraySize = 0;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i) {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = i;
+    for (size_t i = 0; i < 10; ++i)
+    {
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = i;
         ZSinglyLinkedList_insertBack(list, newValueList);
 
-        if(i >= 5)
+        if (i >= 5)
         {
-            newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
-            compareArray[arraySize] = newValueArray; arraySize++;
+            newValueArray = malloc(sizeof(int32_t));
+            *newValueArray = i;
+            compareArray[arraySize] = newValueArray;
+            arraySize++;
         }
     }
 
@@ -442,28 +529,34 @@ Test(ZSinglyLinkedList, filter)
     cr_expect(ZSinglyLinkedList_compareWithArray(filteredList, compareArray, arraySize, &equalsFunction) == true);
 
     // Libération
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(list);
 }
 
 static bool compareFunctionSort(void *valueA, void *valueB)
 {
-    return *(int32_t*)valueA > *(int32_t*)valueB;
+    return *(int32_t *)valueA > *(int32_t *)valueB;
 }
 
 Test(ZSinglyLinkedList, BubbleSort)
 {
     ZSinglyLinkedList *list = ZSinglyLinkedList_create(&cloneFunction, &freeFunction);
-    void *compareArray[10]; size_t arraySize = 10;
+    void *compareArray[10];
+    size_t arraySize = 10;
 
     // Insertion
     int32_t *newValueList = NULL;
     int32_t *newValueArray = NULL;
 
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValueList = malloc(sizeof(int32_t)); *newValueList = 9 - i;
-        newValueArray = malloc(sizeof(int32_t)); *newValueArray = i;
+        newValueList = malloc(sizeof(int32_t));
+        *newValueList = 9 - i;
+        newValueArray = malloc(sizeof(int32_t));
+        *newValueArray = i;
         ZSinglyLinkedList_insertBack(list, newValueList);
         compareArray[i] = newValueArray;
     }
@@ -473,7 +566,10 @@ Test(ZSinglyLinkedList, BubbleSort)
     cr_expect(ZSinglyLinkedList_compareWithArray(list, compareArray, arraySize, &equalsFunction));
 
     // Libération
-    for(size_t i = 0; i < arraySize; ++i) { free(compareArray[i]); }
+    for (size_t i = 0; i < arraySize; ++i)
+    {
+        free(compareArray[i]);
+    }
     ZSinglyLinkedList_free(list);
 }
 
@@ -483,15 +579,16 @@ Test(ZSinglyLinkedList, isCircular)
 
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(list, newValue);
     }
     cr_expect(ZSinglyLinkedList_isCircular(list) == false, "La liste n'est pas circulaire");
-    
+
     list->tail->next = list->head; // insertBack insèrerais la liste en tant que data et non en tant que noeud
-    
+
     cr_expect(ZSinglyLinkedList_isCircular(list) == true, "La liste est circulaire");
 
     ZSinglyLinkedList_free(list);
@@ -503,7 +600,8 @@ Test(ZSinglyLinkedList, isEmpty)
 
     cr_expect(ZSinglyLinkedList_isEmpty(list) == true, "La liste est vide");
 
-    int32_t *newValue = malloc(sizeof(int32_t)); *newValue = 10;
+    int32_t *newValue = malloc(sizeof(int32_t));
+    *newValue = 10;
     ZSinglyLinkedList_insertBack(list, newValue);
 
     cr_expect(ZSinglyLinkedList_isEmpty(list) == false, "La liste n'est pas vide");
@@ -517,9 +615,10 @@ Test(ZSinglyLinkedList, getLength)
 
     // Insertion
     int32_t *newValue = NULL;
-    for(size_t i = 0; i < 10; ++i)
+    for (size_t i = 0; i < 10; ++i)
     {
-        newValue = malloc(sizeof(int32_t)); *newValue = i;
+        newValue = malloc(sizeof(int32_t));
+        *newValue = i;
         ZSinglyLinkedList_insertBack(list, newValue);
 
         cr_expect(ZSinglyLinkedList_getLength(list) == i + 1, "The size is wrong");

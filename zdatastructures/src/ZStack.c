@@ -3,7 +3,7 @@
 /*
  * Allocation, free and clear
  */
-ZStack *ZStack_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
+ZStack *ZStack_create(void *(*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
     return ZDynamicArray_create(cloneFunction, freeFunction);
 }

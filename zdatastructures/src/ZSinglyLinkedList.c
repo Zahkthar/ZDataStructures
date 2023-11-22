@@ -7,16 +7,16 @@
 /*
  * Allocation, free and clear
  */
-ZSinglyLinkedList *ZSinglyLinkedList_create(void* (*cloneFunction)(void *data), void (*freeFunction)(void *data))
+ZSinglyLinkedList *ZSinglyLinkedList_create(void *(*cloneFunction)(void *data), void (*freeFunction)(void *data))
 {
-    if(cloneFunction == NULL || freeFunction == NULL)
+    if (cloneFunction == NULL || freeFunction == NULL)
     {
         return NULL;
     }
 
     ZSinglyLinkedList *newList = malloc(sizeof(ZSinglyLinkedList));
 
-    if(newList == NULL)
+    if (newList == NULL)
     {
         return NULL;
     }
@@ -38,10 +38,11 @@ void ZSinglyLinkedList_free(ZSinglyLinkedList *list)
     free(list);
 }
 
-void ZSinglyLinkedList_clear(ZSinglyLinkedList *list) {
-    if(ZSinglyLinkedList_isCircular(list) == false)
+void ZSinglyLinkedList_clear(ZSinglyLinkedList *list)
+{
+    if (ZSinglyLinkedList_isCircular(list) == false)
     {
-        while(list->head != NULL)
+        while (list->head != NULL)
         {
             ZSinglyLinkedList_deleteFront(list);
         }
@@ -50,9 +51,9 @@ void ZSinglyLinkedList_clear(ZSinglyLinkedList *list) {
     {
         ZSinglyLinkedListNode *tmp;
         ZSinglyLinkedListNode *current = list->head->next;
-        
+
         // Destruction du 2ème jusqu'au premier en parcourant la liste
-        while(current != list->head)
+        while (current != list->head)
         {
             tmp = current->next;
             list->freeFunction(current->data);
@@ -73,7 +74,7 @@ void ZSinglyLinkedList_clear(ZSinglyLinkedList *list) {
 void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *data)
 {
     // Gestion des cas spéciaux
-    if(position > list->length)
+    if (position > list->length)
     {
         return;
     }
@@ -81,7 +82,7 @@ void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *da
     ZSinglyLinkedListNode *newNode = malloc(sizeof(ZSinglyLinkedListNode));
     newNode->data = data;
 
-    if(list->length == 0) // Si la liste est vide
+    if (list->length == 0) // Si la liste est vide
     {
         list->head = newNode;
         list->tail = newNode;
@@ -89,12 +90,12 @@ void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *da
     }
     else
     {
-        if(position == 0) // Insertion en début de liste
+        if (position == 0) // Insertion en début de liste
         {
             newNode->next = list->head;
             list->head = newNode;
         }
-        else if(position == list->length) // Insertion en fin de liste
+        else if (position == list->length) // Insertion en fin de liste
         {
             list->tail->next = newNode;
             list->tail = newNode;
@@ -104,7 +105,7 @@ void ZSinglyLinkedList_insert(ZSinglyLinkedList *list, size_t position, void *da
         {
             ZSinglyLinkedListNode *currentNode = list->head;
 
-            for(size_t i = 0; i < position - 1; ++i)
+            for (size_t i = 0; i < position - 1; ++i)
             {
                 currentNode = currentNode->next;
             }
@@ -130,22 +131,22 @@ void ZSinglyLinkedList_insertBack(ZSinglyLinkedList *list, void *data)
 void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
 {
     // Gestion des cas spéciaux
-    if(list->length == 0 || position >= list->length)
+    if (list->length == 0 || position >= list->length)
     {
         return;
     }
 
     ZSinglyLinkedListNode *currentNode = list->head;
-    
-    if(position == 0) // Le premier élément de la liste
+
+    if (position == 0) // Le premier élément de la liste
     {
-        if(list->head != NULL)
+        if (list->head != NULL)
         {
             list->head = list->head->next;
             list->freeFunction(currentNode->data);
             free(currentNode);
 
-            if(list->length == 1)
+            if (list->length == 1)
             {
                 list->tail = NULL;
             }
@@ -153,7 +154,7 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
     }
     else // Dans la liste
     {
-        for(size_t i = 0; i < position - 1; ++i)
+        for (size_t i = 0; i < position - 1; ++i)
         {
             currentNode = currentNode->next;
         }
@@ -163,12 +164,12 @@ void ZSinglyLinkedList_delete(ZSinglyLinkedList *list, size_t position)
         list->freeFunction(del->data);
         free(del);
 
-        if(position == list->length - 1)
+        if (position == list->length - 1)
         {
             list->tail = currentNode;
         }
     }
-    
+
     list->length -= 1;
 }
 
@@ -185,24 +186,24 @@ void ZSinglyLinkedList_deleteBack(ZSinglyLinkedList *list)
 void *ZSinglyLinkedList_getData(ZSinglyLinkedList *list, size_t position)
 {
     // Gestion des cas spéciaux
-    if(position >= list->length)
+    if (position >= list->length)
     {
         return NULL;
     }
 
-    if(position == list->length - 1)
+    if (position == list->length - 1)
     {
         return list->tail->data;
     }
 
     ZSinglyLinkedListNode *currentNode = list->head;
-    
-    for(size_t i = 0; i < position; ++i)
+
+    for (size_t i = 0; i < position; ++i)
     {
         currentNode = currentNode->next;
     }
-    
-    if(currentNode != NULL)
+
+    if (currentNode != NULL)
     {
         return currentNode->data;
     }
@@ -222,29 +223,29 @@ void *ZSinglyLinkedList_getDataBack(ZSinglyLinkedList *list)
     return ZSinglyLinkedList_getData(list, list->length - 1);
 }
 
-void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* data)
+void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void *data)
 {
     // Gestion des cas spéciaux
-    if(position >= list->length)
+    if (position >= list->length)
     {
         return;
     }
 
     ZSinglyLinkedListNode *node = list->head;
 
-    if(position == list->length - 1)
+    if (position == list->length - 1)
     {
         node = list->tail;
     }
     else
     {
-        for(size_t i = 0; i < position; ++i)
+        for (size_t i = 0; i < position; ++i)
         {
             node = node->next;
         }
     }
-    
-    if(node == NULL) // Liste vide ou position invalide
+
+    if (node == NULL) // Liste vide ou position invalide
     {
         return;
     }
@@ -253,12 +254,12 @@ void ZSinglyLinkedList_setData(ZSinglyLinkedList *list, size_t position, void* d
     node->data = data;
 }
 
-void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void* data)
+void ZSinglyLinkedList_setDataFront(ZSinglyLinkedList *list, void *data)
 {
     ZSinglyLinkedList_setData(list, 0, data);
 }
 
-void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void* data)
+void ZSinglyLinkedList_setDataBack(ZSinglyLinkedList *list, void *data)
 {
     ZSinglyLinkedList_setData(list, list->length - 1, data);
 }
@@ -273,7 +274,7 @@ ZSinglyLinkedList *ZSinglyLinkedList_cloneList(ZSinglyLinkedList *list)
     ZSinglyLinkedListNode *currentNode = list->head;
     size_t length = ZSinglyLinkedList_getLength(list);
 
-    for(size_t i = 0; i < length; ++i)
+    for (size_t i = 0; i < length; ++i)
     {
         ZSinglyLinkedList_insertBack(newList, list->cloneFunction(currentNode->data));
 
@@ -283,9 +284,10 @@ ZSinglyLinkedList *ZSinglyLinkedList_cloneList(ZSinglyLinkedList *list)
     return newList;
 }
 
-void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_t positionB) {
+void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_t positionB)
+{
     // Gestion des cas spéciaux
-    if(positionA >= list->length || positionB >= list->length || positionA == positionB)
+    if (positionA >= list->length || positionB >= list->length || positionA == positionB)
     {
         return;
     }
@@ -295,14 +297,14 @@ void ZSinglyLinkedList_swapData(ZSinglyLinkedList *list, size_t positionA, size_
 
     ZSinglyLinkedListNode *currentNode = list->head;
 
-    for(size_t i = 0; i < nearestPosition; ++i)
+    for (size_t i = 0; i < nearestPosition; ++i)
     {
         currentNode = currentNode->next;
     }
 
     ZSinglyLinkedListNode *nearestNode = currentNode;
 
-    for(size_t i = 0; i < delta; ++i)
+    for (size_t i = 0; i < delta; ++i)
     {
         currentNode = currentNode->next;
     }
@@ -325,7 +327,7 @@ void ZSinglyLinkedList_appendTwoLists(ZSinglyLinkedList *listA, ZSinglyLinkedLis
 void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list)
 {
     // Gestion des cas spéciaux
-    if(list->length == 0)
+    if (list->length == 0)
     {
         return;
     }
@@ -335,7 +337,7 @@ void ZSinglyLinkedList_reverseList(ZSinglyLinkedList *list)
     ZSinglyLinkedListNode *previousNode = NULL;
     ZSinglyLinkedListNode *currentNode = list->head;
     ZSinglyLinkedListNode *nextNode;
- 
+
     while (currentNode != NULL)
     {
         nextNode = currentNode->next;
@@ -354,13 +356,13 @@ size_t ZSinglyLinkedList_searchFirstOccurence(ZSinglyLinkedList *list, void *dat
 {
     ZSinglyLinkedListNode *currentNode = list->head;
 
-    for(size_t i = 0; i < list->length; ++i)
+    for (size_t i = 0; i < list->length; ++i)
     {
-        if(testFunction(data, currentNode->data) == true)
+        if (testFunction(data, currentNode->data) == true)
         {
             return i;
         }
-        
+
         currentNode = currentNode->next;
     }
 
@@ -371,16 +373,16 @@ ZSinglyLinkedList *ZSinglyLinkedList_searchPositions(ZSinglyLinkedList *list, vo
 {
     ZSinglyLinkedList *positions = ZSinglyLinkedList_create(list->cloneFunction, list->freeFunction);
 
-    if(positions == NULL)
+    if (positions == NULL)
     {
         return NULL;
     }
 
     ZSinglyLinkedListNode *currentNode = list->head;
 
-    for(size_t i = 0; i < list->length; ++i)
+    for (size_t i = 0; i < list->length; ++i)
     {
-        if(testFunction(data, currentNode->data) == true)
+        if (testFunction(data, currentNode->data) == true)
         {
             size_t *currentPosition = malloc(sizeof(size_t));
             *currentPosition = i;
@@ -399,9 +401,9 @@ size_t ZSinglyLinkedList_countOccurrences(ZSinglyLinkedList *list, void *data, b
 
     size_t occurences = 0;
 
-    while(currentNode != NULL)
+    while (currentNode != NULL)
     {
-        if(testFunction(data, currentNode->data) == true)
+        if (testFunction(data, currentNode->data) == true)
         {
             occurences++;
         }
@@ -415,16 +417,16 @@ ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*test
 {
     ZSinglyLinkedList *returnList = ZSinglyLinkedList_create(list->cloneFunction, list->freeFunction);
 
-    if(returnList == NULL)
+    if (returnList == NULL)
     {
         return NULL;
     }
 
     ZSinglyLinkedListNode *currentNode = list->head;
 
-    while(currentNode != NULL)
+    while (currentNode != NULL)
     {
-        if(testFunction(currentNode->data) == true)
+        if (testFunction(currentNode->data) == true)
         {
             void *copyData = list->cloneFunction(currentNode->data);
             ZSinglyLinkedList_insertBack(returnList, copyData);
@@ -441,30 +443,30 @@ ZSinglyLinkedList *ZSinglyLinkedList_filter(ZSinglyLinkedList *list, bool (*test
 void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunction)(void *valueA, void *valueB))
 {
     // Si la liste est vide, on s'arrête
-    if(list->length == 0)
+    if (list->length == 0)
     {
         return;
     }
-    
+
     ZSinglyLinkedListNode *lastNodeToCheck = NULL;
-    
+
     // Commencement du tri
-    while(true)
+    while (true)
     {
         bool isSorted = true;
         ZSinglyLinkedListNode *currentNode = list->head;
-        
+
         // On parcours la liste du début à la fin
-        while(currentNode->next != lastNodeToCheck)
+        while (currentNode->next != lastNodeToCheck)
         {
             // Si currentData > nextData
-            if(compareFunction(currentNode->data, currentNode->next->data) == true)
+            if (compareFunction(currentNode->data, currentNode->next->data) == true)
             {
                 // On swap les data
                 void *tmpData = currentNode->data;
                 currentNode->data = currentNode->next->data;
                 currentNode->next->data = tmpData;
-                
+
                 // La liste n'est pas trié
                 isSorted = false;
             }
@@ -474,7 +476,7 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
         // La valeur la plus grande a forcément été poussée tout à la fin de la liste, ce qui réduit la liste à parcourir
         lastNodeToCheck = currentNode;
         // Si la liste est déjà triée, ne pas faire toutes les passes restantes
-        if(isSorted == true)
+        if (isSorted == true)
         {
             break;
         }
@@ -486,7 +488,7 @@ void ZSinglyLinkedList_BubbleSort(ZSinglyLinkedList *list, bool (*compareFunctio
  */
 bool ZSinglyLinkedList_isCircular(ZSinglyLinkedList *list)
 {
-    if(list == NULL || list->head == NULL)
+    if (list == NULL || list->head == NULL)
     {
         return false;
     }
@@ -494,12 +496,12 @@ bool ZSinglyLinkedList_isCircular(ZSinglyLinkedList *list)
     ZSinglyLinkedListNode *slow = list->head;
     ZSinglyLinkedListNode *fast = list->head;
 
-    while(fast != NULL && fast->next != NULL)
+    while (fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
 
-        if(slow == fast)
+        if (slow == fast)
         {
             return true;
         }
@@ -522,9 +524,9 @@ bool ZSinglyLinkedList_compareWithArray(ZSinglyLinkedList *list, void **array, s
 {
     ZSinglyLinkedListNode *currentNode = list->head;
 
-    for(size_t i = 0; i < arraySize; ++i)
+    for (size_t i = 0; i < arraySize; ++i)
     {
-        if(equalsFunction(currentNode->data, array[i]) == false)
+        if (equalsFunction(currentNode->data, array[i]) == false)
         {
             return false;
         }
@@ -539,53 +541,53 @@ void ZSinglyLinkedList_dumpMemoryFormat(ZSinglyLinkedList *list, int32_t dataPer
     ZSinglyLinkedListNode *currentNode = list->head;
     size_t currentPosition = 0;
 
-    while(currentNode != NULL)
+    while (currentNode != NULL)
     {
         switch (format[0])
         {
-            case 'p':
-                printf("%p ", currentNode->data);
-                break;
-            case 'd':
-                printf("%d ", *(int32_t*)currentNode->data);
-                break;
-            case 'u':
-                printf("%u ", *(uint32_t*)currentNode->data);
-                break;
-            case 'o':
-                printf("%o ", *(int32_t*)currentNode->data);
-                break;
-            case 'x':
-                printf("%x ", *(int32_t*)currentNode->data);
-                break;
-            case 'c':
-                printf("%c ", *(char*)currentNode->data);
-                break;
-            case 's':
-                printf("%s ", *(char**)currentNode->data);
-                break;
-            case 'f':
-                printf("%f ", *(float*)currentNode->data);
-                break;
-            case 'l':
-                if(format[1] == 'f' && strnlen(format, 3) == 2)
-                {
-                    printf("%lf ", *(double*)currentNode->data);
-                }
-                break;
+        case 'p':
+            printf("%p ", currentNode->data);
+            break;
+        case 'd':
+            printf("%d ", *(int32_t *)currentNode->data);
+            break;
+        case 'u':
+            printf("%u ", *(uint32_t *)currentNode->data);
+            break;
+        case 'o':
+            printf("%o ", *(int32_t *)currentNode->data);
+            break;
+        case 'x':
+            printf("%x ", *(int32_t *)currentNode->data);
+            break;
+        case 'c':
+            printf("%c ", *(char *)currentNode->data);
+            break;
+        case 's':
+            printf("%s ", *(char **)currentNode->data);
+            break;
+        case 'f':
+            printf("%f ", *(float *)currentNode->data);
+            break;
+        case 'l':
+            if (format[1] == 'f' && strnlen(format, 3) == 2)
+            {
+                printf("%lf ", *(double *)currentNode->data);
+            }
+            break;
 
-            default:
-                return;
+        default:
+            return;
         }
 
-        if(dataPerLine != 0)
+        if (dataPerLine != 0)
         {
-            if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
+            if ((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
             {
                 printf("\n");
             }
         }
-        
+
         currentPosition++;
         currentNode = currentNode->next;
     }
@@ -596,19 +598,19 @@ void ZSinglyLinkedList_dumpMemoryCallback(ZSinglyLinkedList *list, int32_t dataP
 {
     ZSinglyLinkedListNode *currentNode = list->head;
     size_t currentPosition = 0;
-    
-    while(currentNode != NULL)
+
+    while (currentNode != NULL)
     {
         printFunction(currentNode->data);
 
-        if(dataPerLine != 0)
+        if (dataPerLine != 0)
         {
-            if((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
+            if ((currentPosition + 1) % dataPerLine == 0 || currentNode->next == NULL)
             {
                 printf("\n");
             }
         }
-        
+
         currentPosition++;
         currentNode = currentNode->next;
     }
